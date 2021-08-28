@@ -1,5 +1,6 @@
 ## FEUILLE DE ROUTE:
 
+->(jour1)
 - Idées autour du projet :
     -
     - matching entre entreprises et candidats
@@ -37,4 +38,7 @@
     - Bootstrap 4.0
     - Git/Github
 
-3. 
+3. Création du projet :
+    -
+    - installation de la base
+    - Dépôt sur Github
