@@ -13,36 +13,51 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    </head>
-    <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+</head>
+<body>
+<header>
+    {# ------------------------ NavBar ------------------- #}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="#" class="logonavbar"  alt="Logo Lamatch"></a>
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Matching</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mon Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Déconnexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Volet Admin</a>
+                </li>
+            </ul>
+        </div>
 
-            <a class="navbar-brand" href="#"><img src="#" class="logonavbar"  alt="Logo Lamatch"></a>
-            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Matching</a>
-                        </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mon Profil</a>
-                    </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Déconnexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Volet Admin</a>
-                        </li>
-                </ul>
-            </div>
+    </nav>
+</header>
+{# ------------------------ Message flash ------------------- #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 
-        </nav>
-    </header>
-    </body>
+<main>
+    <section class="container">
+        {% block body %}{% endblock %}
+    </section>
+</main>
+</body>
 </html>
+
