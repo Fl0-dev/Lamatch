@@ -42,6 +42,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $nom;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Candidat::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $candidat;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Entreprise::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $entreprise;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +147,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getCandidat(): ?Candidat
+    {
+        return $this->candidat;
+    }
+
+    public function setCandidat(?Candidat $candidat): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($candidat === null && $this->candidat !== null) {
+            $this->candidat->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($candidat !== null && $candidat->getUser() !== $this) {
+            $candidat->setUser($this);
+        }
+
+        $this->candidat = $candidat;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($entreprise === null && $this->entreprise !== null) {
+            $this->entreprise->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($entreprise !== null && $entreprise->getUser() !== $this) {
+            $entreprise->setUser($this);
+        }
+
+        $this->entreprise = $entreprise;
 
         return $this;
     }

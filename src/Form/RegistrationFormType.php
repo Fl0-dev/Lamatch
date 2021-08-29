@@ -2,10 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Candidat;
+use App\Entity\Entreprise;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,13 +25,13 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email')
             ->add('nom',TextType::class)
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
+            ->add('entreprise',EntityType::class,[
+                'class'=>Entreprise::class,
+                'choice_label'=>'nom',
+            ])
+            ->add('candidat',EntityType::class,[
+                'class'=>Candidat::class,
+                'choice_label'=>'nom',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -45,7 +50,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+            ])
         ;
     }
 
