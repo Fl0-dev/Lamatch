@@ -9,7 +9,7 @@
     - comparaison des souhaits des 2 parties
     - Donner des coeff à certains souhaits et valeurs
     - utilisation des Id pour comparer (on évite les strings) 
-    - Menu déroulant ou <datalist>!!!
+    - Menu déroulant ou datalist !!!
 
 - Choix des technologies pour ce projet : 
     -
@@ -46,3 +46,8 @@
     - mise en place de l'authentification et de l'enregistrement (-->jour2)
     - gestion des rôles et du remember me en back et front
     - =>Sécurité Ok
+    - création volet admin
+
+4. Mise en place des Entity :
+    -
+    -Création des entity Candidat et Entreprise simple(sans relation) 
