@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}|backOffice{% endblock %}
+
+{% block body %}
+
+    <h1>Hello {{ app.user.nom }}! </h1>
+
+    <h3>Gestion des utilisateurs</h3>
+    <ul>
+        <li><a href="{{ path('app_register') }}">Ajout d'un utilisateur</a></li>
+    </ul>
+    <h3>Gestion des Candidats</h3>
+    <ul>
+        <li><a href="#">Gestion des Candidats</a></li>
+    </ul>
+    <h3>Gestion des Employeurs</h3>
+    <ul>
+        <li><a href="#">Gestion des Employeurs</a></li>
+    </ul>
+
+{% endblock %}

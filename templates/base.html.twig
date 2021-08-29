@@ -18,7 +18,7 @@
 <header>
     {# ------------------------ NavBar ------------------- #}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><img src="#" class="logonavbar"  alt="Logo Lamatch"></a>
+        <a class="navbar-brand" href="{{ path('home') }}"><img src="#" class="logonavbar"  alt="Logo Lamatch"></a>
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,7 +27,7 @@
                 {% set chemin = app.request.get('_route') %}
                 {% if app.user %}
                 <li class="nav-item {% if chemin  == 'accueil' %}active{% endif %}">
-                    <a class="nav-link" href="#">Accueil</a>
+                    <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Matching</a>
@@ -45,7 +45,7 @@
                 {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Volet Admin</a>
+                        <a class="nav-link" href="{{ path('admin_backOffice') }}">Volet Admin</a>
                     </li>
                 {% endif %}
             </ul>
