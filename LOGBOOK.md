@@ -1,6 +1,6 @@
 ## FEUILLE DE ROUTE:
 
--->jour1
+(-->jour1)
 - Idées autour du projet :
     -
     - matching entre entreprises et candidats
@@ -42,5 +42,7 @@
     -
     - installation de la base
     - Dépôt sur Github
-
--->jour2
+    
+    - mise en place de l'authentification et de l'enregistrement (-->jour2)
+    - gestion des rôles et du remember me en back et front
+    - =>Sécurité Ok

@@ -24,21 +24,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                {% set chemin = app.request.get('_route') %}
+                {% if app.user %}
+                <li class="nav-item {% if chemin  == 'accueil' %}active{% endif %}">
                     <a class="nav-link" href="#">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Matching</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if chemin  == 'user_profil' %}active{% endif %}">
                     <a class="nav-link" href="{{ path('app_register') }}">Mon Profil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Volet Admin</a>
-                </li>
+                {% else %}
+                    <li class="nav-item {% if chemin  == 'app_login' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Volet Admin</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
