@@ -68,6 +68,12 @@ class Entreprise
      */
     private $typeEntreprise;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="entreprises")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ville;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -189,6 +195,18 @@ class Entreprise
     public function setTypeEntreprise(?TypeEntreprise $typeEntreprise): self
     {
         $this->typeEntreprise = $typeEntreprise;
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

@@ -62,6 +62,12 @@ class Candidat
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="candidats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ville;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +177,18 @@ class Candidat
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

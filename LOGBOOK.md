@@ -48,9 +48,9 @@
     - =>Sécurité Ok
     - création volet admin
 
-4. Mise en place des Entity :
+4. Mise en place des Entities :
     -
-    - Création des entity Candidat et Entreprise simple(sans relation)
+    - Création des entities Candidat et Entreprise simple(sans relation)
     - Mise en place d'une relation OneToOne entre User et Candidat/Entreprise
     - L'administrateur peut enregistrer un user et le relier 
       - soit à un candidat
@@ -62,4 +62,10 @@
       - PME
       - ETI
       - GE
-    
+    - Création de l'Entity Region avec les 18 régions de France
+    - Création de l'Entity Ville avec relation 
+      - ManyToOne avec Region
+      - OneToMany avec Entreprise
+      - OneToMany avec Candidat
+      - => Pour gagner du temps, je pars du principe qu'une entreprise ou un candidat est présent que dans une seule ville
+    -  
