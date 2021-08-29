@@ -50,4 +50,10 @@
 
 4. Mise en place des Entity :
     -
-    -Création des entity Candidat et Entreprise simple(sans relation) 
+    - Création des entity Candidat et Entreprise simple(sans relation)
+    - Mise en place d'une relation OneToOne entre User et Candidat/Entreprise
+    - L'administrateur peut enregistrer un user et le relier 
+      - soit à un candidat
+      - soit à une entreprise
+    - J'ai pris le parti de laisser le choix si l'on veut que l'email de connexion 
+    soit différent que celui de contact.   
