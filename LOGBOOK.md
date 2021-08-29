@@ -56,4 +56,10 @@
       - soit à un candidat
       - soit à une entreprise
     - J'ai pris le parti de laisser le choix si l'on veut que l'email de connexion 
-    soit différent que celui de contact.   
+    soit différent que celui de contact. 
+    - Création de TypeEntreprise (taille de l'entreprise) en relation ManyToOne avec Entreprise avec en BD 
+      - MicroEntreprise
+      - PME
+      - ETI
+      - GE
+    
