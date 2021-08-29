@@ -1,6 +1,6 @@
 ## FEUILLE DE ROUTE:
 
-->(jour1)
+-->jour1
 - Idées autour du projet :
     -
     - matching entre entreprises et candidats
@@ -42,3 +42,5 @@
     -
     - installation de la base
     - Dépôt sur Github
+
+-->jour2
