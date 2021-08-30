@@ -75,6 +75,12 @@ class Candidat
      */
     private $formations;
 
+    /**
+     * @ORM\OneToOne(targetEntity=QualitesDISC::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ListeDeQualitesDISC;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -225,6 +231,18 @@ class Candidat
     public function removeFormation(Formation $formation): self
     {
         $this->formations->removeElement($formation);
+
+        return $this;
+    }
+
+    public function getListeDeQualitesDISC(): ?QualitesDISC
+    {
+        return $this->ListeDeQualitesDISC;
+    }
+
+    public function setListeDeQualitesDISC(QualitesDISC $ListeDeQualitesDISC): self
+    {
+        $this->ListeDeQualitesDISC = $ListeDeQualitesDISC;
 
         return $this;
     }

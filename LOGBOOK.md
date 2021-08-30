@@ -77,5 +77,5 @@
     - On a donc Un Candidat avec des formations ou pas avec d'un certain niveau ou pas.
     - **Formation** avec Relation ManyToOne avec **Niveau** et ManyToMany avec **Candidat**.
     - Création des Entities **QualiteD** **/I /S /C** avec ![](C:\wamp64\www\SymfonyProjects\Lamatchv2\public\utils\DISC.png)
-    - Création de QualitesDISC qui regroupe des listes de qualité selon leur appartenance : relation ManyToMany (à voir si souci)
-    - 
+    - Création de **QualitesDISC** qui regroupe des listes de qualité selon leur appartenance : relation ManyToMany (à voir si souci)
+    - Relation OneToOne entre **QualitesDISC** et **Candidat**
