@@ -50,29 +50,31 @@
 
 4. Mise en place des Entities :
     -
-    - Création des entities Candidat et Entreprise simple(sans relation)
-    - Mise en place d'une relation OneToOne entre User et Candidat/Entreprise
+    - Création des entities **Candidat** et **Entreprise** simple(sans relation)
+    - Mise en place d'une relation OneToOne entre **User** et **Candidat**/**Entreprise**
     - L'administrateur peut enregistrer un user et le relier 
       - soit à un candidat
       - soit à une entreprise
     - J'ai pris le parti de laisser le choix si l'on veut que l'email de connexion 
     soit différent que celui de contact. 
-    - Création de TypeEntreprise (taille de l'entreprise) en relation ManyToOne avec Entreprise avec en BD 
+    - Création de **TypeEntreprise** (taille de l'entreprise) en relation ManyToOne avec **Entreprise** avec en BD 
       - MicroEntreprise
       - PME
       - ETI
       - GE
-    - Création de l'Entity Region avec les 18 régions de France
-    - Création de l'Entity Ville avec relation 
-      - ManyToOne avec Region
-      - OneToMany avec Entreprise
-      - OneToMany avec Candidat
+    - Création de l'Entity **Region** avec les 18 régions de France
+    - Création de l'Entity **Ville** avec relation 
+      - ManyToOne avec **Region**
+      - OneToMany avec **Entreprise**
+      - OneToMany avec **Candidat**
       - => Pour gagner du temps, je pars du principe qu'une entreprise ou un candidat est présent que dans une seule ville
-    - Création de Niveau, je choisis <=Bac à Bac+5 (-->jour3)
+    - Création de **Niveau**, je choisis <=Bac à Bac+5 (-->jour3)
     - Je choisi de séparer Diplome et Formation qui je pense peuvent aujourd'hui être 2 choses différentes (à voir dans la pratique). 
     - Création de Diplome avec le nom de l'établissement qu'on pourrait mettre aussi en Objet 
    et pouvoir matcher dessus (si l'employeur cherche des sortant de grandes écoles par ex),
    mais je reste sur une String pour simplifier.
-    - ! ! ! ! Changement pour juste une Entity Formation avec le niveau qui peut être null => simplification 
+    - ! ! ! ! Changement pour juste une Entity **Formation** avec le niveau qui peut être null => simplification 
     - On a donc Un Candidat avec des formations ou pas avec d'un certain niveau ou pas.
-    - Formation avec Relation ManyToOne avec Niveau et ManyToMany avec Candidat
+    - **Formation** avec Relation ManyToOne avec **Niveau** et ManyToMany avec **Candidat**.
+    - Création des Entities **QualiteD** **/I /S /C** avec ![](C:\wamp64\www\SymfonyProjects\Lamatchv2\public\utils\DISC.png)
+    - 
