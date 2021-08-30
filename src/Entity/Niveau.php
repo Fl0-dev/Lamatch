@@ -25,13 +25,13 @@ class Niveau
     private $libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity=Diplome::class, mappedBy="niveau")
+     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="niveau")
      */
-    private $diplomes;
+    private $formations;
 
     public function __construct()
     {
-        $this->diplomes = new ArrayCollection();
+        $this->formations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,32 +52,33 @@ class Niveau
     }
 
     /**
-     * @return Collection|Diplome[]
+     * @return Collection|Formation[]
      */
-    public function getDiplomes(): Collection
+    public function getFormations(): Collection
     {
-        return $this->diplomes;
+        return $this->formations;
     }
 
-    public function addDiplome(Diplome $diplome): self
+    public function addFormation(Formation $formation): self
     {
-        if (!$this->diplomes->contains($diplome)) {
-            $this->diplomes[] = $diplome;
-            $diplome->setNiveau($this);
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
+            $formation->setNiveau($this);
         }
 
         return $this;
     }
 
-    public function removeDiplome(Diplome $diplome): self
+    public function removeFormation(Formation $formation): self
     {
-        if ($this->diplomes->removeElement($diplome)) {
+        if ($this->formations->removeElement($formation)) {
             // set the owning side to null (unless already changed)
-            if ($diplome->getNiveau() === $this) {
-                $diplome->setNiveau(null);
+            if ($formation->getNiveau() === $this) {
+                $formation->setNiveau(null);
             }
         }
 
         return $this;
     }
+
 }

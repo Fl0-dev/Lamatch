@@ -69,7 +69,10 @@
       - OneToMany avec Candidat
       - => Pour gagner du temps, je pars du principe qu'une entreprise ou un candidat est présent que dans une seule ville
     - Création de Niveau, je choisis <=Bac à Bac+5 (-->jour3)
+    - Je choisi de séparer Diplome et Formation qui je pense peuvent aujourd'hui être 2 choses différentes (à voir dans la pratique). 
     - Création de Diplome avec le nom de l'établissement qu'on pourrait mettre aussi en Objet 
    et pouvoir matcher dessus (si l'employeur cherche des sortant de grandes écoles par ex),
    mais je reste sur une String pour simplifier.
-    - Avec Relation ManyToOne avec Niveau et 
+    - ! ! ! ! Changement pour juste une Entity Formation avec le niveau qui peut être null => simplification 
+    - On a donc Un Candidat avec des formations ou pas avec d'un certain niveau ou pas.
+    - Formation avec Relation ManyToOne avec Niveau et ManyToMany avec Candidat
