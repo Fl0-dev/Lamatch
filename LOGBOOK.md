@@ -93,3 +93,6 @@
       - Culture d'entreprise
       - Equilibre pro/privé
       - Environnement de qualité
+    - Dans mon premier jet de MCD, je partais du principe qu'une entreprise si elle a un secteur d'activité regroupe plusieurs domaines qui regroupe des compétences. 
+   Je vais partir plutôt baser mon schéma sur : un candidat a des compétences dans un seul domaine et un seul. 
+    - Création d'une entity **Competence** et d'une entity **Domaine**
