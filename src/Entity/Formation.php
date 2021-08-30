@@ -49,6 +49,11 @@ class Formation
      */
     private $candidats;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="formations")
+     */
+    private $domaine;
+
     public function __construct()
     {
         $this->candidats = new ArrayCollection();
@@ -142,6 +147,18 @@ class Formation
         if ($this->candidats->removeElement($candidat)) {
             $candidat->removeFormation($this);
         }
+
+        return $this;
+    }
+
+    public function getDomaine(): ?Domaine
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(?Domaine $domaine): self
+    {
+        $this->domaine = $domaine;
 
         return $this;
     }

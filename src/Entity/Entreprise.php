@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -79,6 +81,16 @@ class Entreprise
      * @ORM\JoinColumn(nullable=false)
      */
     private $valeurPrincipale;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Domaine::class, inversedBy="entreprises")
+     */
+    private $domaines;
+
+    public function __construct()
+    {
+        $this->domaines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -225,6 +237,30 @@ class Entreprise
     public function setValeurPrincipale(?ValeurPrincipale $valeurPrincipale): self
     {
         $this->valeurPrincipale = $valeurPrincipale;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Domaine[]
+     */
+    public function getDomaines(): Collection
+    {
+        return $this->domaines;
+    }
+
+    public function addDomaine(Domaine $domaine): self
+    {
+        if (!$this->domaines->contains($domaine)) {
+            $this->domaines[] = $domaine;
+        }
+
+        return $this;
+    }
+
+    public function removeDomaine(Domaine $domaine): self
+    {
+        $this->domaines->removeElement($domaine);
 
         return $this;
     }

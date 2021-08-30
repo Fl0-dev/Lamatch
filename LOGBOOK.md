@@ -94,8 +94,10 @@
       - Equilibre pro/privé
       - Environnement de qualité
     - Dans mon premier jet de MCD, je partais du principe qu'une entreprise si elle a un secteur d'activité regroupe plusieurs domaines qui regroupe des compétences. 
-   Je vais partir plutôt baser mon schéma sur : un candidat a des compétences dans un seul domaine et un seul. 
+   Je vais partir plutôt baser mon schéma sur : un candidat a des compétences dans un seul domaine et un seul et une entreprise est dans un seul domaine (on essayera de proposer un autre domaine en recherche ? Pas très matching-friendly...)
     - Création d'une entity **Competence** et d'une entity **Domaine**
     - Relation OneToMany entre **Domaine** et **Competence**
     - Relation ManyToMany entre **Competence** et **Candidat**
-    - Relation 
+    - Relation ManyToOne entre **Formation** et **Domaine**
+    - Relation ManyToOne entre **Experience** et **Domaine**
+    - Relation ManyToMany entre **Entreprise** et **Domaine**
