@@ -87,9 +87,15 @@ class Candidat
      */
     private $valeurPrincipale;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Competence::class, inversedBy="candidats")
+     */
+    private $competences;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
+        $this->competences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -261,6 +267,30 @@ class Candidat
     public function setValeurPrincipale(?ValeurPrincipale $valeurPrincipale): self
     {
         $this->valeurPrincipale = $valeurPrincipale;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Competence[]
+     */
+    public function getCompetences(): Collection
+    {
+        return $this->competences;
+    }
+
+    public function addCompetence(Competence $competence): self
+    {
+        if (!$this->competences->contains($competence)) {
+            $this->competences[] = $competence;
+        }
+
+        return $this;
+    }
+
+    public function removeCompetence(Competence $competence): self
+    {
+        $this->competences->removeElement($competence);
 
         return $this;
     }
