@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\QualiteIRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,10 +24,16 @@ class QualiteI
      */
     private $nom;
 
-    public function getId(): ?int
+    /**
+     * @ORM\ManyToMany(targetEntity=QualitesDISC::class, mappedBy="ListeDeQualitesI")
+     */
+    private $qualitesDISCs;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->qualitesDISCs = new ArrayCollection();
     }
+
 
     public function getNom(): ?string
     {
@@ -35,6 +43,33 @@ class QualiteI
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QualitesDISC[]
+     */
+    public function getQualitesDISCs(): Collection
+    {
+        return $this->qualitesDISCs;
+    }
+
+    public function addQualitesDISC(QualitesDISC $qualitesDISC): self
+    {
+        if (!$this->qualitesDISCs->contains($qualitesDISC)) {
+            $this->qualitesDISCs[] = $qualitesDISC;
+            $qualitesDISC->addListeDeQualitesI($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQualitesDISC(QualitesDISC $qualitesDISC): self
+    {
+        if ($this->qualitesDISCs->removeElement($qualitesDISC)) {
+            $qualitesDISC->removeListeDeQualitesI($this);
+        }
 
         return $this;
     }
