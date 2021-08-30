@@ -52,6 +52,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $entreprise;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $etat;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateModiff;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -191,6 +201,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(bool $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getDateModiff(): ?\DateTimeInterface
+    {
+        return $this->dateModiff;
+    }
+
+    public function setDateModiff(?\DateTimeInterface $dateModiff): self
+    {
+        $this->dateModiff = $dateModiff;
 
         return $this;
     }

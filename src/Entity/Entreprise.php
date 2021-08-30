@@ -55,11 +55,6 @@ class Entreprise
     private $effectif;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat;
-
-    /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="entreprise", cascade={"persist", "remove"})
      */
     private $user;
@@ -177,18 +172,6 @@ class Entreprise
     public function setEffectif(int $effectif): self
     {
         $this->effectif = $effectif;
-
-        return $this;
-    }
-
-    public function getEtat(): ?bool
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(bool $etat): self
-    {
-        $this->etat = $etat;
 
         return $this;
     }

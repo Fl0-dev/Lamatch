@@ -55,11 +55,6 @@ class Candidat
     private $enRecherche;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat;
-
-    /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="candidat", cascade={"persist", "remove"})
      */
     private $user;
@@ -183,18 +178,6 @@ class Candidat
     public function setEnRecherche(bool $enRecherche): self
     {
         $this->enRecherche = $enRecherche;
-
-        return $this;
-    }
-
-    public function getEtat(): ?bool
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(bool $etat): self
-    {
-        $this->etat = $etat;
 
         return $this;
     }
