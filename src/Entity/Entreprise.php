@@ -82,6 +82,11 @@ class Entreprise
      */
     private $domaines;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enrecherche;
+
     public function __construct()
     {
         $this->domaines = new ArrayCollection();
@@ -244,6 +249,18 @@ class Entreprise
     public function removeDomaine(Domaine $domaine): self
     {
         $this->domaines->removeElement($domaine);
+
+        return $this;
+    }
+
+    public function getEnrecherche(): ?bool
+    {
+        return $this->enrecherche;
+    }
+
+    public function setEnrecherche(bool $enrecherche): self
+    {
+        $this->enrecherche = $enrecherche;
 
         return $this;
     }

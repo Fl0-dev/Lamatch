@@ -101,3 +101,5 @@
     - Relation ManyToOne entre **Formation** et **Domaine**
     - Relation ManyToOne entre **Experience** et **Domaine**
     - Relation ManyToMany entre **Entreprise** et **Domaine**
+    - Suppression de etat dans Candidat et Entreprise et mis dans User avec dateModiff. Permettra de désactiver un user et de le supprimer au bout de 30 jours (RGPD). 
+    
