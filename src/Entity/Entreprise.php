@@ -74,6 +74,12 @@ class Entreprise
      */
     private $ville;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ValeurPrincipale::class, inversedBy="entreprises")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $valeurPrincipale;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -207,6 +213,18 @@ class Entreprise
     public function setVille(?Ville $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getValeurPrincipale(): ?ValeurPrincipale
+    {
+        return $this->valeurPrincipale;
+    }
+
+    public function setValeurPrincipale(?ValeurPrincipale $valeurPrincipale): self
+    {
+        $this->valeurPrincipale = $valeurPrincipale;
 
         return $this;
     }

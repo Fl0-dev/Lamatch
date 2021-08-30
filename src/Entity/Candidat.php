@@ -81,6 +81,12 @@ class Candidat
      */
     private $ListeDeQualitesDISC;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ValeurPrincipale::class, inversedBy="candidats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $valeurPrincipale;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -243,6 +249,18 @@ class Candidat
     public function setListeDeQualitesDISC(QualitesDISC $ListeDeQualitesDISC): self
     {
         $this->ListeDeQualitesDISC = $ListeDeQualitesDISC;
+
+        return $this;
+    }
+
+    public function getValeurPrincipale(): ?ValeurPrincipale
+    {
+        return $this->valeurPrincipale;
+    }
+
+    public function setValeurPrincipale(?ValeurPrincipale $valeurPrincipale): self
+    {
+        $this->valeurPrincipale = $valeurPrincipale;
 
         return $this;
     }
