@@ -81,3 +81,15 @@
     - Relation OneToOne entre **QualitesDISC** et **Candidat**.
     - Création de **Experience** et **TypeContrat** et leur relation ManyToOne.
     - Relation OneToOne entre **Experience** et **Candidat**.
+    - Je voulais mettre une entity Valeur mais candidat et entreprise tendent vers les mêmes choses. Les deux parties se vendrons en choisissant toutes les valeurs.
+    Je vais donc faire une entity **ValeurPrincipale** qui donnera un seul choix pour l'employeur (à mettre en avant) et le candidat(recherchée) parmi une liste ( A voir si le temps pour mettre ce système avec une liste à prioriser (de 1 à 5 par ex)) :
+      - Travail en équipe
+      - Evolution de carrière
+      - Faciliter l'intégration
+      - Rémunération juste
+      - Flexibilité des horaires
+      - Ambiance de travail
+      - Tutorat
+      - Culture d'entreprise
+      - Equilibre pro/privé
+      - Environnement de qualité
