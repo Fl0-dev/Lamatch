@@ -78,4 +78,6 @@
     - **Formation** avec Relation ManyToOne avec **Niveau** et ManyToMany avec **Candidat**.
     - Création des Entities **QualiteD** **/I /S /C** avec ![](C:\wamp64\www\SymfonyProjects\Lamatchv2\public\utils\DISC.png)
     - Création de **QualitesDISC** qui regroupe des listes de qualité selon leur appartenance : relation ManyToMany (à voir si souci)
-    - Relation OneToOne entre **QualitesDISC** et **Candidat**
+    - Relation OneToOne entre **QualitesDISC** et **Candidat**.
+    - Création de **Experience** et **TypeContrat** et leur relation ManyToOne.
+    - Relation OneToOne entre **Experience** et **Candidat**.

@@ -40,10 +40,16 @@ class Ville
      */
     private $candidats;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="ville")
+     */
+    private $experiences;
+
     public function __construct()
     {
         $this->entreprises = new ArrayCollection();
         $this->candidats = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +135,36 @@ class Ville
             // set the owning side to null (unless already changed)
             if ($candidat->getVille() === $this) {
                 $candidat->setVille(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Experience[]
+     */
+    public function getExperiences(): Collection
+    {
+        return $this->experiences;
+    }
+
+    public function addExperience(Experience $experience): self
+    {
+        if (!$this->experiences->contains($experience)) {
+            $this->experiences[] = $experience;
+            $experience->setVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): self
+    {
+        if ($this->experiences->removeElement($experience)) {
+            // set the owning side to null (unless already changed)
+            if ($experience->getVille() === $this) {
+                $experience->setVille(null);
             }
         }
 
