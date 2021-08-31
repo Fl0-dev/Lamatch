@@ -9,6 +9,7 @@ use App\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +26,9 @@ class CandidatType extends AbstractType
                     'widget'=>'single_text'
                 ])
             ->add('linkedin')
-            ->add('enRecherche')
+            ->add('enRecherche',null,[
+                'label'=>'Vous êtes à la recherche d\'un emploi ',
+            ])
             ->add('ville',EntityType::class,[
                 'class'=>Ville::class,
                 'choice_label' => 'nom'])
@@ -40,7 +43,7 @@ class CandidatType extends AbstractType
                 'class'=>ValeurPrincipale::class,
                 "mapped"=>false,
                 'choice_label' => 'nom'])
-            ->add('competences')
+            ->add('competences',TextType::class)
             //->add('user')
         ;
     }

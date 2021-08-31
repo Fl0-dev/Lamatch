@@ -110,3 +110,7 @@
     3. une fois valider, retour au login
     4. une fois logger il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil.
     5. une fois completer il est renvoyer vers l'accueil
+* Si utilisateur qui a déjà un profil :
+    1. Il se logg et arrive sur la page d'accueil
+* Si Administrateur
+    1. Il se logg et arrive sur la page d'accueil avec un volet admin dans la navBar

@@ -1,12 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidatController!{% endblock %}
+{% block title %}{{parent()}}|Création profil{% endblock %}
 
 {% block body %}
-    <h1>Compléter votre profil :</h1>
-    <section>
-        {{ form_start(formCandidat) }}
-        {{ form_widget(formCandidat) }}
+    <section class="col-8 align-content-center">
+    <h1>Bienvenue {{ app.user.nom }}</h1>
+        {{ form_row(formCandidat.emailContact) }}
+        {{ form_row(formCandidat.nom) }}
+        {{ form_row(formCandidat.prenom) }}
+        {{ form_row(formCandidat.photo) }}
+        {{ form_row(formCandidat.dateNaissance) }}
+        {{ form_row(formCandidat.linkedin) }}
+        {{ form_row(formCandidat.enRecherche) }}
+        {{ form_row(formCandidat.ville) }}
+        {{ form_row(formCandidat.ListeDeQualitesDISC) }}
+        {{ form_row(formCandidat.valeurPrincipale) }}
+        {{ form_row(formCandidat.competences) }}
         <button type="submit" class="btn-primary">Enregistrer</button>
         {{ form_end(formCandidat) }}
     </section>
