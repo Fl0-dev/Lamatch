@@ -57,6 +57,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $type;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Candidat::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $candidat;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Entreprise::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $entreprise;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +198,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setType(bool $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getCandidat(): ?Candidat
+    {
+        return $this->candidat;
+    }
+
+    public function setCandidat(?Candidat $candidat): self
+    {
+        $this->candidat = $candidat;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        $this->entreprise = $entreprise;
 
         return $this;
     }

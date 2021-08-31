@@ -82,6 +82,11 @@ class Candidat
      */
     private $competences;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="candidat", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -257,6 +262,28 @@ class Candidat
     public function removeCompetence(Competence $competence): self
     {
         $this->competences->removeElement($competence);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setCandidat(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getCandidat() !== $this) {
+            $user->setCandidat($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

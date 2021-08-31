@@ -19,9 +19,19 @@ class MainController extends AbstractController
     /**
      * @Route("/accueil", name="accueil")
      */
-    public function acceuil(): Response
+    public function accueil(): Response
     {
+        //récupération de l'utilisateur
+        $user = $this->getUser();
 
+        //si première connexion
+        if ($user->getType()==true && $user->getCandidat()==null){//si candidat
+            return $this->redirectToRoute('');
+        }
+        if ($user->getType()==false && $user->getEntreprise()==null){//si entreprise
+            return $this->redirectToRoute('');
+        }
+        //sinon page d'accueil
         return $this->render('main/accueil.html.twig');
     }
 }
