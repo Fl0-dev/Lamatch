@@ -25,7 +25,7 @@ class CandidatController extends AbstractController
         $candidat = new Candidat();
 
         //utilisation du form de candidat
-        $form = $this->createForm(CandidatType::class);
+        $form = $this->createForm(CandidatType::class,$candidat);
         //et envoie du form en requête
         $form->handleRequest($request);
         //si valide

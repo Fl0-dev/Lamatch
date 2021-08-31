@@ -66,12 +66,6 @@ class Candidat
     private $formations;
 
     /**
-     * @ORM\OneToOne(targetEntity=QualitesDISC::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $ListeDeQualitesDISC;
-
-    /**
      * @ORM\ManyToOne(targetEntity=ValeurPrincipale::class, inversedBy="candidats")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -92,11 +86,17 @@ class Candidat
      */
     private $experiences;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=QualitesDISC::class, inversedBy="candidats")
+     */
+    private $ListQualites;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
         $this->competences = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->ListQualites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,18 +224,6 @@ class Candidat
         return $this;
     }
 
-    public function getListeDeQualitesDISC(): ?QualitesDISC
-    {
-        return $this->ListeDeQualitesDISC;
-    }
-
-    public function setListeDeQualitesDISC(QualitesDISC $ListeDeQualitesDISC): self
-    {
-        $this->ListeDeQualitesDISC = $ListeDeQualitesDISC;
-
-        return $this;
-    }
-
     public function getValeurPrincipale(): ?ValeurPrincipale
     {
         return $this->valeurPrincipale;
@@ -320,6 +308,30 @@ class Candidat
                 $experience->setCandidat(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QualitesDISC[]
+     */
+    public function getListQualites(): Collection
+    {
+        return $this->ListQualites;
+    }
+
+    public function addListQualite(QualitesDISC $listQualite): self
+    {
+        if (!$this->ListQualites->contains($listQualite)) {
+            $this->ListQualites[] = $listQualite;
+        }
+
+        return $this;
+    }
+
+    public function removeListQualite(QualitesDISC $listQualite): self
+    {
+        $this->ListQualites->removeElement($listQualite);
 
         return $this;
     }

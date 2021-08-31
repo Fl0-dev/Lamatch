@@ -30,6 +30,16 @@ class QualitesDISC
      */
     private $typeQualite;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Candidat::class, mappedBy="ListQualites")
+     */
+    private $candidats;
+
+    public function __construct()
+    {
+        $this->candidats = new ArrayCollection();
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -50,6 +60,33 @@ class QualitesDISC
     public function setTypeQualite(?TypeQualite $typeQualite): self
     {
         $this->typeQualite = $typeQualite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidat[]
+     */
+    public function getCandidats(): Collection
+    {
+        return $this->candidats;
+    }
+
+    public function addCandidat(Candidat $candidat): self
+    {
+        if (!$this->candidats->contains($candidat)) {
+            $this->candidats[] = $candidat;
+            $candidat->addListQualite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidat(Candidat $candidat): self
+    {
+        if ($this->candidats->removeElement($candidat)) {
+            $candidat->removeListQualite($this);
+        }
 
         return $this;
     }
