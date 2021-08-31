@@ -6,14 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/candidat/", name="candidat_")
+ */
 class CandidatController extends AbstractController
 {
     /**
-     * @Route("/candidat", name="candidat")
+     * @Route("/ajout", name="ajout")
      */
-    public function index(): Response
+    public function ajout(): Response
     {
-        return $this->render('candidat/index.html.twig', [
+        return $this->render('candidat/ajout.html.twig', [
             'controller_name' => 'CandidatController',
         ]);
     }

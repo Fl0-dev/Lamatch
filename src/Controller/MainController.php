@@ -26,10 +26,10 @@ class MainController extends AbstractController
 
         //si première connexion
         if ($user->getType()==true && $user->getCandidat()==null){//si candidat
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('candidat_ajout');
         }
         if ($user->getType()==false && $user->getEntreprise()==null){//si entreprise
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('entreprise_ajout');
         }
         //sinon page d'accueil
         return $this->render('main/accueil.html.twig');

@@ -6,15 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/entreprise/", name="entreprise_")
+ */
 class EntrepriseController extends AbstractController
 {
+
     /**
-     * @Route("/entreprise", name="entreprise")
+     * @Route("/ajout", name="ajout")
      */
-    public function index(): Response
+    public function ajout(): Response
     {
-        return $this->render('entreprise/index.html.twig', [
-            'controller_name' => 'EntrepriseController',
+        return $this->render('entreprise/ajout.html.twig', [
+            'controller_name' => 'CandidatController',
         ]);
     }
 }
