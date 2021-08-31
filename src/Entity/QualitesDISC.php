@@ -20,125 +20,36 @@ class QualitesDISC
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=QualiteC::class, inversedBy="qualitesDISCs")
+     * @ORM\Column(type="string", length=15)
      */
-    private $ListeDeQualitesC;
+    private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity=QualiteI::class, inversedBy="qualitesDISCs")
+     * @ORM\ManyToOne(targetEntity=TypeQualite::class, inversedBy="qualitesDISCs")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $ListeDeQualitesI;
+    private $typeQualite;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=QualiteD::class, inversedBy="qualitesDISCs")
-     */
-    private $ListeDeQualitesD;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=QualiteS::class, inversedBy="qualitesDISCs")
-     */
-    private $ListeDeQualitesS;
-
-    public function __construct()
+    public function getNom(): ?string
     {
-        $this->ListeDeQualitesC = new ArrayCollection();
-        $this->ListeDeQualitesI = new ArrayCollection();
-        $this->ListeDeQualitesD = new ArrayCollection();
-        $this->ListeDeQualitesS = new ArrayCollection();
+        return $this->nom;
     }
 
-    /**
-     * @return Collection|QualiteC[]
-     */
-    public function getListeDeQualitesC(): Collection
+    public function setNom(string $nom): self
     {
-        return $this->ListeDeQualitesC;
-    }
-
-    public function addListeDeQualitesC(QualiteC $listeDeQualitesC): self
-    {
-        if (!$this->ListeDeQualitesC->contains($listeDeQualitesC)) {
-            $this->ListeDeQualitesC[] = $listeDeQualitesC;
-        }
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function removeListeDeQualitesC(QualiteC $listeDeQualitesC): self
+    public function getTypeQualite(): ?TypeQualite
     {
-        $this->ListeDeQualitesC->removeElement($listeDeQualitesC);
-
-        return $this;
+        return $this->typeQualite;
     }
 
-    /**
-     * @return Collection|QualiteI[]
-     */
-    public function getListeDeQualitesI(): Collection
+    public function setTypeQualite(?TypeQualite $typeQualite): self
     {
-        return $this->ListeDeQualitesI;
-    }
-
-    public function addListeDeQualitesI(QualiteI $listeDeQualitesI): self
-    {
-        if (!$this->ListeDeQualitesI->contains($listeDeQualitesI)) {
-            $this->ListeDeQualitesI[] = $listeDeQualitesI;
-        }
-
-        return $this;
-    }
-
-    public function removeListeDeQualitesI(QualiteI $listeDeQualitesI): self
-    {
-        $this->ListeDeQualitesI->removeElement($listeDeQualitesI);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|QualiteD[]
-     */
-    public function getListeDeQualitesD(): Collection
-    {
-        return $this->ListeDeQualitesD;
-    }
-
-    public function addListeDeQualitesD(QualiteD $listeDeQualitesD): self
-    {
-        if (!$this->ListeDeQualitesD->contains($listeDeQualitesD)) {
-            $this->ListeDeQualitesD[] = $listeDeQualitesD;
-        }
-
-        return $this;
-    }
-
-    public function removeListeDeQualitesD(QualiteD $listeDeQualitesD): self
-    {
-        $this->ListeDeQualitesD->removeElement($listeDeQualitesD);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|QualiteS[]
-     */
-    public function getListeDeQualitesS(): Collection
-    {
-        return $this->ListeDeQualitesS;
-    }
-
-    public function addListeDeQualites(QualiteS $listeDeQualites): self
-    {
-        if (!$this->ListeDeQualitesS->contains($listeDeQualites)) {
-            $this->ListeDeQualitesS[] = $listeDeQualites;
-        }
-
-        return $this;
-    }
-
-    public function removeListeDeQualites(QualiteS $listeDeQualites): self
-    {
-        $this->ListeDeQualitesS->removeElement($listeDeQualites);
+        $this->typeQualite = $typeQualite;
 
         return $this;
     }

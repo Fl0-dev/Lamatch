@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\QualiteIRepository;
+use App\Repository\TypeQualiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=QualiteIRepository::class)
+ * @ORM\Entity(repositoryClass=TypeQualiteRepository::class)
  */
-class QualiteI
+class TypeQualite
 {
     /**
      * @ORM\Id
@@ -20,12 +20,17 @@ class QualiteI
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=13)
      */
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity=QualitesDISC::class, mappedBy="ListeDeQualitesI")
+     * @ORM\Column(type="string", length=5)
+     */
+    private $color;
+
+    /**
+     * @ORM\OneToMany(targetEntity=QualitesDISC::class, mappedBy="typeQualite")
      */
     private $qualitesDISCs;
 
@@ -35,6 +40,11 @@ class QualiteI
     }
 
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -43,6 +53,18 @@ class QualiteI
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }
@@ -59,7 +81,7 @@ class QualiteI
     {
         if (!$this->qualitesDISCs->contains($qualitesDISC)) {
             $this->qualitesDISCs[] = $qualitesDISC;
-            $qualitesDISC->addListeDeQualitesI($this);
+            $qualitesDISC->setTypeQualite($this);
         }
 
         return $this;
@@ -68,9 +90,13 @@ class QualiteI
     public function removeQualitesDISC(QualitesDISC $qualitesDISC): self
     {
         if ($this->qualitesDISCs->removeElement($qualitesDISC)) {
-            $qualitesDISC->removeListeDeQualitesI($this);
+            // set the owning side to null (unless already changed)
+            if ($qualitesDISC->getTypeQualite() === $this) {
+                $qualitesDISC->setTypeQualite(null);
+            }
         }
 
         return $this;
     }
+
 }
