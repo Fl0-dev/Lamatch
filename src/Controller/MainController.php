@@ -23,7 +23,9 @@ class MainController extends AbstractController
     {
         //récupération de l'utilisateur
         $user = $this->getUser();
-
+        if ($user->getType()==null){
+            return $this->render('main/accueil.html.twig');
+        }
         //si première connexion
         if ($user->getType()==true && $user->getCandidat()==null){//si candidat
             return $this->redirectToRoute('candidat_ajout');

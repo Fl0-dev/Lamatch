@@ -31,10 +31,11 @@ class CandidatType extends AbstractType
                 'choice_label' => 'nom'])
             //->add('formations')
             //->add('experiences')
-            /*->add('ListeDeQualitesDISC',EntityType::class,[
+            ->add('ListeDeQualitesDISC',EntityType::class,[
+                'label'=> 'Choisissez les qualités qui vous correspondent :',
                 'class'=> QualitesDISC::class,
-                'choice_label'=>'id',
-            ])*/
+                'choice_label'=>'nom',
+            ])
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
                 "mapped"=>false,

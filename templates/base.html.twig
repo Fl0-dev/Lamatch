@@ -7,50 +7,51 @@
           lang="fr">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Lamatch{% endblock %}</title>
-    <link rel="icon" href="#">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="#">
+    <link rel="icon" href="https://lamacompta.co/wp-content/themes/oceanwp_child/assets/images/logo-lamacompta-icono.svg" sizes="32x32">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="#" type="text/css">
+
 </head>
 <body>
 <header>
     {# ------------------------ NavBar ------------------- #}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('home') }}"><img src="#" class="logonavbar"  alt="Logo Lamatch"></a>
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                {% set chemin = app.request.get('_route') %}
-                {% if app.user %}
-                <li class="nav-item {% if chemin  == 'accueil' %}active{% endif %}">
-                    <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Matching</a>
-                </li>
-                <li class="nav-item {% if chemin  == 'user_profil' %}active{% endif %}">
-                    <a class="nav-link" href="#">Mon Profil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                </li>
-                {% else %}
-                    <li class="nav-item {% if chemin  == 'app_login' %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('utils/llama.png') }}" width="50px" class="logonavbar"  alt="Logo Lamatch"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav float-end">
+                    {% set chemin = app.request.get('_route') %}
+                    {% if app.user %}
+                    <li class="nav-item {% if chemin  == 'accueil' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
                     </li>
-                {% endif %}
-                {% if is_granted("ROLE_ADMIN") %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_backOffice') }}">Volet Admin</a>
+                        <a class="nav-link" href="#">Matching</a>
                     </li>
-                {% endif %}
-            </ul>
+                    <li class="nav-item {% if chemin  == 'user_profil' %}active{% endif %}">
+                        <a class="nav-link" href="#">Mon Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                    {% else %}
+                        <li class="nav-item {% if chemin  == 'app_login' %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_backOffice') }}">Volet Admin</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-
     </nav>
 </header>
 {# ------------------------ Message flash ------------------- #}
@@ -67,6 +68,9 @@
         {% block body %}{% endblock %}
     </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
 
