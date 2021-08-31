@@ -54,21 +54,6 @@ class CandidatType extends AbstractType
                 "mapped"=>false,
                 'choice_label' => 'nom'])
             ->add('competences',TextType::class)
-            //->add('user')
-        ;
-            /*->add('emailContact')
-            ->add('nom')
-            ->add('prenom')
-            ->add('photo')
-            ->add('dateNaissance')
-            ->add('linkedin')
-            ->add('enRecherche')
-            ->add('ville')
-            ->add('formations')
-            ->add('valeurPrincipale')
-            ->add('competences')
-            ->add('user')
-            ->add('ListQualites')*/
         ;
     }
 

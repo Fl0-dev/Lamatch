@@ -1,16 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{parent()}}|Création profil{% endblock %}
-{% block stylesheets %}<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />{% endblock %}
+
 {% block body %}
-    <section class="col-8 align-content-center">
+    <section class="col-6">
     <h1>Bienvenue {{ app.user.nom }}</h1>
+        {{ form_start(formCandidat) }}
         {{ form_row(formCandidat.emailContact) }}
         {{ form_row(formCandidat.nom) }}
         {{ form_row(formCandidat.prenom) }}
         {{ form_row(formCandidat.photo) }}
         {{ form_row(formCandidat.dateNaissance) }}
         {{ form_row(formCandidat.linkedin) }}
+        <a href="{{ path('formation_ajout') }}" class="btn btn-primary">Ajouter Formation</a>
+        {% for candidat in candidat.formations%}
+            <p>{{ candidat.formations.intitule }}</p>
+        {% endfor %}
+        <a href="#" class="btn btn-primary">Ajouter Expérience Pro</a>
         {{ form_row(formCandidat.enRecherche) }}
         {{ form_row(formCandidat.ville) }}
         {{ form_row(formCandidat.ListQualites) }}

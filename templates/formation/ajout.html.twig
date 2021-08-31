@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}|Ajouter Formation{% endblock %}
+
+{% block body %}
+<section class="col-6">
+    <h1>Ajouter une formation</h1>
+    {{ form_start(formFormation) }}
+    {{ form_widget(formFormation) }}
+    <button type="submit">Inscrire</button>
+    {{ form_end(formFormation) }}
+
+</section>
+
+{% endblock %}

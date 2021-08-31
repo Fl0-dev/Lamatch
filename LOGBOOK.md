@@ -100,7 +100,7 @@
     - Relation ManyToMany entre **Entreprise** et **Domaine**
     - Suppression de etat dans **Candidat** et **Entreprise** et mis dans **User** avec dateModiff. Permettra de désactiver un user et de le supprimer au bout de 30 jours (RGPD). 
    
-5. Navigation :
+5. Navigation Home -> Login -> création compte -> accueil:
     -
    On s'écarte de la maquette proposée pour permettre à un nouvel utilisateur de créer son compte directement dés la page de login.
    (-->jour 3)
@@ -111,6 +111,8 @@
     4. une fois logger il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil.
     5. une fois completer il est renvoyer vers l'accueil
 * Si utilisateur qui a déjà un profil :
-    1. Il se logg et arrive sur la page d'accueil
+    1. Il se logue et arrive sur la page d'accueil
 * Si Administrateur
-    1. Il se logg et arrive sur la page d'accueil avec un volet admin dans la navBar
+    1. Il se logue et arrive sur la page d'accueil avec un volet admin dans la navBar.
+  
+-Difficultés : impossible d'avoir un select 2 en Bootstrap 5, ajout et récupération des formations et expériences avec un formulaire à part
