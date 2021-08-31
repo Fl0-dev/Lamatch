@@ -21,6 +21,7 @@ class MainController extends AbstractController
      */
     public function acceuil(): Response
     {
+
         return $this->render('main/accueil.html.twig');
     }
 }

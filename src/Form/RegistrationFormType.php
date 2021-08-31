@@ -25,17 +25,14 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email')
             ->add('nom',TextType::class)
-            ->add('entreprise',EntityType::class,[
-                'class'=>Entreprise::class,
-                'choice_label'=>'nom',
-            ])
-            ->add('candidat',EntityType::class,[
-                'class'=>Candidat::class,
-                'choice_label'=>'nom',
+            ->add('type',ChoiceType::class,[
+                'choices'=>[
+                    'Candidat'=> true,
+                    'Employeur'=> false,
+                ]
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+               'label'=>'Password',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [

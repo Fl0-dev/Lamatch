@@ -1,50 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}|Enregistrement{% endblock %}
+{% block title %}{{ parent() }}| Création Compte{% endblock %}
 
 {% block body %}
-    <h1>Enregistrement</h1>
+    <h1>Création Compte</h1>
 
     <section class="container col-8">
     {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.nom) }}
-        <div class="form-check form-check-inline">
-            <label for="candidat" class="form-check-label">Candidat</label>
-            <input type="radio" class="form-check-input" id="candidat" name="choice" checked="checked" onclick="magie()">
-        </div>
-        <div class="form-check form-check-inline mb-3">
-            <label for="employeur" class="form-check-label">Employeur</label>
-            <input type="radio" class="form-check-input" id="employeur" name="choice" onclick="magie()">
-        </div>
-        <div id="div_candidat">
-        {{ form_row(registrationForm.candidat) }}
-        </div>
-        <div id="div_entreprise" style="display: none">
-        {{ form_row(registrationForm.entreprise) }}
-        </div>
-    {{ form_row(registrationForm.plainPassword) }}
-
+        {{ form_row(registrationForm.type) }}
+        {{ form_row(registrationForm.plainPassword) }}
     <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
     </section>
-
-    <script>
-        /**
-         * permet de n'afficher que le champ que l'on souhaite selon
-         * les radio boutons
-         */
-        function magie() {
-            let divEntreprise = document.querySelector('#div_entreprise');
-            let divCandidat = document.querySelector('#div_candidat');
-
-            if (document.querySelector('#candidat').checked) {
-                divEntreprise.style.display = 'none';
-                divCandidat.style.display = 'block';
-            } else {
-                divEntreprise.style.display = 'block';
-                divCandidat.style.display = 'none';
-            }
-        }
-    </script>
 {% endblock %}

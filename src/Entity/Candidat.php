@@ -55,11 +55,6 @@ class Candidat
     private $enRecherche;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="candidat", cascade={"persist", "remove"})
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="candidats")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -178,18 +173,6 @@ class Candidat
     public function setEnRecherche(bool $enRecherche): self
     {
         $this->enRecherche = $enRecherche;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

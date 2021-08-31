@@ -55,11 +55,6 @@ class Entreprise
     private $effectif;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="entreprise", cascade={"persist", "remove"})
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity=TypeEntreprise::class, inversedBy="entreprises")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -177,18 +172,6 @@ class Entreprise
     public function setEffectif(int $effectif): self
     {
         $this->effectif = $effectif;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

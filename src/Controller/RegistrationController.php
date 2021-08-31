@@ -13,9 +13,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/admin/register", name="app_register")
+     * @Route("/register/{route}", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder,$route): Response
     {
         $user = new User();
         $user->setRoles(["ROLE_USER"]);
@@ -37,7 +37,8 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('admin_backOffice');
+                return $this->redirectToRoute($route);
+
         }
 
         return $this->render('registration/register.html.twig', [
