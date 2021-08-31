@@ -105,5 +105,11 @@
    
 5. Navigation :
     -
-   - On s'écarte de la maquette proposée pour permettre à un nouvel utilisateur de créer son compte directement dés la page de login
-   - 
+   On s'écarte de la maquette proposée pour permettre à un nouvel utilisateur de créer son compte directement dés la page de login.
+   (-->jour 3)
+* Si nouvel utilisateur :
+    1. il crée un compte (bouton créer compte)
+    2. il est rediriger vers un formulaire de création où il indique si candidat ou employeur
+    3. une fois valider, retour au login
+    4. une fois logger il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil.
+    5. une fois completer il est renvoyer vers l'accueil

@@ -59,6 +59,11 @@ class Experience
      */
     private $domaine;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Candidat::class, inversedBy="experiences")
+     */
+    private $candidat;
+
     public function getNomEmployeur(): ?string
     {
         return $this->nomEmployeur;
@@ -151,6 +156,18 @@ class Experience
     public function setDomaine(?Domaine $domaine): self
     {
         $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getCandidat(): ?Candidat
+    {
+        return $this->candidat;
+    }
+
+    public function setCandidat(?Candidat $candidat): self
+    {
+        $this->candidat = $candidat;
 
         return $this;
     }

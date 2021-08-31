@@ -87,10 +87,16 @@ class Candidat
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="candidat")
+     */
+    private $experiences;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
         $this->competences = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -284,6 +290,36 @@ class Candidat
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Experience[]
+     */
+    public function getExperiences(): Collection
+    {
+        return $this->experiences;
+    }
+
+    public function addExperience(Experience $experience): self
+    {
+        if (!$this->experiences->contains($experience)) {
+            $this->experiences[] = $experience;
+            $experience->setCandidat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): self
+    {
+        if ($this->experiences->removeElement($experience)) {
+            // set the owning side to null (unless already changed)
+            if ($experience->getCandidat() === $this) {
+                $experience->setCandidat(null);
+            }
+        }
 
         return $this;
     }
