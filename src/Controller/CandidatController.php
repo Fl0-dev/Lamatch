@@ -32,7 +32,7 @@ class CandidatController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //relie candidat et user
             $candidat->setUser($this->getUser());
-        //on inscrit en BD
+            //on inscrit en BD
             $entityManager->persist($candidat);
             $entityManager->flush();
 

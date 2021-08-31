@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{parent()}}|Création profil{% endblock %}
-
+{% block stylesheets %}<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />{% endblock %}
 {% block body %}
     <section class="col-8 align-content-center">
     <h1>Bienvenue {{ app.user.nom }}</h1>
@@ -21,3 +21,4 @@
     </section>
 
 {% endblock %}
+{% block javascripts %}{% endblock %}

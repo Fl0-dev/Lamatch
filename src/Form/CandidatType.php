@@ -40,11 +40,14 @@ class CandidatType extends AbstractType
                 'multiple'=>true,
                 'class'=> QualitesDISC::class,
                 'choice_label'=>'nom',
+                //'expanded'=>true, si l'on veut des checkbox
                 //par ordre alphabétique
                 'query_builder'=> function(EntityRepository $entityRepository){
                     return $entityRepository->createQueryBuilder('c')
                         ->orderBy('c.nom','ASC');
-                }
+                },
+                //pour permettre la gestion de la relation ManyToMany
+                'by_reference'=> false,
             ])
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
