@@ -24,7 +24,7 @@ class EntrepriseType extends AbstractType
             ->add('logo',FileType::class,[
                 'mapped'=>false,
                 'required'=>false,
-                'label'=>'Ma photo',
+                'label'=>'Mon logo',
                 'constraints'=>[
                     new File([
                         'maxSize'=>'5000k',

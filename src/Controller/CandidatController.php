@@ -49,6 +49,13 @@ class CandidatController extends AbstractController
                 }
                 $candidat->setPhoto($nomDeFichier);
             }
+            //calcul age
+            $dateNaissance = $candidat->getDateNaissance();
+            $stringDateNaissance = $dateNaissance->format('Y');
+
+            $age = date('Y')- $stringDateNaissance;
+            $candidat->setAge($age);
+
             //relie candidat et user
             $candidat->setUser($this->getUser());
             //on inscrit en BD
@@ -58,7 +65,7 @@ class CandidatController extends AbstractController
             $this->addFlash('success', 'Votre profil a bien été complété.');
             return $this->redirectToRoute('accueil');
         }
-        return $this->render('entreprise/ajout.html.twig', [
+        return $this->render('candidat/ajout.html.twig', [
             'formCandidat' => $form->createView(),
             'candidat'=>$candidat,
         ]);

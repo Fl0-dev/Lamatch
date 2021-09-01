@@ -91,6 +91,11 @@ class Candidat
      */
     private $ListQualites;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $age;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -332,6 +337,18 @@ class Candidat
     public function removeListQualite(QualitesDISC $listQualite): self
     {
         $this->ListQualites->removeElement($listQualite);
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
 
         return $this;
     }

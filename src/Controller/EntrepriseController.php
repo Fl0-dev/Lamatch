@@ -34,7 +34,7 @@ class EntrepriseController extends AbstractController
 
             //gestion de la photo
             /** @var UploadedFile $dossierPhotos */
-            $dossierPhotos = $form->get('photo')->getData();
+            $dossierPhotos = $form->get('logo')->getData();
             if ($dossierPhotos) {
                 $nomDeFichier = $uploadImage->uploadImage($dossierPhotos);try {
                     $dossierPhotos->move(
@@ -60,4 +60,8 @@ class EntrepriseController extends AbstractController
                 'entreprise'=>$entreprise,
         ]);
     }
+
+
+
+
 }
