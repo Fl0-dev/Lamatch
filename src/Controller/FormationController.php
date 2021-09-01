@@ -22,20 +22,18 @@ class FormationController extends AbstractController
     {
         //création d'une formation
         $formation = new Formation();
-
         //utilisation du form de candidat
         $form = $this->createForm(FormationType::class,$formation);
         //et envoie du form en requête
         $form->handleRequest($request);
         //si valide
-        /*if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             //on inscrit en BD
             $entityManager->persist($formation);
             $entityManager->flush();
             $this->addFlash('success', 'Votre formation a bien été inscrite.');
             return $this->redirectToRoute('formation_ajout');
-        }*/
+        }
         return $this->render('formation/ajout.html.twig', [
             'formFormation'=>$form->createView(),
             'formation'=>$formation,

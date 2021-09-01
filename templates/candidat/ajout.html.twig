@@ -13,16 +13,16 @@
         {{ form_row(formCandidat.dateNaissance) }}
         {{ form_row(formCandidat.linkedin) }}
         <a href="{{ path('formation_ajout') }}" class="btn btn-primary">Ajouter Formation</a>
-        {% for candidat in candidat.formations%}
-            <p>{{ candidat.formations.intitule }}</p>
+        {% for formation in candidat.formations%}
+            <p>{{ formation.intitule }}</p>
         {% endfor %}
         <a href="#" class="btn btn-primary">Ajouter Expérience Pro</a>
+        <a href="#" class="btn btn-primary">Ajouter Compétence</a>
         {{ form_row(formCandidat.enRecherche) }}
         {{ form_row(formCandidat.ville) }}
         {{ form_row(formCandidat.ListQualites) }}
         {{ form_row(formCandidat.valeurPrincipale) }}
-        {{ form_row(formCandidat.competences) }}
-        <button type="submit" class="btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
         {{ form_end(formCandidat) }}
     </section>
 

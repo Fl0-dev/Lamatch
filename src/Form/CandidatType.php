@@ -3,16 +3,20 @@
 namespace App\Form;
 
 use App\Entity\Candidat;
+use App\Entity\Competence;
 use App\Entity\QualitesDISC;
 use App\Entity\ValeurPrincipale;
 use App\Entity\Ville;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class CandidatType extends AbstractType
 {
@@ -22,7 +26,17 @@ class CandidatType extends AbstractType
             ->add('emailContact')
             ->add('nom')
             ->add('prenom')
-            ->add('photo')
+            ->add('photo',FileType::class,[
+                'mapped'=>false,
+                'required'=>false,
+                'label'=>'Ma photo',
+                'constraints'=>[
+                    new File([
+                        'maxSize'=>'5000k',
+                        'mimeTypesMessage'=>'On veux une photo qui fait moins de 5 Mo'
+                    ])
+                ]
+            ])
             ->add('dateNaissance', DateType::class, [
                 'widget'=>'single_text'
             ])
@@ -51,9 +65,8 @@ class CandidatType extends AbstractType
             ])
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
-                "mapped"=>false,
                 'choice_label' => 'nom'])
-            ->add('competences',TextType::class)
+
         ;
     }
 
