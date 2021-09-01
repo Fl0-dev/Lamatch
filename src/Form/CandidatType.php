@@ -33,7 +33,7 @@ class CandidatType extends AbstractType
                 'constraints'=>[
                     new File([
                         'maxSize'=>'5000k',
-                        'mimeTypesMessage'=>'On veux une photo qui fait moins de 5 Mo'
+                        'mimeTypesMessage'=>'5 Mo maximum'
                     ])
                 ]
             ])

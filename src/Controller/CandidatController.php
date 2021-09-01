@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use App\Form\CandidatType;
+use App\Services\UploadImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -11,7 +12,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/candidat", name="candidat_")
@@ -21,7 +21,7 @@ class CandidatController extends AbstractController
     /**
      * @Route("/ajout", name="ajout")
      */
-    public function ajout(Request $request,SluggerInterface $slugger,EntityManagerInterface $entityManager): Response
+    public function ajout(Request $request,UploadImage $uploadImage,EntityManagerInterface $entityManager): Response
     {
 
         //création d'un candidat
@@ -37,10 +37,8 @@ class CandidatController extends AbstractController
             /** @var UploadedFile $dossierPhotos */
             $dossierPhotos = $form->get('photo')->getData();
             if ($dossierPhotos) {
-                $nomOriginalDeFichier = pathinfo($dossierPhotos->getClientOriginalName(), PATHINFO_FILENAME);
-                //on change le nom du fichier
-                $nomDeFichierSecur = $slugger->slug($nomOriginalDeFichier);
-                $nomDeFichier = $nomDeFichierSecur . '-' . uniqid() . '.' . $dossierPhotos->guessExtension();
+
+                $nomDeFichier = $uploadImage->uploadImage($dossierPhotos);
                 try {
                     $dossierPhotos->move(
                         $this->getParameter('photo_dossier'),
@@ -60,7 +58,7 @@ class CandidatController extends AbstractController
             $this->addFlash('success', 'Votre profil a bien été complété.');
             return $this->redirectToRoute('accueil');
         }
-        return $this->render('candidat/ajout.html.twig', [
+        return $this->render('entreprise/ajout.html.twig', [
             'formCandidat' => $form->createView(),
             'candidat'=>$candidat,
         ]);
