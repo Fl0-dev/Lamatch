@@ -50,9 +50,10 @@ class EntrepriseType extends AbstractType
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
                 'choice_label' => 'nom'])
-            /*->add('domaines',EntityType::class,[
+            ->add('domaines',EntityType::class,[
                 'class'=>Domaine::class,
-                'choice_label' => 'nom'])*/
+                'multiple'=>true,
+                'choice_label' => 'nom'])
             //->add('user')
         ;
     }
