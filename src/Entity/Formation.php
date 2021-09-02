@@ -45,9 +45,9 @@ class Formation
     private $niveau;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Candidat::class, mappedBy="formations")
+     * @ORM\ManyToOne(targetEntity=Candidat::class, inversedBy="formations")
      */
-    private $candidats;
+    private $candidat;
 
     /**
      * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="formations")
@@ -124,29 +124,15 @@ class Formation
         return $this;
     }
 
-    /**
-     * @return Collection|Candidat[]
-     */
-    public function getCandidats(): Collection
+
+    public function getCandidat(): ?Candidat
     {
-        return $this->candidats;
+        return $this->candidat;
     }
 
-    public function addCandidat(Candidat $candidat): self
+    public function setCandidat(?Candidat $candidat): self
     {
-        if (!$this->candidats->contains($candidat)) {
-            $this->candidats[] = $candidat;
-            $candidat->addFormation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCandidat(Candidat $candidat): self
-    {
-        if ($this->candidats->removeElement($candidat)) {
-            $candidat->removeFormation($this);
-        }
+        $this->candidat = $candidat;
 
         return $this;
     }

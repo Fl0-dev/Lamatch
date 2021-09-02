@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use App\Form\CandidatType;
+use App\Repository\FormationRepository;
 use App\Services\UploadImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,7 +22,9 @@ class CandidatController extends AbstractController
     /**
      * @Route("/ajout", name="ajout")
      */
-    public function ajout(Request $request,UploadImage $uploadImage,EntityManagerInterface $entityManager): Response
+    public function ajout(Request $request,
+                          UploadImage $uploadImage,
+                          EntityManagerInterface $entityManager): Response
     {
 
         //création d'un candidat
@@ -63,17 +66,67 @@ class CandidatController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre profil a bien été complété.');
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
+
         return $this->render('candidat/ajout.html.twig', [
             'formCandidat' => $form->createView(),
             'candidat'=>$candidat,
         ]);
     }
 
-    public function modifier(): Response
+    /**
+     * @Route("/modifier/{id}", name="modifier")
+     */
+    public function modifier(Candidat $candidat,
+                             EntityManagerInterface $entityManager,
+                             Request $request,
+                             FormationRepository $formationRepository,
+                             UploadImage $uploadImage): Response
     {
-        return $this->render('candidat/ajout.html.twig');
+        //récupération des formations selon le candidat
+        $formations = $formationRepository->findBy(['candidat'=>$candidat]);
+        //utilisation du form de candidat
+        $form = $this->createForm(CandidatType::class,$candidat);
+        //et envoie du form en requête
+        $form->handleRequest($request);
+        //si valide
+        //si valide
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //gestion de la photo
+            /** @var UploadedFile $dossierPhotos */
+            $dossierPhotos = $form->get('photo')->getData();
+            if ($dossierPhotos) {
+
+                $nomDeFichier = $uploadImage->uploadImage($dossierPhotos);
+                try {
+                    $dossierPhotos->move(
+                        $this->getParameter('photo_dossier'),
+                        $nomDeFichier
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('error', "Soucis lors de l'enregistrement. Désolé");
+                }
+                $candidat->setPhoto($nomDeFichier);
+            }
+            //calcul age
+            $dateNaissance = $candidat->getDateNaissance();
+            $stringDateNaissance = $dateNaissance->format('Y');
+
+            $age = date('Y')- $stringDateNaissance;
+            $candidat->setAge($age);
+            //on inscrit en BD
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre profil a bien été complété.');
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('candidat/modifier.html.twig', [
+            'formCandidat' => $form->createView(),
+            'candidat'=>$candidat,
+        ]);
     }
 
 

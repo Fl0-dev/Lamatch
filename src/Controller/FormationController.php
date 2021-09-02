@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/ajout", name="ajout")
+     * @Route("/ajout/", name="ajout")
      */
     public function ajout(Request $request,EntityManagerInterface $entityManager): Response
     {
@@ -28,7 +28,7 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //on inscrit en BD
+
             $entityManager->persist($formation);
             $entityManager->flush();
             $this->addFlash('success', 'Votre formation a bien été inscrite.');
@@ -36,7 +36,6 @@ class FormationController extends AbstractController
         }
         return $this->render('formation/ajout.html.twig', [
             'formFormation'=>$form->createView(),
-            'formation'=>$formation,
         ]);
     }
 }

@@ -61,7 +61,7 @@ class Candidat
     private $ville;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Formation::class, inversedBy="candidats")
+     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="candidat")
      */
     private $formations;
 
@@ -299,7 +299,6 @@ class Candidat
     {
         if (!$this->experiences->contains($experience)) {
             $this->experiences[] = $experience;
-            $experience->setCandidat($this);
         }
 
         return $this;
@@ -307,12 +306,7 @@ class Candidat
 
     public function removeExperience(Experience $experience): self
     {
-        if ($this->experiences->removeElement($experience)) {
-            // set the owning side to null (unless already changed)
-            if ($experience->getCandidat() === $this) {
-                $experience->setCandidat(null);
-            }
-        }
+        $this->experiences->removeElement($experience);
 
         return $this;
     }

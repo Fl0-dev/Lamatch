@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}|Modification profil{% endblock %}
+
+{% block body %}
+    <section class="col-6">
+        <h1>Votre profil : {{ app.user.nom }}</h1>
+        {{ form_start(formCandidat) }}
+        {{ form_row(formCandidat.emailContact) }}
+        {{ form_row(formCandidat.nom) }}
+        {{ form_row(formCandidat.prenom) }}
+        {{ form_row(formCandidat.photo) }}
+        {{ form_row(formCandidat.dateNaissance) }}
+        {{ form_row(formCandidat.linkedin) }}
+        <a href="{{ path('formation_ajout') }}" class="btn btn-primary">Ajouter Formation</a>
+        <a href="#" class="btn btn-primary">Ajouter Expérience Pro</a>
+        <a href="#" class="btn btn-primary">Ajouter Compétence</a>
+        {{ form_row(formCandidat.enRecherche) }}
+        {{ form_row(formCandidat.ville) }}
+        {{ form_row(formCandidat.ListQualites) }}
+        {{ form_row(formCandidat.valeurPrincipale) }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {{ form_end(formCandidat) }}
+    </section>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
