@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}|Ajouter Expérience{% endblock %}
+
+{% block body %}
+    <section class="col-6">
+        <h1>Ajouter une expérience</h1>
+        {{ form_start(formExperience) }}
+        {{ form_widget(formExperience) }}
+        <button type="submit" class="btn btn-primary">Inscrire</button>
+        {{ form_end(formExperience) }}
+        <a href="{{ path('candidat_ajout') }}"></a>
+
+    </section>
+{% endblock %}

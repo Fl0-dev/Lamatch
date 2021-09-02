@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Candidat;
-use App\Entity\Formation;
-use App\Form\FormationType;
+use App\Entity\Experience;
+use App\Form\ExperienceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,9 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/formation", name="formation_")
+ * @Route("/experience", name="experience_")
  */
-class FormationController extends AbstractController
+class ExperienceController extends AbstractController
 {
     /**
      * @Route("/ajout/{id}", name="ajout")
@@ -23,24 +23,25 @@ class FormationController extends AbstractController
                           EntityManagerInterface $entityManager,
                           Candidat $candidat): Response
     {
-        //création d'une formation
-        $formation = new Formation();
+        //création d'une entreprise
+        $experience = new Experience();
         //utilisation du form de formation
-        $form = $this->createForm(FormationType::class,$formation);
+        $form = $this->createForm(ExperienceType::class,$experience);
         //et envoie du form en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
             //enregistrement en BD
-            $formation->setCandidat($candidat);
-            $entityManager->persist($formation);
+            $experience->setCandidat($candidat);
+            $entityManager->persist($experience);
             $entityManager->flush();
-            $this->addFlash('success', 'Votre formation a bien été inscrite.');
+            $this->addFlash('success', 'Votre experience a bien été inscrite.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
-        return $this->render('formation/ajout.html.twig', [
-            'formFormation'=>$form->createView(),
+        return $this->render('experience/ajout.html.twig', [
+            'formExperience'=>$form->createView(),
             'candidat'=>$candidat,
         ]);
+        }
     }
-}
+
