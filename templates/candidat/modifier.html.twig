@@ -12,7 +12,7 @@
         {{ form_row(formCandidat.photo) }}
         {{ form_row(formCandidat.dateNaissance) }}
         {{ form_row(formCandidat.linkedin) }}
-        <a href="{{ path('formation_ajout') }}" class="btn btn-primary">Ajouter Formation</a>
+        <a href="{{ path('formation_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Formation</a>
         <a href="#" class="btn btn-primary">Ajouter Expérience Pro</a>
         <a href="#" class="btn btn-primary">Ajouter Compétence</a>
         {{ form_row(formCandidat.enRecherche) }}
@@ -22,6 +22,18 @@
         <button type="submit" class="btn btn-primary">Enregistrer</button>
         {{ form_end(formCandidat) }}
     </section>
-
+    <section>
+        {% for formation in candidat.formations %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ formation.intitule }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ formation.dateDebut | date('m-Y') }}{{ formation.dateFin | date('m-Y') }}</h6>
+                    <p class="card-text">{{ formation.niveau.libelle }}</p>
+                    <p class="card-text">{{ formation.etablissement }}</p>
+                    <p class="card-text">{{ formation.domaine.nom }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
 {% endblock %}
 {% block javascripts %}{% endblock %}

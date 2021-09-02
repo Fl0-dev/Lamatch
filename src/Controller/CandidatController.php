@@ -64,8 +64,7 @@ class CandidatController extends AbstractController
             //on inscrit en BD
             $entityManager->persist($candidat);
             $entityManager->flush();
-
-            $this->addFlash('success', 'Votre profil a bien été complété.');
+            $this->addFlash('success', 'Vous pouvez ajouter des formations, des expériences et des compétences.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
 
@@ -81,11 +80,9 @@ class CandidatController extends AbstractController
     public function modifier(Candidat $candidat,
                              EntityManagerInterface $entityManager,
                              Request $request,
-                             FormationRepository $formationRepository,
                              UploadImage $uploadImage): Response
     {
-        //récupération des formations selon le candidat
-        $formations = $formationRepository->findBy(['candidat'=>$candidat]);
+
         //utilisation du form de candidat
         $form = $this->createForm(CandidatType::class,$candidat);
         //et envoie du form en requête

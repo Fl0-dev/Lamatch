@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidat;
 use App\Entity\Formation;
 use App\Form\FormationType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,10 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/ajout/", name="ajout")
+     * @Route("/ajout/{id}", name="ajout")
      */
-    public function ajout(Request $request,EntityManagerInterface $entityManager): Response
+    public function ajout(Request $request,
+                          EntityManagerInterface $entityManager,
+                          Candidat $candidat): Response
     {
+
+
         //création d'une formation
         $formation = new Formation();
         //utilisation du form de candidat
@@ -28,14 +33,16 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
-
+            //enregistrement en BD
+            $formation->setCandidat($candidat);
             $entityManager->persist($formation);
             $entityManager->flush();
             $this->addFlash('success', 'Votre formation a bien été inscrite.');
-            return $this->redirectToRoute('formation_ajout');
+            return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
         return $this->render('formation/ajout.html.twig', [
             'formFormation'=>$form->createView(),
+            'candidat'=>$candidat,
         ]);
     }
 }
