@@ -108,8 +108,8 @@
     1. il crée un compte (bouton créer compte)
     2. il est rediriger vers un formulaire de création où il indique si candidat ou employeur
     3. une fois valider, retour au login
-    4. une fois logger il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil.
-    5. une fois completer il est renvoyer vers l'accueil
+    4. une fois logger il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil (permet de relier l'user avec candidat ou entreprise)
+    5. une fois completer il est renvoyer vers la modification de profil où il peut ajouter des formations, des expériences et des compétences.
 * Si utilisateur qui a déjà un profil :
     1. Il se logue et arrive sur la page d'accueil
 * Si Administrateur

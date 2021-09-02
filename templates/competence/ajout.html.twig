@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}|Ajouter Compétence{% endblock %}
+
+{% block body %}
+    <section class="col-6">
+        <h1>Ajouter une compétence</h1>
+        {{ form_start(formCompetence) }}
+        {{ form_widget(formCompetence) }}
+        <button type="submit" class="btn btn-primary">Inscrire</button>
+        {{ form_end(formCompetence) }}
+        <a href="{{ path('candidat_ajout') }}"></a>
+
+    </section>
+{% endblock %}
