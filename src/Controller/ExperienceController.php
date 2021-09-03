@@ -66,7 +66,19 @@ class ExperienceController extends AbstractController
             'formExperience'=>$form->createView(),
             'experience'=>$experience,
         ]);
+    }
 
+    /**
+     * @Route("/supprimer/{id}", name ="supprimer")
+     */
+    public function supprimer(Experience $experience,EntityManagerInterface $entityManager):Response
+    {
+        $candidat = $experience->getCandidat();
+        $entityManager->remove($experience);
+        $entityManager->flush();
+        $this->addFlash('success', 'L\'expérience a bien été supprimée.');
+
+        return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
     }
 }
 

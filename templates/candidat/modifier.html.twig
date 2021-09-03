@@ -38,6 +38,7 @@
                         <p class="card-text">{{ experience.nomEmployeur }}</p>
                         <p class="card-text">{{ experience.description }}</p>
                         <a href="{{ path('experience_modifier',{id:experience.id}) }}" class="btn btn-secondary">Modifier</a>
+                        <a href="{{ path('experience_supprimer',{id:experience.id}) }}" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             {% endfor %}
@@ -53,6 +54,7 @@
                         <p class="card-text">{{ formation.etablissement }}</p>
                         <p class="card-text">{{ formation.domaine.nom }}</p>
                         <a href="{{ path('formation_modifier',{id:formation.id}) }}" class="btn btn-secondary">Modifier</a>
+                        <a href="{{ path('formation_supprimer',{id:formation.id}) }}" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             {% endfor %}

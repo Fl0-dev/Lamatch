@@ -66,7 +66,18 @@ class FormationController extends AbstractController
             'formFormation'=>$form->createView(),
             'formation'=>$formation,
         ]);
+    }
 
+    /**
+     * @Route("/supprimer/{id}", name ="supprimer")
+     */
+    public function supprimer(Formation $formation,EntityManagerInterface $entityManager):Response
+    {
+        $candidat = $formation->getCandidat();
+        $entityManager->remove($formation);
+        $entityManager->flush();
+        $this->addFlash('success', 'La formation a bien été supprimée.');
 
+        return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
     }
 }
