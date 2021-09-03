@@ -3,55 +3,65 @@
 {% block title %}{{parent()}}|Modification profil{% endblock %}
 
 {% block body %}
-    <section class="col-6">
-        <h1>Votre profil : {{ app.user.nom }}</h1>
-        <img src="{{ candidat.photo }}" alt="photo de profil">
-        {{ form_start(formCandidat) }}
-        {{ form_row(formCandidat.emailContact) }}
-        {{ form_row(formCandidat.nom) }}
-        {{ form_row(formCandidat.prenom) }}
-        {{ form_row(formCandidat.photo) }}
-        {{ form_row(formCandidat.dateNaissance) }}
-        {{ form_row(formCandidat.linkedin) }}
-        <a href="{{ path('formation_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Formation</a>
-        <a href="{{ path('experience_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Expérience Pro</a>
-        <a href="{{ path('competence_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Compétence</a>
-        {{ form_row(formCandidat.enRecherche) }}
-        {{ form_row(formCandidat.ville) }}
-        {{ form_row(formCandidat.ListQualites) }}
-        {{ form_row(formCandidat.valeurPrincipale) }}
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-        {{ form_end(formCandidat) }}
-    </section>
+    <div class="row">
+        <section class="col-6">
+            <h1>Votre profil : {{ app.user.nom }}</h1>
+            <img src="{{ candidat.photo }}" alt="photo de profil">
+            {{ form_start(formCandidat) }}
+            {{ form_row(formCandidat.emailContact) }}
+            {{ form_row(formCandidat.nom) }}
+            {{ form_row(formCandidat.prenom) }}
+            {{ form_row(formCandidat.photo) }}
+            {{ form_row(formCandidat.dateNaissance) }}
+            {{ form_row(formCandidat.linkedin) }}
+            <a href="{{ path('formation_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Formation</a>
+            <a href="{{ path('experience_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Expérience Pro</a>
+            <a href="{{ path('competence_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Compétence</a>
+            {{ form_row(formCandidat.enRecherche) }}
+            {{ form_row(formCandidat.ville) }}
+            {{ form_row(formCandidat.ListQualites) }}
+            {{ form_row(formCandidat.valeurPrincipale) }}
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            {{ form_end(formCandidat) }}
+        </section>
 
-    <section>
-        <h2>Formations </h2>
-        {% for formation in candidat.formations %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ formation.intitule }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ formation.dateDebut | date('m-Y') }}{{ formation.dateFin | date('m-Y') }}</h6>
-                    <p class="card-text">{{ formation.niveau.libelle }}</p>
-                    <p class="card-text">{{ formation.etablissement }}</p>
-                    <p class="card-text">{{ formation.domaine.nom }}</p>
-                </div>
-            </div>
-        {% endfor %}
-    </section>
 
-    <section>
-        <h2>Expériences Professionnelles</h2>
-        {% for experience in candidat.experiences %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ experience.intitulePoste }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ experience.dateDebut | date('m-Y') }}{% if experience.dateFin %}{{ formation.dateFin | date('m-Y') }}{% else %} - {% endif %}</h6>
-                    <p class="card-text">{{ experience.typeContrat.intitule }}</p>
-                    <p class="card-text">{{ experience.nomEmployeur }}</p>
-                    <p class="card-text">{{ experience.description }}</p>
+    <div class="col-6">
+        <section class="">
+            <h2>Expériences Professionnelles</h2>
+            {% for experience in candidat.experiences %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ experience.intitulePoste }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ experience.dateDebut | date('m-Y') }}{% if experience.dateFin %}{{ formation.dateFin | date('m-Y') }}{% else %} - {% endif %}</h6>
+                        <p class="card-text">{{ experience.typeContrat.intitule }}</p>
+                        <p class="card-text">{{ experience.nomEmployeur }}</p>
+                        <p class="card-text">{{ experience.description }}</p>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </section>
+        <section class="">
+            <h2>Formations </h2>
+            {% for formation in candidat.formations %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ formation.intitule }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ formation.dateDebut | date('m-Y') }}{{ formation.dateFin | date('m-Y') }}</h6>
+                        <p class="card-text">{{ formation.niveau.libelle }}</p>
+                        <p class="card-text">{{ formation.etablissement }}</p>
+                        <p class="card-text">{{ formation.domaine.nom }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+    </div>
+    <section class="col">
+        <ul class="list-group">
+            {% for skill in candidat.competences %}
+                <li class="list-group-item">{{ skill.intitule }}</li>
+            {% endfor %}
+        </ul>
     </section>
 {% endblock %}
-{% block javascripts %}{% endblock %}
