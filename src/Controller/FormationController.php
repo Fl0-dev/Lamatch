@@ -59,10 +59,10 @@ class FormationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //enregistrement en BD
             $entityManager->flush();
-            $this->addFlash('success', 'Votre formation a bien été inscrite.');
+            $this->addFlash('success', 'Votre formation a bien été modifiée.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$formation->getCandidat()->getId()]);
         }
-        return $this->render('formation/ajout.html.twig', [
+        return $this->render('formation/modifier.html.twig', [
             'formFormation'=>$form->createView(),
             'formation'=>$formation,
         ]);

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ExperienceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -63,6 +64,16 @@ class Experience
      * @ORM\ManyToOne(targetEntity=Candidat::class, inversedBy="experiences")
      */
     private $candidat;
+
+    public function __construct()
+    {
+        $this->candidats = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNomEmployeur(): ?string
     {

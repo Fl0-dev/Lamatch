@@ -42,6 +42,31 @@ class ExperienceController extends AbstractController
             'formExperience'=>$form->createView(),
             'candidat'=>$candidat,
         ]);
-        }
     }
+
+    /**
+     * @Route("/modifier/{id}", name="modifier")
+     */
+    public function modifier(Experience $experience,
+                             Request $request,
+                             EntityManagerInterface $entityManager):Response
+    {
+        //utilisation du form de experience
+        $form = $this->createForm(ExperienceType::class,$experience);
+        //envoie en requête
+        $form->handleRequest($request);
+        //si valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            //enregistrement en BD
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre expérience a bien été modifiée.');
+            return $this->redirectToRoute('candidat_modifier',['id'=>$experience->getCandidat()->getId()]);
+        }
+        return $this->render('experience/modifier.html.twig', [
+            'formExperience'=>$form->createView(),
+            'experience'=>$experience,
+        ]);
+
+    }
+}
 

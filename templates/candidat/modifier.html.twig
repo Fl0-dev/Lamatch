@@ -37,6 +37,7 @@
                         <p class="card-text">{{ experience.typeContrat.intitule }}</p>
                         <p class="card-text">{{ experience.nomEmployeur }}</p>
                         <p class="card-text">{{ experience.description }}</p>
+                        <a href="{{ path('experience_modifier',{id:experience.id}) }}" class="btn btn-secondary">Modifier</a>
                     </div>
                 </div>
             {% endfor %}

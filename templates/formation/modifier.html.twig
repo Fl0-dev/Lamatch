@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}|Modifier Formation{% endblock %}
+
+{% block body %}
+    <section class="col-6">
+        <h1>Modifier une formation</h1>
+        {{ form_start(formFormation) }}
+        {{ form_widget(formFormation) }}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        {{ form_end(formFormation) }}
+        <a href="{{ path('candidat_ajout') }}"></a>
+
+    </section>
+
+{% endblock %}
