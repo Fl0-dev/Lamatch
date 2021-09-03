@@ -43,4 +43,30 @@ class FormationController extends AbstractController
             'candidat'=>$candidat,
         ]);
     }
+
+    /**
+     * @Route("/modifier/{id}", name="modifier")
+     */
+    public function modifier(Formation $formation,
+                             Request $request,
+                             EntityManagerInterface $entityManager):Response
+    {
+        //utilisation du form de formation
+        $form = $this->createForm(FormationType::class,$formation);
+        //envoie en requête
+        $form->handleRequest($request);
+        //si valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            //enregistrement en BD
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre formation a bien été inscrite.');
+            return $this->redirectToRoute('candidat_modifier',['id'=>$formation->getCandidat()->getId()]);
+        }
+        return $this->render('formation/ajout.html.twig', [
+            'formFormation'=>$form->createView(),
+            'formation'=>$formation,
+        ]);
+
+
+    }
 }

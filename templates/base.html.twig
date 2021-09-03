@@ -20,7 +20,7 @@
     {# ------------------------ NavBar ------------------- #}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('utils/llama.png') }}" width="50px" class="logonavbar"  alt="Logo Lamatch"></a>
+            <a class="navbar-brand" href="{% if is_granted("ROLE_USER") %}{{ path('accueil') }}{% else %}{{ path('home') }}{% endif %}"><img src="{{ asset('utils/llama.png') }}" width="50px" class="logonavbar"  alt="Logo Lamatch"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,26 +28,32 @@
                 <ul class="navbar-nav float-end">
                     {% set chemin = app.request.get('_route') %}
                     {% if app.user %}
-                    <li class="nav-item {% if chemin  == 'accueil' %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Matching</a>
-                    </li>
-                    <li class="nav-item {% if chemin  == 'user_profil' %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('candidat_modifier',{id:candidat.id}) }}">Mon Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                    </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin_backOffice') }}">Volet Admin</a>
+                            </li>
+                        {% else %}
+                                <li class="nav-item {% if chemin  == 'accueil' %}active{% endif %}">
+                                    <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Matching</a>
+                                </li>
+                                <li class="nav-item {% if chemin  == 'user_profil' %}active{% endif %}">
+                                    <a class="nav-link"
+                                       href="{% if app.user.candidat %}
+                                                {{ path('candidat_modifier',{id:app.user.candidat.id}) }}
+                                            {% elseif app.user.entreprise %}
+                                                {{ path('entreprise_modifier',{id:app.user.entreprise.id}) }}
+                                            {% endif %}">Mon Profil</a>
+                                </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </li>
                     {% else %}
                         <li class="nav-item {% if chemin  == 'app_login' %}active{% endif %}">
                             <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        </li>
-                    {% endif %}
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_backOffice') }}">Volet Admin</a>
                         </li>
                     {% endif %}
                 </ul>

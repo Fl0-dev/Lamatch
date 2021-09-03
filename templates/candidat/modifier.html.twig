@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}|Modification profil{% endblock %}
+{% block title %}{{parent()}}|Modifier profil{% endblock %}
 
 {% block body %}
     <div class="row">
@@ -51,6 +51,7 @@
                         <p class="card-text">{{ formation.niveau.libelle }}</p>
                         <p class="card-text">{{ formation.etablissement }}</p>
                         <p class="card-text">{{ formation.domaine.nom }}</p>
+                        <a href="{{ path('formation_modifier',{id:formation.id}) }}" class="btn btn-secondary">Modifier</a>
                     </div>
                 </div>
             {% endfor %}

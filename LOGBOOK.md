@@ -115,4 +115,10 @@
 * Si Administrateur
     1. Il se logue et arrive sur la page d'accueil avec un volet admin dans la navBar.
   
--Difficultés : impossible d'avoir un select 2 en Bootstrap 5, ajout et récupération des formations et expériences avec un formulaire à part
+6. Page profil = modifier :
+    -
+- Affichage des informations et possibilité de tout mofifier. (-->jour 4/5)
+-  Mise en page moche en attente mais fonctionnelle => modification et ajout fonctionnel en back 
+- Possibilitées de modifier pour candidat une formation, une expérience ou la liste de ses compétences(-->jour 6)
+
+    

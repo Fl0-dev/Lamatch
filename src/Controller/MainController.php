@@ -34,9 +34,10 @@ class MainController extends AbstractController
         if ($user->getType()==false && $user->getEntreprise()==null){//si entreprise
             return $this->redirectToRoute('entreprise_ajout');
         }
-        $candidat = $user->getCandidat();
+
         return $this->render('main/accueil.html.twig',[
-            'candidat'=>$candidat,
+            'candidat'=>$user->getCandidat(),
+            'entreprise'=>$user->getEntreprise(),
         ]);
     }
 }
