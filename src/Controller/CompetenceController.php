@@ -43,4 +43,24 @@ class CompetenceController extends AbstractController
             'candidat'=>$candidat,
         ]);
     }
+
+    /**
+     * @Route ("/supprimer/{id}", name="supprimer")
+     * @param Competence $competence
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function supprimer(Competence $competence,
+                             Request $request,
+                             EntityManagerInterface $entityManager):Response
+    {
+            $candidat = $this->getUser()->getCandidat();
+            //enregistrement en BD
+            $candidat->removeCompetence($competence);
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre compétence a bien été supprimée.');
+            return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
+
+    }
 }
