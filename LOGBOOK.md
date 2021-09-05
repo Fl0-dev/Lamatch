@@ -75,7 +75,7 @@
     - **Formation** avec Relation ManyToOne avec **Niveau** et ManyToMany avec **Candidat**.
     - Création de l'Entity **QualitesDISC** avec ![](C:\wamp64\www\SymfonyProjects\Lamatchv2\public\utils\DISC.png)
     - Création de **TypeQualite** qui regroupe les types de qualité : relation OneToMany (à voir si souci)
-    - Relation OneToOne entre **QualitesDISC** et **Candidat**.
+    - Relation ManyToMany entre **QualitesDISC** et **Candidat**.
     - Création de **Experience** et **TypeContrat** et leur relation ManyToOne.
     - Relation OneToOne entre **Experience** et **Candidat**.
     - Je voulais mettre une entity Valeur mais candidat et entreprise tendent vers les mêmes choses. Les deux parties se vendrons en choisissant toutes les valeurs.
