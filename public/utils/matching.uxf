@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1016</x>
+      <y>552</y>
+      <w>168</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>
+Experience
+
+--
+-idExperience:integer symfony
+-EntrepriseNom:string
+-dateDebut:Date
+-dateFin:Date
+-intitulePoste:string?????
+-description:text
+--
+-typeContrat:TypeContrat
+--
+ville:Ville
+--
+-domaine:Domaine
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>184</y>
+      <w>192</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>
+Entreprise
+
+--
+-utilisateur:Utilisateur
+--
+-idEntreprise:integer symfony
+-nom:string
+-logo:symfony
+-dateDeCreation:Date
+-adresseWeb
+-adresseRh
+-info:text
+-effectif:integer
+-état:bool
+--
+typeEntreprise:TypeEntreprise
+--
+-ville:Ville
+--
+-valeurPrincipale:ValeurPrincipale
+--
+-domaines:Domaine[ ]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>808</x>
+      <y>496</y>
+      <w>120</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>
+Utilisateur
+
+--
+-id:symfony
+-email:symfony
+-password:symfony
+-nom:string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>856</x>
+      <y>432</y>
+      <w>40</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>848</x>
+      <y>600</y>
+      <w>40</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..1</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>640</y>
+      <w>208</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>
+Candidat
+
+--
+-utilisateur:Utilisateur
+--
+-idCandidat:integer symfony
+-emailContact:string
+-nom:string
+-prenom:string
+-photo:symfony
+-dateNaissance:date
+-linkedin:string
+-enrecherche:bool
+-état:bool
+--
+-ville:Ville
+--
+-ListQualites:QualitesDISC[ ]
+--
+-valeurPrincipale:ValeurPrincipale
+--
+-experiences:Experience[ ]
+--
+-formations:Formation [ ]
+--
+competences:Comptence[ ]
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>816</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>
+Formation
+
+--
+-idFormation:integer symfony
+-intitule:string
+-dateDebut:Date
+-dateFin:Date
+-etablissement:string
+--
+-niveau:Niveau
+--
+-domaine:Domaine
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1360</x>
+      <y>344</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>
+Domaine
+
+--
+-idDomaine:integer symfony
+-nom:string
+--
+-competences:Competence[ ]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1232</x>
+      <y>632</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>
+TypeContrat
+
+--
+-idType:integer symfony
+-intitule
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>624</x>
+      <y>456</y>
+      <w>168</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>
+ValeurPrincipale
+--
+-idValeur:integer symfony
+-nom:string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>776</x>
+      <y>0</y>
+      <w>184</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>
+TypeEntreprise
+
+--
+-idTypeEntreprise:integer symfony
+-intitule:string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1136</x>
+      <y>232</y>
+      <w>168</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>
+Ville
+
+--
+-idVille:integer symfony
+-nom:string
+-region:Region
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1096</x>
+      <y>112</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>
+Region
+
+--
+-idRegion:integer symfony
+-nom:string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>248</y>
+      <w>256</w>
+      <h>584</h>
+    </coordinates>
+    <panel_attributes>lt=-
+
+*..1
+</panel_attributes>
+    <additional_attributes>300.0;10.0;120.0;370.0;10.0;710.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>232</y>
+      <w>168</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-
+*..1</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1048</x>
+      <y>808</y>
+      <w>24</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1176</x>
+      <y>640</y>
+      <w>72</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*</panel_attributes>
+    <additional_attributes>10.0;40.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1168</x>
+      <y>184</y>
+      <w>64</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-
+*..1</panel_attributes>
+    <additional_attributes>60.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>848</x>
+      <y>64</y>
+      <w>56</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*
+
+</panel_attributes>
+    <additional_attributes>50.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>176</y>
+      <w>184</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>
+Matching
+--
+-idSouhait:integer symfony
+--
+-valeurPrincipale:ValeurPrincipale
+--
+-ville:Ville
+--
+region:Region
+--
+-typeContrat:TypeContrat
+--
+-niveau:Niveau
+--
+-ListQualites:Qualites[ ]
+--
+-domaine:Domaine
+--
+-experience:integer
+--
+-typeEntreprise:TypeEntreprise
+--
+-competences:Competence[ ]
+--
+enrecherche
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>888</y>
+      <w>168</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>
+Niveau
+--
+-idNiveau:integer symfony
+-libelle:string
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>896</y>
+      <w>136</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*</panel_attributes>
+    <additional_attributes>150.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>640</y>
+      <w>136</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>840</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>
+QualitesDISC
+--
+-idQualites:integer symfony
+-nom:string
+--
+-typeQualite:TypeQualite
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>840</y>
+      <w>104</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..1
+</panel_attributes>
+    <additional_attributes>10.0;50.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>712</x>
+      <y>400</y>
+      <w>104</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*</panel_attributes>
+    <additional_attributes>10.0;70.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>696</x>
+      <y>512</y>
+      <w>88</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>824</y>
+      <w>120</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-
+* .. *</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1176</x>
+      <y>432</y>
+      <w>208</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>1..*</panel_attributes>
+    <additional_attributes>10.0;180.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>432</y>
+      <w>312</w>
+      <h>472</h>
+    </coordinates>
+    <panel_attributes>lt=-
+*..1</panel_attributes>
+    <additional_attributes>370.0;10.0;340.0;410.0;10.0;570.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>944</x>
+      <y>40</y>
+      <w>520</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>*..*</panel_attributes>
+    <additional_attributes>630.0;380.0;510.0;60.0;200.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>392</y>
+      <w>736</w>
+      <h>784</h>
+    </coordinates>
+    <panel_attributes>*..1</panel_attributes>
+    <additional_attributes>790.0;10.0;900.0;790.0;210.0;960.0;10.0;820.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>432</y>
+      <w>648</w>
+      <h>648</h>
+    </coordinates>
+    <panel_attributes>*..1</panel_attributes>
+    <additional_attributes>770.0;10.0;790.0;690.0;270.0;790.0;10.0;620.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>736</x>
+      <y>1008</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>
+Competence
+--
+-idCompetence:integer symfony
+-intitule:string
+--
+domaine:Domaine
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>776</x>
+      <y>920</y>
+      <w>56</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>*..*</panel_attributes>
+    <additional_attributes>50.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1064</x>
+      <y>312</y>
+      <w>144</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>1..*</panel_attributes>
+    <additional_attributes>10.0;300.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>248</x>
+      <y>120</y>
+      <w>384</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>lt=.
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>816</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>
+TypeQualite
+--
+-idTypeQualite:integer symfony
+-nom:string
+-color:string
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>376</x>
+      <y>824</y>
+      <w>96</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+*..1</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;40.0</additional_attributes>
+  </element>
+</diagram>
