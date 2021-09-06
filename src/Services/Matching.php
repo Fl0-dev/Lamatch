@@ -2,14 +2,18 @@
 
 namespace App\Services;
 
+use App\Repository\EntrepriseRepository;
 use App\Repository\MatchingRepository;
 
 class Matching
 {
-    public function matchingCandidat($candidat, MatchingRepository $matchingRepository)
+    public function matchingCandidat($candidat)
     {
-        //récupération de tous les matching des entreprises
-        $matchingsEntreprise = $matchingRepository->findBy([]);
+
+        //hydratation des matchings
+        //candidat
+
+
     }
 
 }
