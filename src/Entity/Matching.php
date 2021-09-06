@@ -69,6 +69,16 @@ class Matching
      */
     private $region;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Candidat::class, mappedBy="matchingC", cascade={"persist", "remove"})
+     */
+    private $candidat;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Entreprise::class, mappedBy="matchingE", cascade={"persist", "remove"})
+     */
+    private $entreprise;
+
     public function __construct()
     {
         $this->ListQualites = new ArrayCollection();
@@ -220,6 +230,50 @@ class Matching
     public function setRegion(?Region $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getCandidat(): ?Candidat
+    {
+        return $this->candidat;
+    }
+
+    public function setCandidat(?Candidat $candidat): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($candidat === null && $this->candidat !== null) {
+            $this->candidat->setMatchingC(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($candidat !== null && $candidat->getMatchingC() !== $this) {
+            $candidat->setMatchingC($this);
+        }
+
+        $this->candidat = $candidat;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($entreprise === null && $this->entreprise !== null) {
+            $this->entreprise->setMatchingE(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($entreprise !== null && $entreprise->getMatchingE() !== $this) {
+            $entreprise->setMatchingE($this);
+        }
+
+        $this->entreprise = $entreprise;
 
         return $this;
     }

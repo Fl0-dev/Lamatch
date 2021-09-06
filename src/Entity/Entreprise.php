@@ -87,6 +87,11 @@ class Entreprise
      */
     private $user;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Matching::class, inversedBy="entreprise", cascade={"persist", "remove"})
+     */
+    private $matchingE;
+
     public function __construct()
     {
         $this->domaines = new ArrayCollection();
@@ -271,6 +276,18 @@ class Entreprise
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getMatchingE(): ?Matching
+    {
+        return $this->matchingE;
+    }
+
+    public function setMatchingE(?Matching $matchingE): self
+    {
+        $this->matchingE = $matchingE;
 
         return $this;
     }

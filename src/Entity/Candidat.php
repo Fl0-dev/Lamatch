@@ -96,6 +96,11 @@ class Candidat
      */
     private $age;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Matching::class, inversedBy="candidat", cascade={"persist", "remove"})
+     */
+    private $matchingC;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -343,6 +348,18 @@ class Candidat
     public function setAge(int $age): self
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getMatchingC(): ?Matching
+    {
+        return $this->matchingC;
+    }
+
+    public function setMatchingC(?Matching $matchingC): self
+    {
+        $this->matchingC = $matchingC;
 
         return $this;
     }
