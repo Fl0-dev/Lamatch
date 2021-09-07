@@ -19,35 +19,29 @@ class MatchingServices
     }
 
 
-    public function matchingCandidat($candidat)
-    {
-        //hydratation d'un matching pour candidat
-        $matching = new Matching();
-        $matching->setValeurPrincipale($candidat->getValeurPrincipale());
-        $matching->setRegion($candidat->getVille()->getRegion());
-        $matching->setVille($candidat->getVille());
-        $matching->setTypeContrat($candidat->getTypeContratSouhaite());
-        $matching->setEnrecherche($candidat->getEnRecherche());
-        $candidat->setMatchingC($matching);
-        $this->entityManager->flush();
-    }
 
-    public function matchingEntreprise($entreprise)
-    {
-        //hydratation d'un matching pour entreprise
-        $matching = new Matching();
-        $matching->setValeurPrincipale($entreprise->getValeurPrincipale());
-        $matching->setRegion($entreprise->getVille()->getRegion());
-        $matching->setVille($entreprise->getVille());
-        $matching->setTypeContrat($entreprise->getTypeContratPropose());
-        $matching->setEnrecherche($entreprise->getEnRecherche());
-        $entreprise->setMatchingE($matching);
-        $this->entityManager->flush();
-    }
 
     public function MatchingCandidatEntreprise($candidat){
         //récupération de tous les matching des entreprises
-
-
+        $entreprises = $this->entrepriseRepository->findAll();
+        //variable qui stocke les matchings positifs
+        $indice= 0;
+        foreach ($entreprises as $entreprise){
+            if ($entreprise->getValeurPrincipale()==$candidat->getValeurPrincipale()){
+                $indice++;
+            }
+            if ($entreprise->getVille()==$candidat->getVille()){
+                $indice =$indice +2;
+            }
+            if ($entreprise->getVille()->getRegion()==$candidat->getVille()->getRegion()){
+                $indice++;
+            }
+            if (($entreprise->getTypeContratPropose()==$candidat->getTypeContratSouhaite())){
+                $indice++;
+            }
+            if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
+                $indice++;
+            }
+        }
     }
 }

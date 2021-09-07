@@ -88,11 +88,6 @@ class Entreprise
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Matching::class, inversedBy="entreprise", cascade={"persist", "remove"})
-     */
-    private $matchingE;
-
-    /**
      * @ORM\ManyToOne(targetEntity=TypeContrat::class, inversedBy="entreprises")
      */
     private $typeContratPropose;
@@ -281,18 +276,6 @@ class Entreprise
         }
 
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getMatchingE(): ?Matching
-    {
-        return $this->matchingE;
-    }
-
-    public function setMatchingE(?Matching $matchingE): self
-    {
-        $this->matchingE = $matchingE;
 
         return $this;
     }
