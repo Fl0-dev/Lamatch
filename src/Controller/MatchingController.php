@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Candidat;
+use App\Entity\Entreprise;
+use App\Repository\CandidatRepository;
 use App\Repository\EntrepriseRepository;
-use App\Services\Matching;
 use App\Services\MatchingServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,6 @@ class MatchingController extends AbstractController
                                      EntrepriseRepository $entrepriseRepository): Response
     {
         //tableau pour stocker chaque matching
-
         $listEntreprise= [];
         //récupération de toutes les entreprises
         $entreprises = $entrepriseRepository->findAll();
@@ -42,6 +42,34 @@ class MatchingController extends AbstractController
         return $this->render('matching/PourCandidat.html.twig', [
             'listEntreprise' => $listEntreprise,
             'candidat'=>$candidat,
+        ]);
+    }
+
+    /**
+     * @Route("/entreprise/{id}", name="entreprise")
+     */
+    public function matchingEntreprise(Entreprise $entreprise,
+                                     MatchingServices $matchingServices,
+                                     CandidatRepository $candidatRepository): Response
+    {
+        //tableau pour stocker chaque matching
+        $listCandidat= [];
+        //récupération de toutes les entreprises
+        $candidats = $candidatRepository->findAll();
+        //pour chaque candidat
+        foreach ($candidats as $candidat){
+            //calcul du pourcentage de matching
+            $pourcentage=$matchingServices->MatchingEntrepriseCandidat($entreprise,$candidat);
+            //récupération du candidat et de son pourcentage dans un tableau
+            $postulant['candidat']=$candidat;
+            $postulant['pourcentage']=$pourcentage;
+            //stockage dans un tableau récapitulatif
+            $listCandidat[]=$postulant;
+        }
+        //envoie vers la twig
+        return $this->render('matching/PourEntreprise.html.twig', [
+            'listCandidat' => $listCandidat,
+            'entreprise'=>$entreprise,
         ]);
     }
 }

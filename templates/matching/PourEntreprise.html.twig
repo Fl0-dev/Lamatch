@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}|Résultats Entreprise{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Matching</h1>
+            </div>
+
+            <div class="col-6 d-flex justify-content-end">
+                <div class="launch-wrapper">
+                    <a href="{{ path('matching_entreprise',{id:app.user.entreprise.id}) }}" class="button success launch">Lancer un nouveau Matching 🚀</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="intro" class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>Voici les candidats qui correspondent à votre profil (d'après notre algorithme ultra sophistiqué 🧐) :</p>
+                <p>Le pourcentage affiché correspond au taux de correspondance calculé entre votre profil et le candidat.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-12">
+                {% for key1,value1 in listCandidat %}
+                    {% for key2, value2 in listCandidat[key1] %}
+                        {% if key2 == 'candidat' %}
+                            <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('photos/'~ value2.photo) }}" class="card-img-top" alt="Photo de {{ value2.nom }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{value2.nom }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    {% if value2.enRecherche %}
+                                        💼 Recrutement
+                                    {% else %}
+                                        ❌ Ne recherche pas actuellement
+                                    {% endif %}
+                                </h6>
+
+                                <p class="card-text">👶 {{ value2.age }} ans</p>
+                                <p class="card-text">🚩 {{ value2.ville.nom }} </p>
+                            </div>
+                            <div class="card-body">
+                            <a href="#" class="card-link">Voir profil</a>
+                        {% endif %}
+                        <p class="card-pourcentage">{% if key2 == 'pourcentage' %}{{ value2 }}{% endif %}</p>
+                        </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+

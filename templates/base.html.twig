@@ -41,7 +41,7 @@
                                         href="{% if app.user.candidat %}
                                                 {{ path('matching_candidat',{id:app.user.candidat.id}) }}
                                               {% elseif app.user.entreprise %}
-                                                #
+                                                {{ path('matching_entreprise',{id:app.user.entreprise.id}) }}
                                               {% endif %}">Matching</a>
                                 </li>
                                 <li class="nav-item {% if chemin  == 'user_profil' %}active{% endif %}">
