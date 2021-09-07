@@ -37,7 +37,7 @@ class MatchingController extends AbstractController
             //stockage dans un tableau récapitulatif
             $listEntreprise[]=$employeur;
         }
-        dd($listEntreprise);
+
         //envoie vers la twig
         return $this->render('matching/PourCandidat.html.twig', [
             'listEntreprise' => $listEntreprise,
