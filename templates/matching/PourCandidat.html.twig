@@ -11,7 +11,7 @@
 
             <div class="col-6 d-flex justify-content-end">
                 <div class="launch-wrapper">
-                    <a href="" class="button success launch">Lancer un nouveau Matching 🚀</a>
+                    <a href="{{ path('matching_candidat',{id:app.user.candidat.id}) }}" class="button success launch">Lancer un nouveau Matching 🚀</a>
                 </div>
             </div>
         </div>
@@ -28,62 +28,32 @@
     <section id="companies" class="container">
         <div class="row">
             <div class="col-12">
-                {% for entreprise, in listEntreprise %}
+                {% for key1,value1 in listEntreprise %}
+                    {% for key2, value2 in listEntreprise[key1] %}
+                        {% if key2 == 'entreprise' %}
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ asset('photos/'~ value2.logo) }}" class="card-img-top" alt="Photo de {{ value2.nom }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{value2.nom }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        {% if value2.enRecherche %}
+                                            💼 Recrutement
+                                        {% else %}
+                                            ❌ Ne recherche pas actuellement
+                                        {% endif %}
+                                    </h6>
 
-                <div class="card company p-0">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="image-wrapper">
-                                <img src="{{ asset('public/'~entreprise.logo) }}" alt="">
-                            </div>
-                        </div>
-
-                        <div class="col-7 company-infos-wrapper">
-                            <h3 class="card-title">
-                                Lamacompta
-                            </h3>
-
-                            <div class="company-infos">
-                                <ul>
-                                    <li class="workforce">
-                                        👨‍👩‍👧‍👦 1 à 9 salariés
-                                    </li>
-
-                                    <li class="domain">
-                                        💼 Recrutement
-                                    </li>
-
-                                    <li class="regions-targeted">
-                                        🚩 Recherche en Bretagne, Pays de la Loire et Basse-Normandie
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <div class="col-2 d-flex justify-content-center align-items-center">
-                            <div class="score-wrapper">
-                                <div class="circle-progress p90">
-                                        <span class="progress-left">
-                                            <span class="progress-bar"></span>
-                                        </span>
-                                    <span class="progress-right">
-                                            <span class="progress-bar"></span>
-                                        </span>
-                                    <div class="progress-value">90%</div>
+                                    <p class="card-text">👨‍👩‍👧‍👦 {{ value2.effectif }} ans</p>
+                                    <p class="card-text">🚩 {{ value2.ville.nom }} </p>
+                                </div>
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Voir profil</a>
+                        {% endif %}
+                                    <p class="card-pourcentage">{% if key2 == 'pourcentage' %}{{ value2 }}{% endif %}</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-1 show-company-wrapper">
-                            <a href="company.html" class="button show-company" title="Me rendre sur la fiche de l'employeur">
-                                >
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            {% endfor %}
+                    {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </section>

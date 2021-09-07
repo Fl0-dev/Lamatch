@@ -6,7 +6,7 @@
     <div class="row">
         <section class="col-6">
             <h1>Votre profil : {{ app.user.nom }}</h1>
-            <img src="{{ candidat.photo }}" alt="photo de profil">
+            <img src="{{ asset('photos/'~candidat.photo) }}" alt="photo de profil">
             {{ form_start(formCandidat) }}
             {{ form_row(formCandidat.emailContact) }}
             {{ form_row(formCandidat.nom) }}
