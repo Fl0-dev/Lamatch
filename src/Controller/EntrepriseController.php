@@ -24,8 +24,7 @@ class EntrepriseController extends AbstractController
      */
     public function ajout(Request $request,
                           UploadImage $uploadImage,
-                          EntityManagerInterface $entityManager,
-                          MatchingServices $matchingServices): Response
+                          EntityManagerInterface $entityManager): Response
     {
         //création d'une entreprise
         $entreprise = new Entreprise();
@@ -52,9 +51,6 @@ class EntrepriseController extends AbstractController
             }
             //relie entreprise et user
             $entreprise->setUser($this->getUser());
-
-            //hydratation du matching
-            $matchingServices->matchingEntreprise($entreprise);
             //on inscrit en BD
             $entityManager->persist($entreprise);
             $entityManager->flush();
@@ -74,8 +70,7 @@ class EntrepriseController extends AbstractController
     public function modifier(Entreprise $entreprise,
                              EntityManagerInterface $entityManager,
                              Request $request,
-                             UploadImage $uploadImage,
-                             MatchingServices $matchingServices):Response
+                             UploadImage $uploadImage):Response
     {
     //utilisation du form de entreprise
         $form = $this->createForm(EntrepriseType::class,$entreprise);
@@ -98,9 +93,6 @@ class EntrepriseController extends AbstractController
                 }
                 $entreprise->setLogo($nomDeFichier);
             }
-
-            //hydratation du matching
-            $matchingServices->matchingEntreprise($entreprise);
             //on inscrit en BD
             $entityManager->flush();
 

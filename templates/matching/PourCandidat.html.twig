@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}|Résultats Candidat{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Matching</h1>
+            </div>
+
+            <div class="col-6 d-flex justify-content-end">
+                <div class="launch-wrapper">
+                    <a href="" class="button success launch">Lancer un nouveau Matching 🚀</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="intro" class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>Voici les employeurs qui correspondent à votre profil (d'après notre algorithme ultra sophistiqué 🧐) :</p>
+                <p>Le pourcentage affiché correspond au taux de correspondance calculé entre votre profil et l'employeur.</p>
+            </div>
+        </div>
+    </section>
+    <section id="companies" class="container">
+        <div class="row">
+            <div class="col-12">
+                {% for entreprise, in listEntreprise %}
+
+                <div class="card company p-0">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="image-wrapper">
+                                <img src="{{ asset('public/'~entreprise.logo) }}" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-7 company-infos-wrapper">
+                            <h3 class="card-title">
+                                Lamacompta
+                            </h3>
+
+                            <div class="company-infos">
+                                <ul>
+                                    <li class="workforce">
+                                        👨‍👩‍👧‍👦 1 à 9 salariés
+                                    </li>
+
+                                    <li class="domain">
+                                        💼 Recrutement
+                                    </li>
+
+                                    <li class="regions-targeted">
+                                        🚩 Recherche en Bretagne, Pays de la Loire et Basse-Normandie
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="col-2 d-flex justify-content-center align-items-center">
+                            <div class="score-wrapper">
+                                <div class="circle-progress p90">
+                                        <span class="progress-left">
+                                            <span class="progress-bar"></span>
+                                        </span>
+                                    <span class="progress-right">
+                                            <span class="progress-bar"></span>
+                                        </span>
+                                    <div class="progress-value">90%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-1 show-company-wrapper">
+                            <a href="company.html" class="button show-company" title="Me rendre sur la fiche de l'employeur">
+                                >
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+

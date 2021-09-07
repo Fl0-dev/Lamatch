@@ -123,9 +123,8 @@
 
 7. Gestion des matchings :
     -
-- On associe pour chaque candidat et chaque entreprise un ensemble de données à comparer => créaion d'une entity Matching
-qui rassembles touts les attributs en commun.
-- => ajout du type de contrat souhaité et proposé selon la partie (relation ManyToOne avec **TypeContrat**)
+- ajout du type de contrat souhaité et proposé selon la partie (relation ManyToOne avec **TypeContrat**)
 - Création d'un service **MatchingServices** qui contiendra touts les services permettant le matching entre candidat et entreprise
+- Gestion d'un matching simple pour tester le traitement
 
     

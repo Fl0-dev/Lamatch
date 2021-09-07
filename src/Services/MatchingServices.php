@@ -21,27 +21,27 @@ class MatchingServices
 
 
 
-    public function MatchingCandidatEntreprise($candidat){
-        //récupération de tous les matching des entreprises
-        $entreprises = $this->entrepriseRepository->findAll();
-        //variable qui stocke les matchings positifs
+    public function MatchingCandidatEntreprise($candidat,$entreprise){
+
+        //variable qui s'incrémente à chaque matching
         $indice= 0;
-        foreach ($entreprises as $entreprise){
-            if ($entreprise->getValeurPrincipale()==$candidat->getValeurPrincipale()){
-                $indice++;
-            }
-            if ($entreprise->getVille()==$candidat->getVille()){
-                $indice =$indice +2;
-            }
-            if ($entreprise->getVille()->getRegion()==$candidat->getVille()->getRegion()){
-                $indice++;
-            }
-            if (($entreprise->getTypeContratPropose()==$candidat->getTypeContratSouhaite())){
-                $indice++;
-            }
-            if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
-                $indice++;
-            }
+        if ($entreprise->getValeurPrincipale()==$candidat->getValeurPrincipale()){
+            $indice++;
         }
+        if ($entreprise->getVille()==$candidat->getVille()){
+            $indice =$indice +2;
+        }
+        if ($entreprise->getVille()->getRegion()==$candidat->getVille()->getRegion()){
+            $indice++;
+        }
+        if (($entreprise->getTypeContratPropose()==$candidat->getTypeContratSouhaite())){
+            $indice++;
+        }
+        if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
+                $indice++;
+        }
+        //retourne le pourcentage
+        return ($indice*100)/6;
+
     }
 }

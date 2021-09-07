@@ -81,8 +81,7 @@ class CandidatController extends AbstractController
     public function modifier(Candidat $candidat,
                              EntityManagerInterface $entityManager,
                              Request $request,
-                             UploadImage $uploadImage,
-                             MatchingServices $matchingServices): Response
+                             UploadImage $uploadImage): Response
     {
 
         //utilisation du form de candidat
@@ -115,8 +114,6 @@ class CandidatController extends AbstractController
             $age = date('Y')- $stringDateNaissance;
             $candidat->setAge($age);
 
-            //hydratation des attributs de matching
-            $matchingServices->matchingCandidat($candidat);
             //on inscrit en BD
             $entityManager->flush();
 
