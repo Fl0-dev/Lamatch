@@ -19,7 +19,7 @@ class MatchingController extends AbstractController
      */
     public function matchingCandidat(Candidat $candidat,MatchingServices $matchingServices): Response
     {
-        $matchingServices->matchingCandidat($candidat);
+        $matchingServices->matchingEntreprise($candidat);
         return $this->render('matching/index.html.twig', [
             'controller_name' => 'MatchingController',
         ]);

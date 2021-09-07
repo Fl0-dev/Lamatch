@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Candidat;
 use App\Form\CandidatType;
 use App\Repository\FormationRepository;
+use App\Services\MatchingServices;
 use App\Services\UploadImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -80,7 +81,8 @@ class CandidatController extends AbstractController
     public function modifier(Candidat $candidat,
                              EntityManagerInterface $entityManager,
                              Request $request,
-                             UploadImage $uploadImage): Response
+                             UploadImage $uploadImage,
+                             MatchingServices $matchingServices): Response
     {
 
         //utilisation du form de candidat
@@ -110,9 +112,11 @@ class CandidatController extends AbstractController
             //calcul age
             $dateNaissance = $candidat->getDateNaissance();
             $stringDateNaissance = $dateNaissance->format('Y');
-
             $age = date('Y')- $stringDateNaissance;
             $candidat->setAge($age);
+
+            //hydratation des attributs de matching
+            $matchingServices->matchingCandidat($candidat);
             //on inscrit en BD
             $entityManager->flush();
 

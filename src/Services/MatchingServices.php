@@ -10,10 +10,11 @@ use Doctrine\ORM\EntityManagerInterface;
 class MatchingServices
 {
     private $entityManager;
+    private $entrepriseRepository;
 
-
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager,EntrepriseRepository $entrepriseRepository){
         $this->entityManager = $entityManager;
+        $this->entrepriseRepository =$entrepriseRepository;
 
     }
 
@@ -42,5 +43,11 @@ class MatchingServices
         $matching->setEnrecherche($entreprise->getEnRecherche());
         $entreprise->setMatchingE($matching);
         $this->entityManager->flush();
+    }
+
+    public function MatchingCandidatEntreprise($candidat){
+        //récupération de tous les matching des entreprises
+
+
     }
 }
