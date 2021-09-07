@@ -63,8 +63,7 @@ typeEntreprise:TypeEntreprise
 -domaines:Domaine[ ]
 --
 typeContratPropose:TypeContrat
---
--matchingE:Matching
+
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -147,8 +146,7 @@ Candidat
 competences:Comptence[ ]
 --
 -typeContratSouhaite:TypeContrat
---
--matchingC:Matching
+
 
 </panel_attributes>
     <additional_attributes/>
