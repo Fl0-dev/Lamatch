@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Candidat;
 use App\Entity\Competence;
 use App\Entity\QualitesDISC;
+use App\Entity\TypeContrat;
 use App\Entity\ValeurPrincipale;
 use App\Entity\Ville;
 use Doctrine\ORM\EntityRepository;
@@ -44,6 +45,10 @@ class CandidatType extends AbstractType
             ->add('linkedin')
             ->add('enRecherche',null,[
                 'label'=>'Vous êtes à la recherche d\'un emploi ',
+            ])
+            ->add('typeContratSouhaite',EntityType::class,[
+                'class'=>TypeContrat::class,
+                'choice_label' => 'intitule',
             ])
             ->add('ville',EntityType::class,[
                 'class'=>Ville::class,

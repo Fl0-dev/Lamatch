@@ -15,6 +15,10 @@ class MatchingServices
         //candidat
         $matching = new Matching();
         $matching->setValeurPrincipale($candidat->getValeurPrincipale());
+        $matching->setRegion($candidat->getVille()->getRegion());
+        $matching->setVille($candidat->getVille());
+        $matching->setTypeContrat($candidat->getTypeContratSouhaite());
+        $matching->setEnrecherche($candidat->getEnRecherche());
 
 
 

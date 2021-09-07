@@ -18,6 +18,7 @@
             <a href="{{ path('experience_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Expérience Pro</a>
             <a href="{{ path('competence_ajout',{id:candidat.id}) }}" class="btn btn-primary">Ajouter Compétence</a>
             {{ form_row(formCandidat.enRecherche) }}
+            {{ form_row(formCandidat.typeContratSouhaite) }}
             {{ form_row(formCandidat.ville) }}
             {{ form_row(formCandidat.ListQualites) }}
             {{ form_row(formCandidat.valeurPrincipale) }}
@@ -33,7 +34,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ experience.intitulePoste }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ experience.dateDebut | date('m-Y') }}{% if experience.dateFin %}{{ formation.dateFin | date('m-Y') }}{% else %} - {% endif %}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ experience.dateDebut | date('m-Y') }}{% if experience.dateFin %}{{ experience.dateFin | date('m-Y') }}{% else %} - {% endif %}</h6>
                         <p class="card-text">{{ experience.typeContrat.intitule }}</p>
                         <p class="card-text">{{ experience.nomEmployeur }}</p>
                         <p class="card-text">{{ experience.description }}</p>

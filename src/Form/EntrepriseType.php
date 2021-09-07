@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Domaine;
 use App\Entity\Entreprise;
+use App\Entity\TypeContrat;
 use App\Entity\TypeEntreprise;
 use App\Entity\ValeurPrincipale;
 use App\Entity\Ville;
@@ -41,6 +42,10 @@ class EntrepriseType extends AbstractType
             ->add('infos')
             ->add('effectif')
             ->add('enrecherche')
+            ->add('typeContratPropose',EntityType::class,[
+                'class'=>TypeContrat::class,
+                'choice_label' => 'intitule',
+            ])
             ->add('typeEntreprise',EntityType::class,[
                 'class'=>TypeEntreprise::class,
                 'choice_label' => 'intitule',

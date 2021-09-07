@@ -92,6 +92,11 @@ class Entreprise
      */
     private $matchingE;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeContrat::class, inversedBy="entreprises")
+     */
+    private $typeContratPropose;
+
     public function __construct()
     {
         $this->domaines = new ArrayCollection();
@@ -288,6 +293,18 @@ class Entreprise
     public function setMatchingE(?Matching $matchingE): self
     {
         $this->matchingE = $matchingE;
+
+        return $this;
+    }
+
+    public function getTypeContratPropose(): ?TypeContrat
+    {
+        return $this->typeContratPropose;
+    }
+
+    public function setTypeContratPropose(?TypeContrat $typeContratPropose): self
+    {
+        $this->typeContratPropose = $typeContratPropose;
 
         return $this;
     }

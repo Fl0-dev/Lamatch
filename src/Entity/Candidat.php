@@ -101,6 +101,11 @@ class Candidat
      */
     private $matchingC;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeContrat::class, inversedBy="candidats")
+     */
+    private $typeContratSouhaite;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -360,6 +365,18 @@ class Candidat
     public function setMatchingC(?Matching $matchingC): self
     {
         $this->matchingC = $matchingC;
+
+        return $this;
+    }
+
+    public function getTypeContratSouhaite(): ?TypeContrat
+    {
+        return $this->typeContratSouhaite;
+    }
+
+    public function setTypeContratSouhaite(?TypeContrat $typeContratSouhaite): self
+    {
+        $this->typeContratSouhaite = $typeContratSouhaite;
 
         return $this;
     }

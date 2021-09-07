@@ -68,12 +68,12 @@
       - OneToMany avec **Entreprise**
       - OneToMany avec **Candidat**
       - => Pour gagner du temps, je pars du principe qu'une entreprise ou un candidat est présent que dans une seule ville
-    - Création de **Niveau**, je choisis <=Bac à Bac+5 (-->jour3)
+    - Création de **Niveau**, je choisis <=Bac à Bac+8 (-->jour3)
     - Je choisi de séparer Diplome et Formation qui je pense peuvent aujourd'hui être 2 choses différentes (à voir dans la pratique). 
     -Entity **Formation** avec le niveau qui peut être null => simplification 
     - On a donc Un Candidat avec des formations ou pas avec d'un certain niveau ou pas.
     - **Formation** avec Relation ManyToOne avec **Niveau** et ManyToMany avec **Candidat**.
-    - Création de l'Entity **QualitesDISC** avec ![](C:\wamp64\www\SymfonyProjects\Lamatchv2\public\utils\DISC.png)
+    - Création de l'Entity **QualitesDISC** avec ![](.\public\utils\DISC.png)
     - Création de **TypeQualite** qui regroupe les types de qualité : relation OneToMany (à voir si souci)
     - Relation ManyToMany entre **QualitesDISC** et **Candidat**.
     - Création de **Experience** et **TypeContrat** et leur relation ManyToOne.
@@ -120,5 +120,12 @@
 - Affichage des informations et possibilité de tout mofifier. (-->jour 4/5)
 -  Mise en page moche en attente mais fonctionnelle => modification et ajout fonctionnel en back 
 - Possibilitées de modifier pour candidat une formation, une expérience ou la liste de ses compétences(-->jour 6)
+
+7. Gestion des matchings :
+    -
+- On associe pour chaque candidat et chaque entreprise un ensemble de données à comparer => créaion d'une entity Matching
+qui rassembles touts les attributs en commun.
+- => ajout du type de contrat souhaité et proposé selon la partie (relation ManyToOne avec **TypeContrat**)
+- Création d'un service **MatchingServices** qui contiendra touts les services permettant le matching entre candidat et entreprise
 
     

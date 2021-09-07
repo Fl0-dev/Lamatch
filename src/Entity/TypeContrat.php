@@ -29,9 +29,21 @@ class TypeContrat
      */
     private $experiences;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="typeContratPropose")
+     */
+    private $entreprises;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Candidat::class, mappedBy="typeContratSouhaite")
+     */
+    private $candidats;
+
     public function __construct()
     {
         $this->experiences = new ArrayCollection();
+        $this->entreprises = new ArrayCollection();
+        $this->candidats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +87,66 @@ class TypeContrat
             // set the owning side to null (unless already changed)
             if ($experience->getTypeContrat() === $this) {
                 $experience->setTypeContrat(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entreprise[]
+     */
+    public function getEntreprises(): Collection
+    {
+        return $this->entreprises;
+    }
+
+    public function addEntreprise(Entreprise $entreprise): self
+    {
+        if (!$this->entreprises->contains($entreprise)) {
+            $this->entreprises[] = $entreprise;
+            $entreprise->setTypeContratPropose($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntreprise(Entreprise $entreprise): self
+    {
+        if ($this->entreprises->removeElement($entreprise)) {
+            // set the owning side to null (unless already changed)
+            if ($entreprise->getTypeContratPropose() === $this) {
+                $entreprise->setTypeContratPropose(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidat[]
+     */
+    public function getCandidats(): Collection
+    {
+        return $this->candidats;
+    }
+
+    public function addCandidat(Candidat $candidat): self
+    {
+        if (!$this->candidats->contains($candidat)) {
+            $this->candidats[] = $candidat;
+            $candidat->setTypeContratSouhaite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidat(Candidat $candidat): self
+    {
+        if ($this->candidats->removeElement($candidat)) {
+            // set the owning side to null (unless already changed)
+            if ($candidat->getTypeContratSouhaite() === $this) {
+                $candidat->setTypeContratSouhaite(null);
             }
         }
 
