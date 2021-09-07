@@ -72,7 +72,8 @@
     <section id="actions" class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <a href="matching-candidate.html" class="button success">
+                <a href="{% if app.user.candidat %}
+{{ path('matching_candidat',{id:app.user.candidat.id}) }}{% else %}#{% endif %}" class="button success">
                     Je lance le Matching ! ⚡
                 </a>
             </div>
