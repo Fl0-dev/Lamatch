@@ -125,6 +125,14 @@
 - ajout du type de contrat souhaité et proposé selon la partie (relation ManyToOne avec **TypeContrat**)
 - Création d'un service **MatchingServices** qui contiendra touts les services permettant le matching entre candidat et entreprise
 - Gestion d'un matching simple pour tester le traitement->fonctionnel 
-- Je rajoute un à un, un attibut de comparaison
+- Je rajoute un à un, un attribut de comparaison 
+    - ValeurPrincipale
+    - Ville
+    - Region
+    - TypeDeContrat
+    - EnRecherche
+    - Domaines
+    - Experience
+    - Niveau
 
     

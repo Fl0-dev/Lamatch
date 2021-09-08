@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Domaine;
 use App\Entity\Entreprise;
+use App\Entity\Niveau;
 use App\Entity\TypeContrat;
 use App\Entity\TypeEntreprise;
 use App\Entity\ValeurPrincipale;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -46,6 +48,13 @@ class EntrepriseType extends AbstractType
             ->add('typeContratPropose',EntityType::class,[
                 'class'=>TypeContrat::class,
                 'choice_label' => 'intitule',
+            ])
+            ->add('experienceDemande',IntegerType::class,[
+                'label'=>'années d\'expérience demandées',
+            ])
+            ->add('niveauDemande',EntityType::class,[
+                'class'=>Niveau::class,
+                'choice_label'=> 'libelle',
             ])
             ->add('typeEntreprise',EntityType::class,[
                 'class'=>TypeEntreprise::class,

@@ -92,6 +92,16 @@ class Entreprise
      */
     private $typeContratPropose;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $experienceDemande;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Niveau::class, inversedBy="entreprises")
+     */
+    private $niveauDemande;
+
     public function __construct()
     {
         $this->domaines = new ArrayCollection();
@@ -288,6 +298,30 @@ class Entreprise
     public function setTypeContratPropose(?TypeContrat $typeContratPropose): self
     {
         $this->typeContratPropose = $typeContratPropose;
+
+        return $this;
+    }
+
+    public function getExperienceDemande(): ?int
+    {
+        return $this->experienceDemande;
+    }
+
+    public function setExperienceDemande(?int $experienceDemande): self
+    {
+        $this->experienceDemande = $experienceDemande;
+
+        return $this;
+    }
+
+    public function getNiveauDemande(): ?Niveau
+    {
+        return $this->niveauDemande;
+    }
+
+    public function setNiveauDemande(?Niveau $niveauDemande): self
+    {
+        $this->niveauDemande = $niveauDemande;
 
         return $this;
     }

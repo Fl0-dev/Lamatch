@@ -10,7 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 class MatchingServices
 {
 
-    public function MatchingCandidatEntreprise($candidat,$entreprise){
+    public function Matching($candidat,$entreprise): float
+    {
 
         //variable qui s'incrémente à chaque matching
         $indice= 0;
@@ -35,6 +36,8 @@ class MatchingServices
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
                 $indice++;
         }
+        //si expérience concordante
+
         //si domaine concordant
         //
         $domainesCandidat =[];
@@ -58,29 +61,5 @@ class MatchingServices
         //retourne un pourcentage
         return round(($indice*100)/(6+$boucle));
 
-    }
-
-    public function MatchingEntrepriseCandidat($entreprise, $candidat)
-    {
-        //variable qui s'incrémente à chaque matching
-        $indice =0;
-        if ($entreprise->getValeurPrincipale()==$candidat->getValeurPrincipale()){
-            $indice++;
-        }
-        if ($entreprise->getVille()==$candidat->getVille()){
-            $indice =$indice +2;
-        }
-        if ($entreprise->getVille()->getRegion()==$candidat->getVille()->getRegion()){
-            $indice++;
-        }
-        if (($entreprise->getTypeContratPropose()==$candidat->getTypeContratSouhaite())){
-            $indice++;
-        }
-        if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
-            $indice++;
-        }
-        //si domaine concordant
-        //retourne le pourcentage
-        return round(($indice*100)/6);
     }
 }

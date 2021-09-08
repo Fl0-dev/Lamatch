@@ -30,7 +30,7 @@ class MatchingController extends AbstractController
         //pour chaque entreprise
         foreach ($entreprises as $entreprise){
             //calcul du pourcentage de matching
-            $pourcentage=$matchingServices->MatchingCandidatEntreprise($candidat,$entreprise);
+            $pourcentage=$matchingServices->Matching($candidat,$entreprise);
             //récupération de l'entreprise et de son pourcentage dans un tableau
             $employeur['entreprise']=$entreprise;
             $employeur['pourcentage']=$pourcentage;
@@ -59,7 +59,7 @@ class MatchingController extends AbstractController
         //pour chaque candidat
         foreach ($candidats as $candidat){
             //calcul du pourcentage de matching
-            $pourcentage=$matchingServices->MatchingEntrepriseCandidat($entreprise,$candidat);
+            $pourcentage=$matchingServices->Matching($candidat,$entreprise);
             //récupération du candidat et de son pourcentage dans un tableau
             $postulant['candidat']=$candidat;
             $postulant['pourcentage']=$pourcentage;

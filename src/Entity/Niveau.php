@@ -29,9 +29,15 @@ class Niveau
      */
     private $formations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="niveauDemande")
+     */
+    private $entreprises;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
+        $this->entreprises = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Niveau
             // set the owning side to null (unless already changed)
             if ($formation->getNiveau() === $this) {
                 $formation->setNiveau(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entreprise[]
+     */
+    public function getEntreprises(): Collection
+    {
+        return $this->entreprises;
+    }
+
+    public function addEntreprise(Entreprise $entreprise): self
+    {
+        if (!$this->entreprises->contains($entreprise)) {
+            $this->entreprises[] = $entreprise;
+            $entreprise->setNiveauDemande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntreprise(Entreprise $entreprise): self
+    {
+        if ($this->entreprises->removeElement($entreprise)) {
+            // set the owning side to null (unless already changed)
+            if ($entreprise->getNiveauDemande() === $this) {
+                $entreprise->setNiveauDemande(null);
             }
         }
 
