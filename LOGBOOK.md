@@ -1,6 +1,5 @@
 ## FEUILLE DE ROUTE:
 
-(-->jour1)
 - Idées autour du projet :
     -
     - matching entre entreprises et candidats
@@ -43,7 +42,7 @@
     - installation de la base
     - Dépôt sur Github
     
-    - mise en place de l'authentification et de l'enregistrement (-->jour2)
+    - mise en place de l'authentification et de l'enregistrement 
     - gestion des rôles et du remember me en back et front
     - =>Sécurité Ok
     - création volet admin
@@ -68,7 +67,7 @@
       - OneToMany avec **Entreprise**
       - OneToMany avec **Candidat**
       - => Pour gagner du temps, je pars du principe qu'une entreprise ou un candidat est présent que dans une seule ville
-    - Création de **Niveau**, je choisis <=Bac à Bac+8 (-->jour3)
+    - Création de **Niveau**, je choisis <=Bac à Bac+8 
     - Je choisi de séparer Diplome et Formation qui je pense peuvent aujourd'hui être 2 choses différentes (à voir dans la pratique). 
     -Entity **Formation** avec le niveau qui peut être null => simplification 
     - On a donc Un Candidat avec des formations ou pas avec d'un certain niveau ou pas.
@@ -91,7 +90,7 @@
       - Equilibre pro/privé
       - Environnement de qualité
     - Dans mon premier jet de MCD, je partais du principe qu'une entreprise si elle a un secteur d'activité regroupe plusieurs domaines qui regroupe des compétences. 
-   Je vais partir plutôt baser mon schéma sur : un candidat a des compétences dans un seul domaine et un seul et une entreprise est dans un seul domaine (on essayera de proposer un autre domaine en recherche ? Pas très matching-friendly...)
+   Je vais partir plutôt baser mon schéma sur : un candidat a des compétences dans un seul domaine et un seul et une entreprise est dans plusieurs domaines.
     - Création d'une entity **Competence** et d'une entity **Domaine**
     - Relation OneToMany entre **Domaine** et **Competence**
     - Relation ManyToMany entre **Competence** et **Candidat**
@@ -103,7 +102,7 @@
 5. Navigation Home -> Login -> création compte -> accueil:
     -
    On s'écarte de la maquette proposée pour permettre à un nouvel utilisateur de créer son compte directement dés la page de login.
-   (-->jour 3)
+   
 * Si nouvel utilisateur :
     1. il crée un compte (bouton créer compte)
     2. il est rediriger vers un formulaire de création où il indique si candidat ou employeur
@@ -117,7 +116,7 @@
   
 6. Page profil = modifier :
     -
-- Affichage des informations et possibilité de tout mofifier. (-->jour 4/5)
+- Affichage des informations et possibilité de tout mofifier. 
 -  Mise en page moche en attente mais fonctionnelle => modification et ajout fonctionnel en back 
 - Possibilitées de modifier pour candidat une formation, une expérience ou la liste de ses compétences(-->jour 6)
 
@@ -125,6 +124,7 @@
     -
 - ajout du type de contrat souhaité et proposé selon la partie (relation ManyToOne avec **TypeContrat**)
 - Création d'un service **MatchingServices** qui contiendra touts les services permettant le matching entre candidat et entreprise
-- Gestion d'un matching simple pour tester le traitement
+- Gestion d'un matching simple pour tester le traitement->fonctionnel 
+- Je rajoute un à un, un attibut de comparaison
 
     

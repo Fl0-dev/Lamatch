@@ -9,7 +9,7 @@
         {{ form_widget(formExperience) }}
         <button type="submit" class="btn btn-primary">Modifier</button>
         {{ form_end(formExperience) }}
-        <a href="{{ path('candidat_modifier',{id:candidat.id}) }}">Retour</a>
+        <a href="{{ path('candidat_modifier',{id:app.user.candidat.id}) }}">Retour</a>
 
     </section>
 {% endblock %}

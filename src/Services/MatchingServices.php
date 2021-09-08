@@ -14,6 +14,7 @@ class MatchingServices
 
         //variable qui s'incrémente à chaque matching
         $indice= 0;
+
         //si valeur en commun
         if ($entreprise->getValeurPrincipale()==$candidat->getValeurPrincipale()){
             $indice++;
@@ -35,14 +36,27 @@ class MatchingServices
                 $indice++;
         }
         //si domaine concordant
-        $domainesEntreprise = $entreprise->getDomaines();
+        //
+        $domainesCandidat =[];
+        $domainesEntreprise = [];
+        //récupération des domaines d'une entreprise dans un tableau
+        array_push($domainesEntreprise,$entreprise->getDomaines());
         $skillsCandidat = $candidat->getCompetences();
-        foreach ($skillsCandidat as $skills){
-            $domainesCandidat = $skills->getDomaine();
-            //TODO:
+        //récupération des domaines des compétences d'un candidat
+        foreach ($skillsCandidat as $competence){
+            array_push($domainesCandidat,$competence->getDomaine());
         }
-        //retourne le pourcentage
-        return round(($indice*100)/6);
+        //variable pour compter le nombre de passage dans la boucle
+        $boucle=0;
+        //indice incrémenté si domaine d'une compétence de candidat est en commun avec un domaine d'une entreprise
+        foreach ($domainesCandidat as $domaineCandidat){
+            if (in_array($domaineCandidat,$domainesEntreprise)){
+                $indice++;
+            }
+            $boucle++;
+        }
+        //retourne un pourcentage
+        return round(($indice*100)/(6+$boucle));
 
     }
 
@@ -65,6 +79,7 @@ class MatchingServices
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
             $indice++;
         }
+        //si domaine concordant
         //retourne le pourcentage
         return round(($indice*100)/6);
     }
