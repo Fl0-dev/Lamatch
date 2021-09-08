@@ -33,26 +33,26 @@
                     {% for key2, value2 in listCandidat[key1] %}
                         {% if key2 == 'candidat' %}
                             <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('photos/'~ value2.photo) }}" class="card-img-top" alt="Photo de {{ value2.nom }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{value2.nom }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    {% if value2.enRecherche %}
-                                        💼 Recrutement
-                                    {% else %}
-                                        ❌ Ne recherche pas actuellement
-                                    {% endif %}
-                                </h6>
+                                <img src="{{ asset('photos/'~ value2.photo) }}" class="card-img-top" alt="Photo de {{ value2.nom }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{value2.nom }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        {% if value2.enRecherche %}
+                                            💼 En recherche
+                                        {% else %}
+                                            ❌ Ne recherche pas actuellement
+                                        {% endif %}
+                                    </h6>
 
-                                <p class="card-text">👶 {{ value2.age }} ans</p>
-                                <p class="card-text">🚩 {{ value2.ville.nom }} </p>
-                            </div>
+                                    <p class="card-text">👶 {{ value2.age }} ans</p>
+                                    <p class="card-text">🚩 {{ value2.ville.nom }} </p>
+                                </div>
                             <div class="card-body">
-                            <a href="#" class="card-link">Voir profil</a>
+                                <a href="#" class="card-link">Voir profil</a>
                         {% endif %}
-                        <p class="card-pourcentage">{% if key2 == 'pourcentage' %}{{ value2 }}{% endif %}</p>
-                        </div>
-                        </div>
+                            <p class="card-pourcentage">{% if key2 == 'pourcentage' %}{{ value2 }}%{% endif %} </p>
+                            </div>
+
                     {% endfor %}
                 {% endfor %}
             </div>

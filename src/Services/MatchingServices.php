@@ -9,17 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MatchingServices
 {
-    private $entityManager;
-    private $entrepriseRepository;
-
-    public function __construct(EntityManagerInterface $entityManager,EntrepriseRepository $entrepriseRepository){
-        $this->entityManager = $entityManager;
-        $this->entrepriseRepository =$entrepriseRepository;
-
-    }
-
-
-
 
     public function MatchingCandidatEntreprise($candidat,$entreprise){
 
@@ -41,7 +30,7 @@ class MatchingServices
                 $indice++;
         }
         //retourne le pourcentage
-        return ($indice*100)/6;
+        return round(($indice*100)/6);
 
     }
 
@@ -65,6 +54,6 @@ class MatchingServices
             $indice++;
         }
         //retourne le pourcentage
-        return ($indice*100)/6;
+        return round(($indice*100)/6);
     }
 }
