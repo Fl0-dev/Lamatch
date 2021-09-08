@@ -34,9 +34,9 @@ ville:Ville
     <id>UMLClass</id>
     <coordinates>
       <x>592</x>
-      <y>184</y>
+      <y>144</y>
       <w>192</w>
-      <h>288</h>
+      <h>304</h>
     </coordinates>
     <panel_attributes>
 Entreprise
@@ -63,6 +63,10 @@ typeEntreprise:TypeEntreprise
 -domaines:Domaine[ ]
 --
 typeContratPropose:TypeContrat
+--
+-NiveauDemande:Niveau
+--
+ExperienceDemande:integer
 
 </panel_attributes>
     <additional_attributes/>
@@ -71,7 +75,7 @@ typeContratPropose:TypeContrat
     <id>UMLClass</id>
     <coordinates>
       <x>600</x>
-      <y>496</y>
+      <y>504</y>
       <w>120</w>
       <h>112</h>
     </coordinates>
@@ -88,26 +92,14 @@ Utilisateur
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>648</x>
-      <y>464</y>
+      <x>640</x>
+      <y>608</y>
       <w>40</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=-
 1..1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>640</x>
-      <y>600</y>
-      <w>40</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>lt=-
-1..1</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -303,11 +295,11 @@ Region
       <x>776</x>
       <y>288</y>
       <w>160</w>
-      <h>104</h>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-
 *..1</panel_attributes>
-    <additional_attributes>180.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>180.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -350,13 +342,13 @@ Region
       <x>640</x>
       <y>64</y>
       <w>56</w>
-      <h>136</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=-
 1..*
 
 </panel_attributes>
-    <additional_attributes>50.0;150.0;10.0;10.0</additional_attributes>
+    <additional_attributes>50.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -478,13 +470,13 @@ QualitesDISC
     <id>Relation</id>
     <coordinates>
       <x>504</x>
-      <y>400</y>
+      <y>360</y>
       <w>104</w>
-      <h>72</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=-
 1..*</panel_attributes>
-    <additional_attributes>10.0;70.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -542,7 +534,7 @@ QualitesDISC
       <h>320</h>
     </coordinates>
     <panel_attributes>*..*</panel_attributes>
-    <additional_attributes>630.0;380.0;510.0;60.0;200.0;10.0;10.0;180.0</additional_attributes>
+    <additional_attributes>630.0;380.0;510.0;60.0;200.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -665,12 +657,36 @@ TypeQualite
     <id>Relation</id>
     <coordinates>
       <x>776</x>
-      <y>408</y>
+      <y>368</y>
       <w>368</w>
-      <h>240</h>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=-
 1..*</panel_attributes>
-    <additional_attributes>10.0;10.0;440.0;280.0</additional_attributes>
+    <additional_attributes>10.0;10.0;440.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>656</x>
+      <y>440</y>
+      <w>40</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>776</x>
+      <y>416</y>
+      <w>464</w>
+      <h>488</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*</panel_attributes>
+    <additional_attributes>10.0;10.0;560.0;130.0;510.0;590.0</additional_attributes>
   </element>
 </diagram>
