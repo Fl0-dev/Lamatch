@@ -36,10 +36,19 @@ class MatchingServices
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
                 $indice++;
         }
-        //si expérience concordante
+        //si expérience du candidat et l'expérience demandée sont concordantes
+        //TODO
+        //si meilleur niveau de formation du candidat et niveau demandé sont concordants
+        //TODO
+        //récupération de tous les niveaux de formation du candidat
+        /*$formations = [];
+        array_push($formations,$candidat->getFormations());
+        $niveauxFormation=[];
 
-        //si domaine concordant
-        //
+        foreach ($formations as $formation) {
+            array_push($niveauxFormation, $formation->getNiveau());
+        }*/
+        //si domaines des 2 parties sont concordants
         $domainesCandidat =[];
         $domainesEntreprise = [];
         //récupération des domaines d'une entreprise dans un tableau
