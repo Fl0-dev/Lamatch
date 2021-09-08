@@ -14,20 +14,32 @@ class MatchingServices
 
         //variable qui s'incrémente à chaque matching
         $indice= 0;
+        //si valeur en commun
         if ($entreprise->getValeurPrincipale()==$candidat->getValeurPrincipale()){
             $indice++;
         }
+        //si ville en commun
         if ($entreprise->getVille()==$candidat->getVille()){
             $indice =$indice +2;
         }
+        //si région en commun
         if ($entreprise->getVille()->getRegion()==$candidat->getVille()->getRegion()){
             $indice++;
         }
+        // si type de contrat est le même
         if (($entreprise->getTypeContratPropose()==$candidat->getTypeContratSouhaite())){
             $indice++;
         }
+        // si les deux parties sont en recherche
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
                 $indice++;
+        }
+        //si domaine concordant
+        $domainesEntreprise = $entreprise->getDomaines();
+        $skillsCandidat = $candidat->getCompetences();
+        foreach ($skillsCandidat as $skills){
+            $domainesCandidat = $skills->getDomaine();
+            //TODO:
         }
         //retourne le pourcentage
         return round(($indice*100)/6);
