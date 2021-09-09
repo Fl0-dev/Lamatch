@@ -131,8 +131,16 @@
     - Region
     - TypeDeContrat
     - EnRecherche
-    - Domaines
-    - Experience
-    - Niveau
+    - Domaines -> si temps
+    - Experience -> si temps
+    - Niveau -> si temps
+    - Personnalité -> si temps
+  
+8. Côté administrateur/trice
+    -
+- L'admin peut :
+  - ajouter 1 utilisateur
+  - gérer tous les candidats
+  - gérer toutes les entreprises
 
     

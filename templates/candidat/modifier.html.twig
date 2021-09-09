@@ -6,7 +6,7 @@
     <div class="row">
         <section class="col-6">
             <h1>Votre profil : {{ app.user.nom }}</h1>
-            <img src="{{ asset('photos/'~candidat.photo) }}" alt="photo de profil">
+            <img src="{% if candidat.photo %}{{ asset('photos/'~candidat.photo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" alt="photo de profil">
             {{ form_start(formCandidat) }}
             {{ form_row(formCandidat.emailContact) }}
             {{ form_row(formCandidat.nom) }}
@@ -44,7 +44,7 @@
                 </div>
             {% endfor %}
         </section>
-        <section class="">
+        <section>
             <h2>Formations </h2>
             {% for formation in candidat.formations %}
                 <div class="card">
@@ -60,20 +60,21 @@
                 </div>
             {% endfor %}
         </section>
+        <section>
+            <h2>Vos Compétences</h2>
+            <table class="table table-striped ">
+                <tbody>
+                {% for skill in candidat.competences %}
+                    <tr>
+                        <td>{{ skill.intitule }}</td>
+                        <td><a href="{{ path('competence_supprimer',{id:skill.id}) }}" class="btn btn-sm btn-danger col-4">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
     </div>
     </div>
 
-    <section class="col-6">
-        <h2>Vos Compétences</h2>
-        <table class="table table-striped ">
-            <tbody>
-                {% for skill in candidat.competences %}
-                <tr>
-                    <td>{{ skill.intitule }}</td>
-                    <td><a href="{{ path('competence_supprimer',{id:skill.id}) }}" class="btn btn-sm btn-danger col-4">Supprimer</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+
 {% endblock %}

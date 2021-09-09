@@ -26,13 +26,13 @@
         </div>
     </section>
     <section class="container">
-        <div class="row">
-            <div class="col-12">
-                {% for key1,value1 in listEntreprise %}
-                    {% for key2, value2 in listEntreprise[key1] %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for key1,value1 in listEntreprise %}
+            {% for key2, value2 in listEntreprise[key1] %}
+            <div class="col">
                         {% if key2 == 'entreprise' %}
                             <div class="card" style="width: 18rem;">
-                                <img src="{{ asset('photos/'~ value2.logo) }}" class="card-img-top" alt="Photo de {{ value2.nom }}">
+                                <img src="{% if value2.logo %}{{ asset('photos/'~ value2.logo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" class="card-img-top" alt="Photo de {{ value2.nom }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{value2.nom }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">
@@ -48,12 +48,13 @@
                                 <div class="card-body">
                                     <a href="{{ path('entreprise_profil',{id:value2.id}) }}" class="card-link btn btn-outline-primary">Voir profil</a>
                         {% endif %}
-                        <h1>{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
+                        <h1 class="text-center">{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
                                 </div>
-                            </div>
+
                     {% endfor %}
-                {% endfor %}
+                </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

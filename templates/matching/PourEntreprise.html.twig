@@ -49,7 +49,7 @@
                             <div class="card-body">
                                 <a href="{{ path('candidat_profil',{id:value2.id}) }}" class="card-link btn btn-outline-primary">Voir profil</a>
                         {% endif %}
-                                <h1>{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
+                                <h1 class="text-center">{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
                             </div>
 
                     {% endfor %}

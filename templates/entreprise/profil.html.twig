@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card" style="width: 30rem;">
-                        <img src="{{ asset('photos/'~ entreprise.logo) }}" class="card-img-top" alt="Photo de {{ entreprise.nom }}">
+                        <img src="{% if entreprise.logo %}{{ asset('photos/'~ entreprise.logo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" class="card-img-top" alt="Photo de {{ entreprise.nom }}">
                         <div class="card-body">
                             <h5 class="card-title">{{entreprise.nom }}</h5>
                             <h6 class="card-subtitle mb-2"> Date de création : {{ entreprise.dateDeCreation|date('Y')}}</h6>
@@ -23,7 +23,7 @@
                         <a href="mailto:{{ entreprise.adresseRH }}" class="card-link m-2  btn btn-outline-success"> 📧 Contact RH</a>
                         </div>
                     <div class>
-                    <a href="{{ path('matching_candidat',{id:app.user.candidat.id}) }}" class="justify-content-center btn btn-secondary mt-3">retour</a>
+                    <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin_gestionEntreprises') }}{% else %}{{ path('matching_candidat',{id:app.user.candidat.id}) }}{% endif %}" class="justify-content-center btn btn-secondary mt-3">retour</a>
                     </div>
                 </div>
             </div>

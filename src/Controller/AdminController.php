@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CandidatRepository;
+use App\Repository\EntrepriseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,11 +29,24 @@ class AdminController extends AbstractController
     /**
      * @Route("/gestionCandidats", name="gestionCandidats")
      */
-    public function list(CandidatRepository $candidatRepository):Response{
+    public function listCandidat(CandidatRepository $candidatRepository):Response
+    {
         //récupération de la liste des candidats
         $candidats = $candidatRepository->findAll();
         return $this->render('admin/gestionCandidats.html.twig',[
             'candidats'=>$candidats,
+        ]);
+    }
+
+    /**
+     * @Route("/gestionEntreprises", name="gestionEntreprises")
+     */
+    public function listEntreprise(EntrepriseRepository $entrepriseRepository):Response
+    {
+        //récupération de la liste des entreprises
+        $entreprises = $entrepriseRepository->findAll();
+        return $this->render('admin/gestionEntreprises.html.twig',[
+            'entreprises'=>$entreprises,
         ]);
     }
 }
