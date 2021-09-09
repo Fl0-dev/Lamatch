@@ -5,4 +5,33 @@
 {% block body %}
 
 
+        <div class="h2 container d-flex justify-content-center">Profil de {{candidat.nom }}  </div>
+        <section class="d-flex justify-content-center mt-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card" style="width: 30rem;">
+                        <img src="{{ asset('photos/'~ candidat.photo) }}" class="card-img-top" alt="Photo de {{ candidat.nom }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{candidat.prenom }} {{candidat.nom }}</h5>
+                            <h6 class="card-subtitle mb-2"> 👶 : {{ candidat.age}} ans</h6>
+                            <h6 class="card-subtitle mb-2">Expérience ? ans</h6>
+                            <h6 class="card-subtitle mb-2">🚩 {{ candidat.ville.nom }} </h6>
+                            <h6 class="card-subtitle mb-2">📖 {{ candidat.linkedin }}</h6>
+                            <h6 class="card-subtitle mb-2">Qui sommes nous: </h6>
+                            <p class="card-text mb-2">
+                                {% for qualite in candidat.listQualites %}
+                                    {{ qualite.nom }}</p>
+                                {%  endfor %}
+                        </div>
+                        <a href="mailto:{{ candidat.emailContact }}" class="card-link m-2  btn btn-outline-success"> 📧 Contact RH</a>
+                    </div>
+                    <div class>
+                        <a href="{{ path('matching_entreprise',{id:app.user.entreprise.id}) }}" class="justify-content-center btn btn-secondary mt-3">retour</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
 {% endblock %}

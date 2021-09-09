@@ -27,13 +27,13 @@
     </section>
 
     <section class="container">
-        <div class="row">
-            <div class="col-12">
-                {% for key1,value1 in listCandidat %}
-                    {% for key2, value2 in listCandidat[key1] %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for key1,value1 in listCandidat %}
+            {% for key2, value2 in listCandidat[key1] %}
+                <div class="col">
                         {% if key2 == 'candidat' %}
                             <div class="card" style="width: 18rem;">
-                                <img src="{{ asset('photos/'~ value2.photo) }}" class="card-img-top" alt="Photo de {{ value2.nom }}">
+                                <img src="{% if value2.photo %}{{ asset('photos/'~ value2.photo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" class="card-img-top" alt="Photo de {{ value2.nom }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{value2.nom }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">
@@ -43,19 +43,20 @@
                                             ❌ Ne recherche pas actuellement
                                         {% endif %}
                                     </h6>
-
                                     <p class="card-text">👶 {{ value2.age }} ans</p>
                                     <p class="card-text">🚩 {{ value2.ville.nom }} </p>
                                 </div>
                             <div class="card-body">
-                                <a href="{{ path('entreprise_profil',{id:value2.id}) }}" class="card-link">Voir profil</a>
+                                <a href="{{ path('candidat_profil',{id:value2.id}) }}" class="card-link btn btn-outline-primary">Voir profil</a>
                         {% endif %}
-                            <p class="card-pourcentage">{% if key2 == 'pourcentage' %}{{ value2 }}%{% endif %} </p>
+                                <h1>{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
                             </div>
 
                     {% endfor %}
-                {% endfor %}
+
+                        </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
