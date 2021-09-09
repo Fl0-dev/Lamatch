@@ -127,5 +127,14 @@ class CandidatController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/profil/{id}", name="profil")
+     */
+    public function profil(Candidat $candidat):Response
+    {
+        return $this->render('candidat/profil.html.twig',[
+            'candidat' => $candidat,
+        ]);
+    }
 
 }

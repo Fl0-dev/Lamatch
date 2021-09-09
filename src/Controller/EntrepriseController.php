@@ -105,6 +105,15 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/profil/{id}", name="profil")
+     */
+    public function profil(Entreprise $entreprise):Response
+    {
+        return $this->render('entreprise/profil.html.twig',[
+            'entreprise' => $entreprise,
+        ]);
+    }
 
 
 }
