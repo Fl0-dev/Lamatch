@@ -3,6 +3,31 @@
 {% block title %}{{parent()}}|Profil Entreprise{% endblock %}
 
 {% block body %}
+    <main class="">
 
+        <div class="h2 container d-flex justify-content-center">Profil de {{entreprise.nom }}  </div>
+        <section class="d-flex justify-content-center mt-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset('photos/'~ entreprise.logo) }}" class="card-img-top" alt="Photo de {{ entreprise.nom }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{entreprise.nom }}</h5>
+                            <h6 class="card-subtitle mb-2"> Date de création : {{ entreprise.dateDeCreation|date('Y')}}</h6>
+                            <h6 class="card-subtitle mb-2">👨‍👩‍👧‍👦 {{ entreprise.effectif }} personnes</h6>
+                            <h6 class="card-subtitle mb-2">🚩 {{ entreprise.ville.nom }} </h6>
+                            <h6 class="card-subtitle mb-2">🌐 {{ entreprise.adresseWeb }}</h6>
+                            <h6 class="card-subtitle mb-2">Qui sommes nous: </h6>
+                            <p class="card-text mb-2">{{ entreprise.infos }}</p>
+                        </div>
+                        <a href="mailto:{{ entreprise.adresseRH }}" class="card-link m-2  btn btn-success">Contact RH</a>
+                        </div>
+                    <a href="{{ path('matching_candidat',{id:app.user.candidat.id}) }}" class="card-link btn btn-secondary mt-3">retour</a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
 
 {% endblock %}

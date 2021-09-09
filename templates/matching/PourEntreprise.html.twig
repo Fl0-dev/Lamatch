@@ -48,7 +48,7 @@
                                     <p class="card-text">🚩 {{ value2.ville.nom }} </p>
                                 </div>
                             <div class="card-body">
-                                <a href="#" class="card-link">Voir profil</a>
+                                <a href="{{ path('entreprise_profil',{id:value2.id}) }}" class="card-link">Voir profil</a>
                         {% endif %}
                             <p class="card-pourcentage">{% if key2 == 'pourcentage' %}{{ value2 }}%{% endif %} </p>
                             </div>
