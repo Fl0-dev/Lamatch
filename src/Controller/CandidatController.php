@@ -23,8 +23,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class CandidatController extends AbstractController
 {
     /**
+     * Liaison d'un utilisateur avec l'Entity Candidat et enregistrement
+     * premiers des attributs
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/ajout", name="ajout")
+     * @param Request $request
+     * @param UploadImage $uploadImage
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function ajout(Request $request,
                           UploadImage $uploadImage,
@@ -59,19 +65,19 @@ class CandidatController extends AbstractController
             //calcul age
             $dateNaissance = $candidat->getDateNaissance();
             $stringDateNaissance = $dateNaissance->format('Y');
-
             $age = date('Y')- $stringDateNaissance;
             $candidat->setAge($age);
 
             //relie candidat et user
             $candidat->setUser($this->getUser());
-            //on inscrit en BD
+            //on inscrit en base de données
             $entityManager->persist($candidat);
             $entityManager->flush();
+            // redirection vers l'accueil
             $this->addFlash('success', 'Vous pouvez ajouter des formations, des expériences et des compétences.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
-
+        // envoie le formulaire
         return $this->render('candidat/ajout.html.twig', [
             'formCandidat' => $form->createView(),
             'candidat'=>$candidat,
@@ -79,8 +85,14 @@ class CandidatController extends AbstractController
     }
 
     /**
+     * permet à un candidat de compléter son profil et de le modifier
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/modifier/{id}", name="modifier")
+     * @param Candidat $candidat
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @param UploadImage $uploadImage
+     * @return Response
      */
     public function modifier(Candidat $candidat,
                              EntityManagerInterface $entityManager,
@@ -118,13 +130,13 @@ class CandidatController extends AbstractController
             $age = date('Y')- $stringDateNaissance;
             $candidat->setAge($age);
 
-            //on inscrit en BD
+            //on inscrit en base de données
             $entityManager->flush();
-
+            // redirection vers l'accueil
             $this->addFlash('success', 'Votre profil a bien été complété.');
             return $this->redirectToRoute('accueil');
         }
-
+        //envoie le formulaire
         return $this->render('candidat/modifier.html.twig', [
             'formCandidat' => $form->createView(),
             'candidat'=>$candidat,
@@ -132,8 +144,11 @@ class CandidatController extends AbstractController
     }
 
     /**
+     * affiche le profil du candidat
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/profil/{id}", name="profil")
+     * @param Candidat $candidat
+     * @return Response
      */
     public function profil(Candidat $candidat):Response
     {

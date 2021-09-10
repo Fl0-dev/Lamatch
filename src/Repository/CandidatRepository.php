@@ -19,6 +19,20 @@ class CandidatRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidat::class);
     }
 
+    /**
+     * récupère que les candidats actifs
+     * @return int|mixed|string
+     */
+    public function findAllCandidatsActifs(){
+        //dans la table Entreprise
+        $qb=$this->createQueryBuilder('c')
+            ->join('c.user','u')
+            ->andwhere('u.etat = :etat')
+            ->setParameter('etat',true);
+        return $qb->getQuery()->getResult();
+    }
+
+
     // /**
     //  * @return Candidat[] Returns an array of Candidat objects
     //  */

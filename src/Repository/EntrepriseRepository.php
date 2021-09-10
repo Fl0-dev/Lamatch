@@ -24,7 +24,7 @@ class EntrepriseRepository extends ServiceEntityRepository
      * récupère que les entreprises actives
      * @return int|mixed|string
      */
-    public function findAllEntrepriseActif(){
+    public function findAllEntreprisesActives(){
         //dans la table Entreprise
         $qb=$this->createQueryBuilder('e')
             ->join('e.user','u')

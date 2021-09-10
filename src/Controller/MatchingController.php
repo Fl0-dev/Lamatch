@@ -28,7 +28,7 @@ class MatchingController extends AbstractController
         //tableau pour stocker chaque matching
         $listEntreprise= [];
         //récupération de toutes les entreprises actives
-        $entreprises = $entrepriseRepository->findAllEntrepriseActif();
+        $entreprises = $entrepriseRepository->findAllEntreprisesActives();
         //pour chaque entreprise
         foreach ($entreprises as $entreprise){
             //calcul du pourcentage de matching
@@ -57,8 +57,8 @@ class MatchingController extends AbstractController
     {
         //tableau pour stocker chaque matching
         $listCandidat= [];
-        //récupération de toutes les entreprises
-        $candidats = $candidatRepository->findAll();
+        //récupération de toutes les candidats actifs
+        $candidats = $candidatRepository->findAllCandidatsActifs();
         //pour chaque candidat
         foreach ($candidats as $candidat){
             //calcul du pourcentage de matching
