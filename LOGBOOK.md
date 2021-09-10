@@ -142,5 +142,7 @@
   - ajouter 1 utilisateur
   - gérer tous les candidats
   - gérer toutes les entreprises
+  - désactiver un utilisateur qui sera automatiquement supprimer au bout d'un mois
+  - réactiver un utilisateur
 
     
