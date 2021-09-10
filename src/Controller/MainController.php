@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CandidatRepository;
+use App\Repository\EntrepriseRepository;
 use App\Services\Suppression;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -28,10 +30,16 @@ class MainController extends AbstractController
      * @param Suppression $suppression
      * @return Response
      */
-    public function accueil(Suppression $suppression): Response
+    public function accueil(Suppression $suppression,
+                            EntrepriseRepository $entrepriseRepository,
+                            CandidatRepository $candidatRepository): Response
     {
         //gestion des users inactifs depuis un mois
         $suppression->suppression();
+
+        //récupération du nombre d'entreprises et de candidats actifs sur le site
+        $nbCandidats = count($candidatRepository->findAllCandidatsActifs());
+        $nbEntreprises = count($entrepriseRepository->findAllEntreprisesActives());
 
         //récupération de l'utilisateur
         $user = $this->getUser();
@@ -43,7 +51,10 @@ class MainController extends AbstractController
         //si administrateur
         $userRoles = $user->getRoles();
         if (in_array('ROLE_ADMIN',$userRoles)){
-            return $this->render('main/accueil.html.twig');
+            return $this->render('main/accueil.html.twig', [
+                'nbCandidats'=>$nbCandidats,
+                'nbEntreprises'=>$nbEntreprises,
+        ]);
         }
         //si première connexion
         if ($user->getType()==true && $user->getCandidat()==null){//si candidat
@@ -52,10 +63,13 @@ class MainController extends AbstractController
         if ($user->getType()==false && $user->getEntreprise()==null){//si entreprise
             return $this->redirectToRoute('entreprise_ajout');
         }
+
         //envoie à la vue
         return $this->render('main/accueil.html.twig',[
             'candidat'=>$user->getCandidat(),
             'entreprise'=>$user->getEntreprise(),
+            'nbCandidats'=>$nbCandidats,
+            'nbEntreprises'=>$nbEntreprises,
         ]);
     }
 }

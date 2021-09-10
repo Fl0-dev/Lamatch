@@ -3,20 +3,14 @@
 {% block title %}{{parent()}}|backOffice{% endblock %}
 
 {% block body %}
-
+<section class="col-6 align-items-center my-3 mx-auto">
     <h1>Hello {{ app.user.nom }}! </h1>
 
     <h3>Gestion des utilisateurs</h3>
-    <ul>
-        <li><a href="{{ path('app_register',{route:route}) }}">Ajout d'un utilisateur</a></li>
-    </ul>
-    <h3>Gestion des Candidats</h3>
-    <ul>
-        <li><a href="{{ path('admin_gestionCandidats') }}">Gestion des Candidats</a></li>
-    </ul>
-    <h3>Gestion des Entreprises</h3>
-    <ul>
-        <li><a href="{{path('admin_gestionEntreprises')}}">Gestion des Entreprises</a></li>
-    </ul>
-
+    <div class="list-group">
+        <a href="{{ path('app_register',{route:route}) }}" class="list-group-item list-group-item-action">Ajout d'un utilisateur</a>
+        <a href="{{ path('admin_gestionCandidats') }}" class="list-group-item list-group-item-action">Affichage et gestion des Candidats</a>
+        <a href="{{path('admin_gestionEntreprises')}}" class="list-group-item list-group-item-action">Affichage et gestion des Entreprises</a>
+    </div>
+</section>
 {% endblock %}
