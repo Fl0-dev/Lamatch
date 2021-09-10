@@ -22,8 +22,14 @@ class EntrepriseController extends AbstractController
 {
 
     /**
+     * Permet de faire la liaison entre l'utilisateur et l'entreprise et enregistrement
+     * des premiers attributs
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/ajout", name="ajout")
+     * @param Request $request
+     * @param UploadImage $uploadImage
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function ajout(Request $request,
                           UploadImage $uploadImage,
@@ -31,9 +37,9 @@ class EntrepriseController extends AbstractController
     {
         //création d'une entreprise
         $entreprise = new Entreprise();
-        //utilisation du form de entreprise
+        //utilisation du formulaire de entreprise
         $form = $this->createForm(EntrepriseType::class,$entreprise);
-        //et envoie du form en requête
+        //et envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,15 +58,16 @@ class EntrepriseController extends AbstractController
                 }
                 $entreprise->setLogo($nomDeFichier);
             }
-            //relie entreprise et user
+            //relie entreprise et utilisateurr
             $entreprise->setUser($this->getUser());
-            //on inscrit en BD
+            //on inscrit en base de données
             $entityManager->persist($entreprise);
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre profil a bien été complété.');
             return $this->redirectToRoute('accueil');
         }
+            //envoie du formulaire
             return $this->render('entreprise/ajout.html.twig', [
                 'formEntreprise' => $form->createView(),
                 'entreprise'=>$entreprise,
@@ -68,21 +75,26 @@ class EntrepriseController extends AbstractController
     }
 
     /**
+     * permet à une entreprise de modifier son profil
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/modifier/{id}", name="modifier")
+     * @param Entreprise $entreprise
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @param UploadImage $uploadImage
+     * @return Response
      */
     public function modifier(Entreprise $entreprise,
                              EntityManagerInterface $entityManager,
                              Request $request,
                              UploadImage $uploadImage):Response
     {
-    //utilisation du form de entreprise
+        //utilisation du formulaire de entreprise
         $form = $this->createForm(EntrepriseType::class,$entreprise);
-        //et envoie du form en requête
+        //et envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
-
             //gestion du logo
             /** @var UploadedFile $dossierPhotos */
             $dossierPhotos = $form->get('logo')->getData();
@@ -97,12 +109,13 @@ class EntrepriseController extends AbstractController
                 }
                 $entreprise->setLogo($nomDeFichier);
             }
-            //on inscrit en BD
+            //on inscrit en base de données
             $entityManager->flush();
-
+            //redirection vers l'accueil
             $this->addFlash('success', 'Votre profil a bien été complété.');
             return $this->redirectToRoute('accueil');
         }
+        //envoie du formulaire
         return $this->render('entreprise/modifier.html.twig', [
             'formEntreprise' => $form->createView(),
             'entreprise'=>$entreprise,
@@ -110,8 +123,11 @@ class EntrepriseController extends AbstractController
     }
 
     /**
+     * permet l'affichage du profil de l'entreprise
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/profil/{id}", name="profil")
+     * @param Entreprise $entreprise
+     * @return Response
      */
     public function profil(Entreprise $entreprise):Response
     {

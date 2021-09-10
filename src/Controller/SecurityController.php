@@ -12,20 +12,21 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
+     * permet à un utilisateur de se logger
      * @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @param Request $request
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils,Request $request): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-        //récupération de la route pour la redirection dans lieu
+        //récupération de la route pour la redirection
         $routeName = $request->get('_route');
-        // get the login error if there is one
+        // récupère une erreur si erreur
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
+        // récupération du dernier nom pour ne pas laisser le champ vide
         $lastUsername = $authenticationUtils->getLastUsername();
-
+        //envoie vers la twig
         return $this->render('security/login.html.twig', [
             'route'=>$routeName,
             'last_username' => $lastUsername,
@@ -33,12 +34,13 @@ class SecurityController extends AbstractController
     }
 
     /**
-     *
+     * permet à un utilisateur de se déconnecter
      * @Route("/logout", name="app_logout")
+     * @return Response
      */
     public function logout(): Response
     {
-
+        //redirection vers la page de login
         return $this->redirectToRoute('app_login');
 
     }

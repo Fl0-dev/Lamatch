@@ -19,8 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class CompetenceController extends AbstractController
 {
     /**
+     * permet d'ajouter des compétences
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/ajout/{id}", name="ajout")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param Candidat $candidat
+     * @return Response
      */
     public function ajout(Request $request,
                           EntityManagerInterface $entityManager,
@@ -28,19 +33,21 @@ class CompetenceController extends AbstractController
     {
         //création d'une compétence
         $competence = new Competence();
-        //utilisation du form de competence
+        //utilisation du formulaire de competence
         $form = $this->createForm(CompetenceType::class,$competence);
-        //et envoie du form en requête
+        //et envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //enregistrement en BD
+            //enregistrement en base de données
             $candidat->addCompetence($competence);
             $entityManager->persist($competence);
             $entityManager->flush();
+            //redirection vers la modification de profil
             $this->addFlash('success', 'Votre compétence a bien été ajoutée.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
+        //envoie le formulaire
         return $this->render('competence/ajout.html.twig', [
             'formCompetence'=>$form->createView(),
             'candidat'=>$candidat,
@@ -48,6 +55,7 @@ class CompetenceController extends AbstractController
     }
 
     /**
+     * permet à un candidat de supprimer une compétence
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route ("/supprimer/{id}", name="supprimer")
      * @param Competence $competence
@@ -59,10 +67,12 @@ class CompetenceController extends AbstractController
                              Request $request,
                              EntityManagerInterface $entityManager):Response
     {
+            //récupère le candidat
             $candidat = $this->getUser()->getCandidat();
-            //enregistrement en BD
+            //suppression et enregistrement en base donnée
             $candidat->removeCompetence($competence);
             $entityManager->flush();
+            //redirection vers la modification du profil
             $this->addFlash('success', 'Votre compétence a bien été supprimée.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
 

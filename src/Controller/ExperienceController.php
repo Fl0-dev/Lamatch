@@ -19,8 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExperienceController extends AbstractController
 {
     /**
+     * permet à un candidat d'ajouter une expérience professionnelle
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/ajout/{id}", name="ajout")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param Candidat $candidat
+     * @return Response
      */
     public function ajout(Request $request,
                           EntityManagerInterface $entityManager,
@@ -28,19 +33,21 @@ class ExperienceController extends AbstractController
     {
         //création d'une entreprise
         $experience = new Experience();
-        //utilisation du form de formation
+        //utilisation du formulaire de formation
         $form = $this->createForm(ExperienceType::class,$experience);
-        //et envoie du form en requête
+        //et envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //enregistrement en BD
+            //enregistrement en base de données
             $experience->setCandidat($candidat);
             $entityManager->persist($experience);
             $entityManager->flush();
+            //redirection vers la modification de profil
             $this->addFlash('success', 'Votre experience a bien été inscrite.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
         }
+        //envoie le formulaire
         return $this->render('experience/ajout.html.twig', [
             'formExperience'=>$form->createView(),
             'candidat'=>$candidat,
@@ -48,24 +55,31 @@ class ExperienceController extends AbstractController
     }
 
     /**
+     * permet à un candidat de modifier une expérience
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/modifier/{id}", name="modifier")
+     * @param Experience $experience
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function modifier(Experience $experience,
                              Request $request,
                              EntityManagerInterface $entityManager):Response
     {
-        //utilisation du form de experience
+        //utilisation du formulaire de experience
         $form = $this->createForm(ExperienceType::class,$experience);
-        //envoie en requête
+        //envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //enregistrement en BD
+            //enregistrement en bsa de données
             $entityManager->flush();
+            //redirection vers la modification de profil
             $this->addFlash('success', 'Votre expérience a bien été modifiée.');
             return $this->redirectToRoute('candidat_modifier',['id'=>$experience->getCandidat()->getId()]);
         }
+        //envoie du formulaire
         return $this->render('experience/modifier.html.twig', [
             'formExperience'=>$form->createView(),
             'experience'=>$experience,
@@ -73,16 +87,22 @@ class ExperienceController extends AbstractController
     }
 
     /**
+     * Permet à un candidat de supprimer une expérience
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/supprimer/{id}", name ="supprimer")
+     * @param Experience $experience
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function supprimer(Experience $experience,EntityManagerInterface $entityManager):Response
     {
+        //récupération du candidat
         $candidat = $experience->getCandidat();
+        //enregistrement en base de données
         $entityManager->remove($experience);
         $entityManager->flush();
+        //redirection vers la modification de profil
         $this->addFlash('success', 'L\'expérience a bien été supprimée.');
-
         return $this->redirectToRoute('candidat_modifier',['id'=>$candidat->getId()]);
     }
 }

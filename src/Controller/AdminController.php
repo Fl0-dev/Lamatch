@@ -98,6 +98,7 @@ class AdminController extends AbstractController
         }
         //inscrit en base de données
         $entityManager->flush();
+        //redirection
         return $this->redirectToRoute($route);
 
     }

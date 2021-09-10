@@ -18,8 +18,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class MatchingController extends AbstractController
 {
     /**
+     * permet de lancer un matching pour un candidat avec toutes
+     * les entreprises actives du site
      * @IsGranted("ROLE_USER")
      * @Route("/candidat/{id}", name="candidat")
+     * @param Candidat $candidat
+     * @param MatchingServices $matchingServices
+     * @param EntrepriseRepository $entrepriseRepository
+     * @return Response
      */
     public function matchingCandidat(Candidat $candidat,
                                      MatchingServices $matchingServices,
@@ -48,8 +54,14 @@ class MatchingController extends AbstractController
     }
 
     /**
+     * permet de lancer un matching pour un entreprise avec tous
+     * les candidats actifs du site
      * @IsGranted("ROLE_USER")
      * @Route("/entreprise/{id}", name="entreprise")
+     * @param Entreprise $entreprise
+     * @param MatchingServices $matchingServices
+     * @param CandidatRepository $candidatRepository
+     * @return Response
      */
     public function matchingEntreprise(Entreprise $entreprise,
                                      MatchingServices $matchingServices,
@@ -57,7 +69,7 @@ class MatchingController extends AbstractController
     {
         //tableau pour stocker chaque matching
         $listCandidat= [];
-        //récupération de toutes les candidats actifs
+        //récupération de tous les candidats actifs
         $candidats = $candidatRepository->findAllCandidatsActifs();
         //pour chaque candidat
         foreach ($candidats as $candidat){

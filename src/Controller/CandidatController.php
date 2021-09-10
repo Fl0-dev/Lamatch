@@ -39,9 +39,9 @@ class CandidatController extends AbstractController
 
         //création d'un candidat
         $candidat = new Candidat();
-        //utilisation du form de candidat
+        //utilisation du formulaire de candidat
         $form = $this->createForm(CandidatType::class,$candidat);
-        //et envoie du form en requête
+        //et envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +68,7 @@ class CandidatController extends AbstractController
             $age = date('Y')- $stringDateNaissance;
             $candidat->setAge($age);
 
-            //relie candidat et user
+            //relie candidat et utilisateur
             $candidat->setUser($this->getUser());
             //on inscrit en base de données
             $entityManager->persist($candidat);
@@ -100,9 +100,9 @@ class CandidatController extends AbstractController
                              UploadImage $uploadImage): Response
     {
 
-        //utilisation du form de candidat
+        //utilisation du formulaire de candidat
         $form = $this->createForm(CandidatType::class,$candidat);
-        //et envoie du form en requête
+        //et envoie du formulaire en requête
         $form->handleRequest($request);
         //si valide
         //si valide
