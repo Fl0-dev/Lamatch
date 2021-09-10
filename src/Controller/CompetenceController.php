@@ -7,6 +7,7 @@ use App\Entity\Competence;
 use App\Form\CompetenceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CompetenceController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/ajout/{id}", name="ajout")
      */
     public function ajout(Request $request,
@@ -47,7 +48,7 @@ class CompetenceController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route ("/supprimer/{id}", name="supprimer")
      * @param Competence $competence
      * @param Request $request

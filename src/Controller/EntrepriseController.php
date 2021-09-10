@@ -22,7 +22,7 @@ class EntrepriseController extends AbstractController
 {
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/ajout", name="ajout")
      */
     public function ajout(Request $request,
@@ -68,7 +68,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/modifier/{id}", name="modifier")
      */
     public function modifier(Entreprise $entreprise,
