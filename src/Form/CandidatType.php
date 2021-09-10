@@ -25,9 +25,13 @@ class CandidatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('emailContact',EmailType::class)
+            ->add('emailContact',EmailType::class,[
+                'label'=>'Email de contact',
+            ])
             ->add('nom')
-            ->add('prenom')
+            ->add('prenom',null,[
+                'label'=>'Prénom',
+            ])
             ->add('photo',FileType::class,[
                 'mapped'=>false,
                 'required'=>false,
@@ -40,7 +44,8 @@ class CandidatType extends AbstractType
                 ]
             ])
             ->add('dateNaissance', DateType::class, [
-                'widget'=>'single_text'
+                'widget'=>'single_text',
+                'label'=>'Date de Naissance'
             ])
             ->add('linkedin')
             ->add('enRecherche',null,[
@@ -49,6 +54,7 @@ class CandidatType extends AbstractType
             ->add('typeContratSouhaite',EntityType::class,[
                 'class'=>TypeContrat::class,
                 'choice_label' => 'intitule',
+                'label'=>'Type de contrat souhaité'
             ])
             ->add('ville',EntityType::class,[
                 'class'=>Ville::class,
@@ -71,7 +77,9 @@ class CandidatType extends AbstractType
             ])
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
-                'choice_label' => 'nom'])
+                'choice_label' => 'nom',
+                'label'=>'La valeur que vous recherchez dans une entreprise'
+            ])
 
         ;
     }
