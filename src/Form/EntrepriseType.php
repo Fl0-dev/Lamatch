@@ -40,11 +40,17 @@ class EntrepriseType extends AbstractType
             ->add('dateDeCreation', DateType::class, [
                 'widget'=>'single_text'
             ])
-            ->add('adresseWeb',UrlType::class)
-            ->add('adresseRH',EmailType::class)
+            ->add('adresseWeb',UrlType::class,[
+                'label'=>'Adresse Web de l\'entreprise'
+            ])
+            ->add('adresseRH',EmailType::class,[
+                'label'=>'Email RH'
+            ])
             ->add('infos')
             ->add('effectif')
-            ->add('enrecherche')
+            ->add('enrecherche',null,[
+                'label'=>'Vous êtes à la recherche d\'un candidat' ,
+            ])
             ->add('typeContratPropose',EntityType::class,[
                 'class'=>TypeContrat::class,
                 'choice_label' => 'intitule',
