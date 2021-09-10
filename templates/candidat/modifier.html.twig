@@ -6,7 +6,7 @@
     <div class="row">
         <section class="col-6">
             <h1>Votre profil : {{ app.user.nom }}</h1>
-            <img style="width: 100%;" src="{% if candidat.photo %}{{ asset('photos/'~candidat.photo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" alt="photo de profil">
+            <img style="width: 200px;" src="{% if candidat.photo %}{{ asset('photos/'~candidat.photo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" alt="photo de profil">
             {{ form_start(formCandidat) }}
             {{ form_row(formCandidat.emailContact) }}
             {{ form_row(formCandidat.nom) }}
@@ -29,12 +29,15 @@
 
     <div class="col-6">
         <section class="">
-            <h2>Expériences Professionnelles</h2>
+            <h2 >Expériences Professionnelles</h2>
+            {% if candidat.experiences is empty %}
+            <p>Pensez à compléter cette section</p>
+            {% endif %}
             {% for experience in candidat.experiences %}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ experience.intitulePoste }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ experience.dateDebut | date('m-Y') }}{% if experience.dateFin %}{{ experience.dateFin | date('m-Y') }}{% else %} - {% endif %}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ experience.dateDebut | date('m-Y') }}->{% if experience.dateFin %}{{ experience.dateFin | date('m-Y') }}{% else %} - {% endif %}</h6>
                         <p class="card-text">{{ experience.typeContrat.intitule }}</p>
                         <p class="card-text">{{ experience.nomEmployeur }}</p>
                         <p class="card-text">{{ experience.description }}</p>
@@ -46,11 +49,14 @@
         </section>
         <section>
             <h2>Formations </h2>
+            {% if candidat.formations is empty %}
+                <p>Pensez à compléter cette section</p>
+            {% endif %}
             {% for formation in candidat.formations %}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ formation.intitule }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ formation.dateDebut | date('m-Y') }}{{ formation.dateFin | date('m-Y') }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ formation.dateDebut | date('m-Y') }}->{{ formation.dateFin | date('m-Y') }}</h6>
                         <p class="card-text">{{ formation.niveau.libelle }}</p>
                         <p class="card-text">{{ formation.etablissement }}</p>
                         <p class="card-text">{{ formation.domaine.nom }}</p>
@@ -62,6 +68,9 @@
         </section>
         <section>
             <h2>Vos Compétences</h2>
+            {% if candidat.competences is empty %}
+                <p>Pensez à compléter cette section</p>
+            {% endif %}
             <table class="table table-striped ">
                 <tbody>
                 {% for skill in candidat.competences %}

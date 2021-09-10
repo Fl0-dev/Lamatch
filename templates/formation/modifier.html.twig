@@ -3,13 +3,12 @@
 {% block title %}{{parent()}}|Modifier Formation{% endblock %}
 
 {% block body %}
-    <section class="col-6">
-        <h1>Modifier une formation</h1>
+    <section class="col-6 align-items-center my-3 mx-auto">
+        <h1>Modifier une formation  <a href="{{ path('candidat_modifier',{id:app.user.candidat.id}) }}" class="btn btn-secondary">Retour</a></h1>
         {{ form_start(formFormation) }}
         {{ form_widget(formFormation) }}
         <button type="submit" class="btn btn-primary">Modifier</button>
         {{ form_end(formFormation) }}
-        <a href="{{ path('candidat_modifier',{id:app.user.candidat.id}) }}">Retour</a>
 
     </section>
 

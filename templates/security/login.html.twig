@@ -3,6 +3,7 @@
 {% block title %}{{parent()}}|Connexion{% endblock %}
 
 {% block body %}
+<section class="col-6 align-items-center my-3 mx-auto">
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -33,4 +34,5 @@
     </button>
     <p>Première fois sur le site ? <a class="btn btn-outline-primary" href="{{ path('app_register',{route:route}) }}">Enregistrer vous</a></p>
 </form>
+</section>
 {% endblock %}

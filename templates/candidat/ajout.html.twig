@@ -3,7 +3,7 @@
 {% block title %}{{parent()}}|Création profil{% endblock %}
 
 {% block body %}
-    <section class="col-6">
+    <section class="col-6 align-items-center my-3 mx-auto">
     <h1>Bienvenue {{ app.user.nom }}</h1>
         {{ form_start(formCandidat) }}
         {{ form_row(formCandidat.emailContact) }}

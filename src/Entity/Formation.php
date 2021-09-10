@@ -31,9 +31,8 @@ class Formation
      */
     private $dateDebut;
 
-    /**@Assert\Expression(
-     *     "this.getDateDebut() < this.getDateFin()",
-     *     message="La date fin ne doit pas être antérieure à la date début")
+    /**
+     * @Assert\LessThan("today")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFin;

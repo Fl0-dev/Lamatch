@@ -62,11 +62,11 @@ class CandidatType extends AbstractType
             //->add('formations')
             //->add('experiences')
             ->add('ListQualites',EntityType::class,[
-                'label'=> 'Choisissez les qualités qui vous correspondent :',
+                'label'=> 'Choisissez plusieurs qualités qui vous correspondent (Maintenir Ctrl)',
                 'multiple'=>true,
                 'class'=> QualitesDISC::class,
                 'choice_label'=>'nom',
-                //'expanded'=>true, si l'on veut des checkbox
+                //'expanded'=>true, //si l'on veut des checkbox
                 //par ordre alphabétique
                 'query_builder'=> function(EntityRepository $entityRepository){
                     return $entityRepository->createQueryBuilder('c')

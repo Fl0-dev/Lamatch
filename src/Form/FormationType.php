@@ -16,12 +16,16 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('intitule')
+            ->add('intitule',null,[
+                'label'=>'Intitulé de la formation',
+            ])
             ->add('dateDebut',DateType::class,[
-                'widget'=>'single_text'
+                'widget'=>'single_text',
+                'label'=>'Date de début',
             ])
             ->add('dateFin',DateType::class,[
-                'widget'=>'single_text'
+                'widget'=>'single_text',
+                'label'=>'Date de fin',
             ])
             ->add('etablissement')
             ->add('niveau',EntityType::class,[

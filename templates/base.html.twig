@@ -67,16 +67,15 @@
     </nav>
 </header>
 {# ------------------------ Message flash ------------------- #}
-{% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="flash flash-{{ label }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
-
 <main>
     <section class="container">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }} mt-3">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% block body %}{% endblock %}
     </section>
 </main>

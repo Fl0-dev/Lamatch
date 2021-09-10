@@ -11,7 +11,7 @@
 
             <div class="col-6 d-flex justify-content-end">
                 <div class="launch-wrapper">
-                    <a href="{{ path('matching_candidat',{id:app.user.candidat.id}) }}" class="button success launch">Lancer un nouveau Matching 🚀</a>
+                    <a href="{{ path('matching_candidat',{id:app.user.candidat.id}) }}" class="btn btn-primary mt-3">Lancer un nouveau Matching 🚀</a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                                         {% else %}
                                             ❌ Ne recherche pas actuellement
                                         {% endif %}
-                                    </h6
+                                    </h6>
                                     <p class="card-text">👨‍👩‍👧‍👦 {{ value2.effectif }} personnes</p>
                                     <p class="card-text">🚩 {{ value2.ville.nom }} </p>
                                 </div>

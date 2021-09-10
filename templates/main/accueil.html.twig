@@ -13,12 +13,12 @@
 
     <section id="stats" class="container">
         <div class="row">
-            <div class="col-12 stats-wrapper">
+            <div class="col-12 stats-wrapper ">
                 <div class="row">
                     <div class="col-3"></div>
 
                     <div class="col-3">
-                        <div class="card stat">
+                        <div class="card stat text-center text-light bg-info">
                             <p class="stat-figure">3093</p>
 
                             <p class="stat-text">
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-3">
-                        <div class="card stat">
+                        <div class="card stat text-center text-light bg-info">
                             <p class="stat-figure color-blue1">43 923</p>
 
                             <p class="stat-text">
@@ -36,35 +36,9 @@
                             </p>
                         </div>
                     </div>
-
-                    <div class="col-3"></div>
                 </div>
 
-                <div class="row">
-                    <div class="col-3"></div>
 
-                    <div class="col-3">
-                        <div class="card stat">
-                            <p class="stat-figure color-danger">2 403 322</p>
-
-                            <p class="stat-text">
-                                Matching lancés 🎉
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="card stat">
-                            <p class="stat-figure color-success">90 421</p>
-
-                            <p class="stat-text">
-                                Recrutements bouclés 💪
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-3"></div>
-                </div>
             </div>
         </div>
     </section>
@@ -76,7 +50,7 @@
                     {{ path('matching_candidat',{id:app.user.candidat.id}) }}
                     {% elseif app.user.entreprise %}
                     {{ path('matching_entreprise',{id:app.user.entreprise.id}) }}
-                    {% endif %}" class="button success">
+                    {% endif %}" class="btn btn-primary mt-3">
                     Je lance le Matching ! ⚡
                 </a>
             </div>

@@ -3,13 +3,13 @@
 {% block title %}{{parent()}}|Ajouter Compétence{% endblock %}
 
 {% block body %}
-    <section class="col-6">
-        <h1>Ajouter une compétence</h1>
+    <section class="col-6 align-items-center my-3 mx-auto">
+        <h1>Ajouter une compétence <a href="{{ path('candidat_modifier',{id:candidat.id}) }}" class="btn btn-secondary">Retour</a></h1>
         {{ form_start(formCompetence) }}
         {{ form_widget(formCompetence) }}
         <button type="submit" class="btn btn-primary">Inscrire</button>
         {{ form_end(formCompetence) }}
-        <a href="{{ path('candidat_modifier',{id:candidat.id}) }}">Retour</a>
+
 
     </section>
 {% endblock %}

@@ -31,9 +31,7 @@ class Experience
     private $dateDebut;
 
     /**
-     * @Assert\Expression(
-     * "this.getDateDebut() < this.getDateFin()",
-     * message="La date de fin ne doit pas être antérieure à la date du début")
+     * @Assert\LessThan("today")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFin;
