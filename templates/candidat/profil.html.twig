@@ -19,7 +19,7 @@
                             <li class="card-text mb-2">{{ qualite.nom }}</li>
                             {%  endfor %}
                         </div>
-                        <a href="mailto:{{ candidat.emailContact }}" class="card-link m-2  btn btn-outline-success"> 📧 Contact RH</a>
+                        <a href="mailto:{{ candidat.emailContact }}" class="card-link m-2  btn btn-outline-success"> 📧 Contact </a>
                     </div>
                     <div class>
                         <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin_gestionCandidats') }}{% else %}{{ path('matching_entreprise',{id:app.user.entreprise.id}) }}{% endif %}" class="justify-content-center btn btn-secondary mt-3">retour</a>

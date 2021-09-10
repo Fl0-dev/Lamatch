@@ -20,7 +20,7 @@
                             <h6 class="card-subtitle mb-2">Qui sommes nous: </h6>
                             <p class="card-text mb-2">{{ entreprise.infos }}</p>
                         </div>
-                        <a href="mailto:{{ entreprise.adresseRH }}" class="card-link m-2  btn btn-outline-success"> 📧 Contact RH</a>
+                        <a href="mailto:{{ entreprise.adresseRH }}" class="card-link m-2  btn btn-outline-success"> 📧 Contact </a>
                         </div>
                     <div class>
                     <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin_gestionEntreprises') }}{% else %}{{ path('matching_candidat',{id:app.user.candidat.id}) }}{% endif %}" class="justify-content-center btn btn-secondary mt-3">retour</a>

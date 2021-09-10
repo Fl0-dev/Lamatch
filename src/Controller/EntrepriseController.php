@@ -7,6 +7,8 @@ use App\Form\EntrepriseType;
 use App\Services\MatchingServices;
 use App\Services\UploadImage;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -20,6 +22,7 @@ class EntrepriseController extends AbstractController
 {
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ajout", name="ajout")
      */
     public function ajout(Request $request,
@@ -65,6 +68,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/modifier/{id}", name="modifier")
      */
     public function modifier(Entreprise $entreprise,
@@ -106,6 +110,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/profil/{id}", name="profil")
      */
     public function profil(Entreprise $entreprise):Response

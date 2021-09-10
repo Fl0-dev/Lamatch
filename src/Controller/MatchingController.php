@@ -7,6 +7,7 @@ use App\Entity\Entreprise;
 use App\Repository\CandidatRepository;
 use App\Repository\EntrepriseRepository;
 use App\Services\MatchingServices;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MatchingController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/candidat/{id}", name="candidat")
      */
     public function matchingCandidat(Candidat $candidat,
@@ -46,6 +48,7 @@ class MatchingController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/entreprise/{id}", name="entreprise")
      */
     public function matchingEntreprise(Entreprise $entreprise,

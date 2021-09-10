@@ -8,6 +8,8 @@ use App\Repository\FormationRepository;
 use App\Services\MatchingServices;
 use App\Services\UploadImage;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CandidatController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ajout", name="ajout")
      */
     public function ajout(Request $request,
@@ -76,6 +79,7 @@ class CandidatController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/modifier/{id}", name="modifier")
      */
     public function modifier(Candidat $candidat,
@@ -128,6 +132,7 @@ class CandidatController extends AbstractController
     }
 
     /**
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/profil/{id}", name="profil")
      */
     public function profil(Candidat $candidat):Response

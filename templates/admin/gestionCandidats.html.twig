@@ -24,6 +24,10 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ path('candidat_profil',{id:candidat.id}) }}" class="card-link btn btn-outline-primary">Voir profil</a>
+                        <a href="{{ path('admin_gestionEtat',{id:candidat.user.id,route:route}) }}" class="card-link btn btn-outline-danger">Rendre
+                            {% if candidat.user.etat==true %} inactif
+                            {% else %} actif
+                            {% endif %}</a>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Entity\Candidat;
 use App\Entity\Experience;
 use App\Form\ExperienceType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExperienceController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ajout/{id}", name="ajout")
      */
     public function ajout(Request $request,
@@ -45,6 +47,7 @@ class ExperienceController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/modifier/{id}", name="modifier")
      */
     public function modifier(Experience $experience,
@@ -69,6 +72,7 @@ class ExperienceController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/supprimer/{id}", name ="supprimer")
      */
     public function supprimer(Experience $experience,EntityManagerInterface $entityManager):Response
