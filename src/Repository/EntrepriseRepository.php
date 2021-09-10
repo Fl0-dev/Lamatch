@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Entreprise;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,32 +20,17 @@ class EntrepriseRepository extends ServiceEntityRepository
         parent::__construct($registry, Entreprise::class);
     }
 
-    // /**
-    //  * @return Entreprise[] Returns an array of Entreprise objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    /**
+     * récupère que les entreprises actives
+     * @return int|mixed|string
+     */
+    public function findAllEntrepriseActif(){
+        //dans la table Entreprise
+        $qb=$this->createQueryBuilder('e')
+            ->join('e.user','u')
+            ->andwhere('u.etat = :etat')
+            ->setParameter('etat',true);
+        return $qb->getQuery()->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Entreprise
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
