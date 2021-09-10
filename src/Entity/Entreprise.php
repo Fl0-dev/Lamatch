@@ -6,6 +6,7 @@ use App\Repository\EntrepriseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EntrepriseRepository::class)
@@ -30,6 +31,7 @@ class Entreprise
     private $logo;
 
     /**
+     * @Assert\LessThan("today")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateDeCreation;
@@ -50,6 +52,7 @@ class Entreprise
     private $infos;
 
     /**
+     * @Assert\Positive
      * @ORM\Column(type="integer")
      */
     private $effectif;
@@ -93,6 +96,7 @@ class Entreprise
     private $typeContratPropose;
 
     /**
+     * @Assert\Positive
      * @ORM\Column(type="integer", nullable=true)
      */
     private $experienceDemande;

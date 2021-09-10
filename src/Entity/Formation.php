@@ -6,6 +6,7 @@ use App\Repository\FormationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FormationRepository::class)
@@ -25,11 +26,14 @@ class Formation
     private $intitule;
 
     /**
+     * @Assert\LessThan("today")
      * @ORM\Column(type="date")
      */
     private $dateDebut;
 
-    /**
+    /**@Assert\Expression(
+     *     "this.getDateDebut() < this.getDateFin()",
+     *     message="La date fin ne doit pas être antérieure à la date début")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFin;

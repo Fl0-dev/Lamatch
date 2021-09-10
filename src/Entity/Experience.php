@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ExperienceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ExperienceRepository::class)
@@ -24,11 +25,15 @@ class Experience
     private $nomEmployeur;
 
     /**
+     * @Assert\LessThan("today")
      * @ORM\Column(type="date")
      */
     private $dateDebut;
 
     /**
+     * @Assert\Expression(
+     * "this.getDateDebut() < this.getDateFin()",
+     * message="La date de fin ne doit pas être antérieure à la date du début")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFin;

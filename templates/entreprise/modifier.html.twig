@@ -6,7 +6,7 @@
     <section>
         <h1 class="container d-flex justify-content-center">Votre profil {{ app.user.nom }}</h1>
         <div class="justify-content-center col-8 mx-auto mt-3">
-        <img class="container d-flex justify-content-center" style="width: fit-content;" src="{% if entreprise.logo %}{{ asset('photos/'~entreprise.logo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" alt="Logo de {{ entreprise.nom }}">
+        <img class="container d-flex justify-content-center" style="width: 100%;" src="{% if entreprise.logo %}{{ asset('photos/'~entreprise.logo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" alt="Logo de {{ entreprise.nom }}">
         {{ form_start(formEntreprise) }}
         {{ form_widget(formEntreprise) }}
         <button type="submit" class="btn btn-primary">Modifier</button>
