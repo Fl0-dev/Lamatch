@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Services\Suppression;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,8 +23,10 @@ class MainController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")
      * @Route("/accueil", name="accueil")
      */
-    public function accueil(): Response
+    public function accueil(Suppression $suppression): Response
     {
+        //gestion des users inactifs depuis un mois
+        $suppression->suppression();
         $user = $this->getUser();
         if($user->getEtat()==false){
             return $this->render('bundles/TwigBundle/Exception/inactifUser.html.twig');
