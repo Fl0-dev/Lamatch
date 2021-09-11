@@ -36,6 +36,9 @@ class MatchingServices
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
                 $indice++;
         }
+        //en fonction d'un choix entre 4 les quatre listes de qualités différentes, on compare le
+        //nombre de qualités prédominantes dans la liste renseignée par le candidat
+        //TODO
         //si expérience du candidat et l'expérience demandée sont concordantes
         //TODO
         //si meilleur niveau de formation du candidat et niveau demandé sont concordants

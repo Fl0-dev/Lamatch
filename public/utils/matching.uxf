@@ -107,7 +107,7 @@ Utilisateur
       <x>488</x>
       <y>640</y>
       <w>208</w>
-      <h>320</h>
+      <h>304</h>
     </coordinates>
     <panel_attributes>
 Candidat
@@ -337,56 +337,19 @@ Region
     <additional_attributes>10.0;110.0;20.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>640</x>
-      <y>64</y>
-      <w>56</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>lt=-
-1..*
-
-</panel_attributes>
-    <additional_attributes>50.0;100.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>176</y>
+      <x>280</x>
+      <y>112</y>
       <w>184</w>
-      <h>240</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>
 Matching
 --
--idSouhait:integer symfony
+-idMatching:integer symfony
 --
--valeurPrincipale:ValeurPrincipale
---
--ville:Ville
---
-region:Region
---
--typeContrat:TypeContrat
---
--niveauDemande:Niveau
---
--ListQualites:Qualites[ ]
---
--domaine:Domaine
---
--experience:integer
---
--typeEntreprise:TypeEntreprise
---
--competences:Competence[ ]
---
-enrecherche
-
-
-</panel_attributes>
+-nombre:integer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -475,6 +438,7 @@ QualitesDISC
       <h>112</h>
     </coordinates>
     <panel_attributes>lt=-
+
 1..*</panel_attributes>
     <additional_attributes>10.0;120.0;110.0;10.0</additional_attributes>
   </element>
@@ -556,7 +520,7 @@ QualitesDISC
       <h>648</h>
     </coordinates>
     <panel_attributes>*..1</panel_attributes>
-    <additional_attributes>770.0;10.0;790.0;690.0;270.0;790.0;10.0;660.0</additional_attributes>
+    <additional_attributes>770.0;10.0;790.0;690.0;270.0;790.0;10.0;640.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -581,12 +545,12 @@ domaine:Domaine
     <id>Relation</id>
     <coordinates>
       <x>568</x>
-      <y>952</y>
+      <y>936</y>
       <w>56</w>
-      <h>72</h>
+      <h>88</h>
     </coordinates>
     <panel_attributes>*..*</panel_attributes>
-    <additional_attributes>50.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>50.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -598,19 +562,6 @@ domaine:Domaine
     </coordinates>
     <panel_attributes>1..*</panel_attributes>
     <additional_attributes>10.0;230.0;150.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLUseCase</id>
-    <coordinates>
-      <x>40</x>
-      <y>120</y>
-      <w>384</w>
-      <h>328</h>
-    </coordinates>
-    <panel_attributes>lt=.
-
-</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
@@ -688,5 +639,19 @@ TypeQualite
     <panel_attributes>lt=-
 1..*</panel_attributes>
     <additional_attributes>10.0;10.0;560.0;130.0;510.0;590.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>64</y>
+      <w>48</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;100.0</additional_attributes>
   </element>
 </diagram>
