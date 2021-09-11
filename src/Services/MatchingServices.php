@@ -81,6 +81,7 @@ class MatchingServices
         }
         //en fonction d'un choix entre 4 les quatre listes de qualités différentes, on compare le
         //nombre de qualités prédominantes dans la liste renseignée par le candidat
+
         //TODO
         //si meilleur niveau de formation du candidat et niveau demandé sont concordants
         //TODO

@@ -131,8 +131,8 @@
     - Region
     - TypeDeContrat
     - EnRecherche
-    - Domaines -> si temps
-    - Experience -> si temps
+    - Domaines
+    - Experience
     - Niveau -> si temps
     - Personnalité -> si temps
   
@@ -149,3 +149,7 @@
     -
  Sur la page d'accueil, il y a un compteur qui s'incrémente pour chaque nouveau matching, 
  ainsi que le nombre d'entreprises et de candidats actifs.
+ 
+10. Ajout Easter Egg 🦄
+    -
+
