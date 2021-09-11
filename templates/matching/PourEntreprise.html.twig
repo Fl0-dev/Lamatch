@@ -11,7 +11,7 @@
 
             <div class="col-6 d-flex justify-content-end">
                 <div class="launch-wrapper">
-                    <a href="{{ path('matching_entreprise',{id:app.user.entreprise.id}) }}" class="button success launch">Lancer un nouveau Matching 🚀</a>
+                    <a href="{{ path('matching_entreprise',{id:app.user.entreprise.id}) }}" class="btn btn-primary mt-3">Lancer un nouveau Matching 🚀</a>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             {% for key2, value2 in listCandidat[key1] %}
                 <div class="col">
                         {% if key2 == 'candidat' %}
-                            <div class="card" style="width: 18rem;">
+                            <div class="card h-100" style="width: 18rem;">
                                 <img src="{% if value2.photo %}{{ asset('photos/'~ value2.photo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" class="card-img-top" alt="Photo de {{ value2.nom }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{value2.nom }}</h5>

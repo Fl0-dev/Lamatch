@@ -31,7 +31,7 @@
             {% for key2, value2 in listEntreprise[key1] %}
             <div class="col">
                         {% if key2 == 'entreprise' %}
-                            <div class="card" style="width: 18rem;">
+                            <div class="card h-100" style="width: 18rem;">
                                 <img src="{% if value2.logo %}{{ asset('photos/'~ value2.logo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" class="card-img-top" alt="Photo de {{ value2.nom }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{value2.nom }}</h5>
@@ -45,13 +45,13 @@
                                     <p class="card-text">👨‍👩‍👧‍👦 {{ value2.effectif }} personnes</p>
                                     <p class="card-text">🚩 {{ value2.ville.nom }} </p>
                                 </div>
-                                <div class="card-body">
-                                    <a href="{{ path('entreprise_profil',{id:value2.id}) }}" class="card-link btn btn-outline-primary">Voir profil</a>
+                            <div class="card-body">
+                                <a href="{{ path('entreprise_profil',{id:value2.id}) }}" class="card-link btn btn-outline-primary">Voir profil</a>
                         {% endif %}
-                        <h1 class="text-center">{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
-                                </div>
-
-                    {% endfor %}
+                            <h1 class="text-center">{% if key2 == 'pourcentage' %}{{ value2 }} %{% endif %}</h1>
+                            </div>
+                    </div>
+            {% endfor %}
                 </div>
             </div>
             {% endfor %}
