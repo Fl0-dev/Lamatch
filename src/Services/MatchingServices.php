@@ -10,6 +10,13 @@ use Doctrine\ORM\EntityManagerInterface;
 class MatchingServices
 {
 
+    private $calculExperience;
+
+    public function __construct(CalculExperience $calculExperience){
+
+        $this->calculExperience = $calculExperience;
+    }
+
     public function Matching($candidat,$entreprise): float
     {
 
@@ -40,7 +47,12 @@ class MatchingServices
         //nombre de qualités prédominantes dans la liste renseignée par le candidat
         //TODO
         //si expérience du candidat et l'expérience demandée sont concordantes
-        //TODO
+        //récupération de l'expérience du candidat
+        $expCandidat = $this->calculExperience->experienceCandidat($candidat);
+        if($entreprise->getExperienceDemande()>=$expCandidat){
+            $indice++;
+        }
+
         //si meilleur niveau de formation du candidat et niveau demandé sont concordants
         //TODO
         //récupération de tous les niveaux de formation du candidat
@@ -71,7 +83,7 @@ class MatchingServices
             $boucle++;
         }
         //retourne un pourcentage
-        return round(($indice*100)/(6+$boucle));
+        return round(($indice*100)/(7+$boucle));
 
     }
 }
