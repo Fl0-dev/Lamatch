@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }}| Création Compte{% endblock %}
 
 {% block body %}
-    <h1>Création Compte</h1>
+    <h1 class="text-center">Création Compte</h1>
 
     <section class="container col-8">
     {{ form_start(registrationForm) }}
@@ -11,7 +11,7 @@
         {{ form_row(registrationForm.nom) }}
         {{ form_row(registrationForm.type) }}
         {{ form_row(registrationForm.plainPassword) }}
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+    <button type="submit" class="btn btn-primary my-2">S'inscrire</button>
     {{ form_end(registrationForm) }}
         <p>Nous collectons les informations fournies pour vous permettre d'être mis en relation avec des professionnels. Pour annuler votre
             compte, rapprocher vous de nos administrateur <a  href="mailto:lamatch@gmail.com">lamatch@gmail.com</a> . Nous nous engageons à

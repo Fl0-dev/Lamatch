@@ -96,7 +96,7 @@ class Entreprise
     private $typeContratPropose;
 
     /**
-     * @Assert\Positive
+     * @Assert\GreaterThanOrEqual(0);
      * @ORM\Column(type="integer", nullable=true)
      */
     private $experienceDemande;

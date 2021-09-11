@@ -9,12 +9,14 @@ use App\Entity\TypeContrat;
 use App\Entity\TypeEntreprise;
 use App\Entity\ValeurPrincipale;
 use App\Entity\Ville;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +27,9 @@ class EntrepriseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
+            ->add('nom',TextType::class,[
+                'label'=>'Nom de l\'entreprise',
+            ])
             ->add('logo',FileType::class,[
                 'mapped'=>false,
                 'required'=>false,
@@ -68,14 +72,30 @@ class EntrepriseType extends AbstractType
             ])
             ->add('ville',EntityType::class,[
                 'class'=>Ville::class,
-                'choice_label' => 'nom'])
+                'choice_label' => 'nom',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },])
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
-                'choice_label' => 'nom'])
+                'choice_label' => 'nom',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },
+            ])
             ->add('domaines',EntityType::class,[
                 'class'=>Domaine::class,
                 'multiple'=>true,
-                'choice_label' => 'nom'])
+                'choice_label' => 'nom',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },])
             //->add('user')
         ;
     }

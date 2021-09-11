@@ -6,6 +6,7 @@ use App\Entity\Domaine;
 use App\Entity\Experience;
 use App\Entity\TypeContrat;
 use App\Entity\Ville;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -43,10 +44,20 @@ class ExperienceType extends AbstractType
             ->add('ville',EntityType::class,[
                 'class'=>Ville::class,
                 'choice_label'=>'nom',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },
             ])
             ->add('domaine',EntityType::class,[
                 'class'=>Domaine::class,
                 'choice_label'=>'nom',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },
             ])
 
         ;

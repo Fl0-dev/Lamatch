@@ -58,7 +58,13 @@ class CandidatType extends AbstractType
             ])
             ->add('ville',EntityType::class,[
                 'class'=>Ville::class,
-                'choice_label' => 'nom'])
+                'choice_label' => 'nom',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },
+            ])
             //->add('formations')
             //->add('experiences')
             ->add('ListQualites',EntityType::class,[
@@ -78,7 +84,12 @@ class CandidatType extends AbstractType
             ->add('valeurPrincipale',EntityType::class,[
                 'class'=>ValeurPrincipale::class,
                 'choice_label' => 'nom',
-                'label'=>'La valeur que vous recherchez dans une entreprise'
+                'label'=>'La valeur que vous recherchez dans une entreprise',
+                //par ordre alphabétique
+                'query_builder'=> function(EntityRepository $entityRepository) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },
             ])
 
         ;
