@@ -29,9 +29,8 @@
                 <input type="checkbox" name="_remember_me"> Se souvenir de moi
             </label>
         </div>
-    <button class="btn btn-lg btn-primary mb-3" type="submit">
-        Connexion
-    </button>
+    <button class="btn btn-lg btn-primary mb-3 me-3" type="submit">Connexion</button>
+    <span><a style="text-decoration: none" href="{{ path('app_forgot_password_request') }}" >Mot de passe oublié ?</a></span>
     <p>Première fois sur le site ? <a class="btn btn-outline-primary" href="{{ path('app_register',{route:route}) }}">Enregistrer vous</a></p>
 </form>
 </section>

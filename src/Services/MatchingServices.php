@@ -43,8 +43,8 @@ class MatchingServices
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
                 $indice++;
         }
-        //si expérience du candidat et l'expérience demandée sont concordantes
-        //récupération de l'expérience du candidat
+        //Si expérience du candidat et l'expérience demandée sont concordantes.
+        //Récupération de l'expérience du candidat
         $expCandidat = $this->calculExperience->experienceCandidat($candidat);
         if($entreprise->getExperienceDemande()>=$expCandidat){
             $indice++;
@@ -59,7 +59,7 @@ class MatchingServices
         foreach ($skillsCandidat as $competence){
             array_push($domainesCandidat,$competence->getDomaine());
         }
-        //variable pour compter le nombre de passage dans la boucle
+        //variable pour compter le nombre de passages dans la boucle
         $boucle=0;
         //indice incrémenté si domaine d'une compétence de candidat est en commun avec un domaine d'une entreprise
         foreach ($domainesCandidat as $domaineCandidat){
