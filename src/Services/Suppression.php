@@ -10,6 +10,11 @@ class Suppression
     private $userRepository;
     private $entityManager;
 
+    /**
+     * Permet l'injection de dépendance nativement
+     * @param UserRepository $userRepository
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(UserRepository $userRepository,
                                 EntityManagerInterface $entityManager){
 
@@ -17,8 +22,11 @@ class Suppression
         $this->entityManager = $entityManager;
     }
 
-
-public function suppression(){
+    /**
+     * Permet la suppression d'un utilisateur au bout d'un mois
+     * depuis sa désactivation
+     */
+    public function suppression(){
         //récupération de tous les users
         $listUsers = $this->userRepository->findBy(['etat'=>false]);
         // date d'aujourd'hui

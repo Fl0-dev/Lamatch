@@ -12,11 +12,22 @@ class MatchingServices
 
     private $calculExperience;
 
+    /**
+     * Permet l'injection de dépendance nativement
+     * @param CalculExperience $calculExperience
+     */
     public function __construct(CalculExperience $calculExperience){
 
         $this->calculExperience = $calculExperience;
     }
 
+    /**
+     * Permet de comparer des attributs d'une entreprise et d'un candidat et de retourner
+     * un pourcentage de compatibilité
+     * @param $candidat
+     * @param $entreprise
+     * @return float
+     */
     public function Matching($candidat,$entreprise): float
     {
 

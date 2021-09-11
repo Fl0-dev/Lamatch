@@ -10,11 +10,21 @@ class CalculExperience
 {
     private $experienceRepository;
 
+    /**
+     * Permet l'injection de dépendance nativement
+     * @param ExperienceRepository $experienceRepository
+     */
     public function __construct(ExperienceRepository $experienceRepository){
 
         $this->experienceRepository =$experienceRepository;
     }
 
+    /**
+     * Permet le calcul de l'expérience d'un candidat
+     * en additionnant la durée de ses expériences professionnelles
+     * @param $candidat
+     * @return int|mixed
+     */
     public function experienceCandidat($candidat){
 
         //création d'une variable pour l'expérience totale d'un candidat
