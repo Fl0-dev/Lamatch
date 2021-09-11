@@ -8,7 +8,7 @@ use App\Repository\ExperienceRepository;
 
 class CalculExperience
 {
-    private $formationReposetory;
+    private $experienceRepository;
 
     public function __construct(ExperienceRepository $experienceRepository){
 
