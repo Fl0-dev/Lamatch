@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CandidatRepository;
 use App\Repository\EntrepriseRepository;
+use App\Repository\MatchingRepository;
 use App\Services\Suppression;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -32,11 +33,14 @@ class MainController extends AbstractController
      */
     public function accueil(Suppression $suppression,
                             EntrepriseRepository $entrepriseRepository,
-                            CandidatRepository $candidatRepository): Response
+                            CandidatRepository $candidatRepository,
+                            MatchingRepository $matchingRepository): Response
     {
         //gestion des users inactifs depuis un mois
         $suppression->suppression();
 
+        //Récupération du nombre de matching total
+        $nbMatching=$matchingRepository->find(1)->getNombre();
         //récupération du nombre d'entreprises et de candidats actifs sur le site
         $nbCandidats = count($candidatRepository->findAllCandidatsActifs());
         $nbEntreprises = count($entrepriseRepository->findAllEntreprisesActives());
@@ -54,6 +58,7 @@ class MainController extends AbstractController
             return $this->render('main/accueil.html.twig', [
                 'nbCandidats'=>$nbCandidats,
                 'nbEntreprises'=>$nbEntreprises,
+                'nbMatching'=>$nbMatching,
         ]);
         }
         //si première connexion
@@ -70,6 +75,7 @@ class MainController extends AbstractController
             'entreprise'=>$user->getEntreprise(),
             'nbCandidats'=>$nbCandidats,
             'nbEntreprises'=>$nbEntreprises,
+            'nbMatching'=>$nbMatching,
         ]);
     }
 }

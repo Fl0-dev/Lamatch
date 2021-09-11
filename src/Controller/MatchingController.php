@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use App\Entity\Entreprise;
+use App\Entity\Matching;
 use App\Repository\CandidatRepository;
 use App\Repository\EntrepriseRepository;
+use App\Repository\MatchingRepository;
 use App\Services\MatchingServices;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +32,9 @@ class MatchingController extends AbstractController
      */
     public function matchingCandidat(Candidat $candidat,
                                      MatchingServices $matchingServices,
-                                     EntrepriseRepository $entrepriseRepository): Response
+                                     EntrepriseRepository $entrepriseRepository,
+                                     MatchingRepository $matchingRepository,
+                                     EntityManagerInterface $entityManager): Response
     {
         //tableau pour stocker chaque matching
         $listEntreprise= [];
@@ -45,7 +50,13 @@ class MatchingController extends AbstractController
             //stockage dans un tableau récapitulatif
             $listEntreprise[]=$employeur;
         }
-
+        //incrémentation du nombre de matching
+        $matching = $matchingRepository->find(1);
+        $nb=$matching->getNombre();
+        $nb++;
+        $matching->setNombre($nb);
+        //enregistre en base de données
+        $entityManager->flush();
         //envoie vers la twig
         return $this->render('matching/PourCandidat.html.twig', [
             'listEntreprise' => $listEntreprise,
@@ -65,7 +76,9 @@ class MatchingController extends AbstractController
      */
     public function matchingEntreprise(Entreprise $entreprise,
                                      MatchingServices $matchingServices,
-                                     CandidatRepository $candidatRepository): Response
+                                     CandidatRepository $candidatRepository,
+                                     MatchingRepository $matchingRepository,
+                                     EntityManagerInterface $entityManager): Response
     {
         //tableau pour stocker chaque matching
         $listCandidat= [];
@@ -81,6 +94,13 @@ class MatchingController extends AbstractController
             //stockage dans un tableau récapitulatif
             $listCandidat[]=$postulant;
         }
+        //incrémentation du nombre de matching
+        $matching = $matchingRepository->find(1);
+        $nb=$matching->getNombre();
+        $nb++;
+        $matching->setNombre($nb);
+        //enregistre en base de données
+        $entityManager->flush();
         //envoie vers la twig
         return $this->render('matching/PourEntreprise.html.twig', [
             'listCandidat' => $listCandidat,
