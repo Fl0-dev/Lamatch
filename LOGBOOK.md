@@ -145,4 +145,7 @@
   - désactiver un utilisateur qui sera automatiquement supprimer au bout d'un mois
   - réactiver un utilisateur
 
-    
+9. Page d'accueil
+    -
+ Sur la page d'accueil, il y a un compteur qui s'incrémente pour chaque nouveau matching, 
+ ainsi que le nombre d'entreprises et de candidats actifs.
