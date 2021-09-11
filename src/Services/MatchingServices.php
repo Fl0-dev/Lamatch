@@ -10,6 +10,13 @@ use Doctrine\ORM\EntityManagerInterface;
 class MatchingServices
 {
 
+    private $calculExperience;
+
+    public function __construct(CalculExperience $calculExperience){
+
+        $this->calculExperience = $calculExperience;
+    }
+
     public function Matching($candidat,$entreprise): float
     {
 
@@ -36,21 +43,12 @@ class MatchingServices
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
                 $indice++;
         }
-        //en fonction d'un choix entre 4 les quatre listes de qualités différentes, on compare le
-        //nombre de qualités prédominantes dans la liste renseignée par le candidat
-        //TODO
         //si expérience du candidat et l'expérience demandée sont concordantes
-        //TODO
-        //si meilleur niveau de formation du candidat et niveau demandé sont concordants
-        //TODO
-        //récupération de tous les niveaux de formation du candidat
-        /*$formations = [];
-        array_push($formations,$candidat->getFormations());
-        $niveauxFormation=[];
-
-        foreach ($formations as $formation) {
-            array_push($niveauxFormation, $formation->getNiveau());
-        }*/
+        //récupération de l'expérience du candidat
+        $expCandidat = $this->calculExperience->experienceCandidat($candidat);
+        if($entreprise->getExperienceDemande()>=$expCandidat){
+            $indice++;
+        }
         //si domaines des 2 parties sont concordants
         $domainesCandidat =[];
         $domainesEntreprise = [];
@@ -70,8 +68,22 @@ class MatchingServices
             }
             $boucle++;
         }
+        //en fonction d'un choix entre 4 les quatre listes de qualités différentes, on compare le
+        //nombre de qualités prédominantes dans la liste renseignée par le candidat
+        //TODO
+        //si meilleur niveau de formation du candidat et niveau demandé sont concordants
+        //TODO
+        //récupération de tous les niveaux de formation du candidat
+        /*$formations = [];
+        array_push($formations,$candidat->getFormations());
+        $niveauxFormation=[];
+
+        foreach ($formations as $formation) {
+            array_push($niveauxFormation, $formation->getNiveau());
+        }*/
+
         //retourne un pourcentage
-        return round(($indice*100)/(6+$boucle));
+        return round(($indice*100)/(7+$boucle));
 
     }
 }
