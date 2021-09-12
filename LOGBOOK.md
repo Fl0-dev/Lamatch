@@ -157,8 +157,8 @@
 Bilan :
 -
 Ça a été un vrai plaisir de travailler sur ce projet. Les conditions n'ont pas été optimales, je n'ai pas pu utiliser tout le temps alloué car je jongle entre les cours (Android Studio,WordPress)et ma préparation de stage (Java).
-Mais j'ai, je pense, réussi à présenter un site viable et fonctionnel.
-J'ai donc utilisé Symfony 5.3.6 avec Bootstrap 5.1 et PhpMyAdmin, le tout en PHP 7.4 et sur PHPStorm.
+Mais j'ai, je pense, réussi à présenter un site viable et fonctionnel et ai atteint la plupart des objectifs que je m'étais fixés.
+J'ai donc utilisé Symfony 5.3.6 avec Bootstrap 5.1 et PhpMyAdmin, le tout en PHP 7.4 et sur PHPStorm. Il y a à disposition le fichier sql des data (car pas mal de choses doivent être rempli pour utiliser l'application) ainsi que le fichier sql complet à importer pour utiliser déjà ce qui a en base de données. C'est la première fois que je tenais un logbook alors je préfère faire un bilan pour que ça soit plus compréhensible.
 
 - Difficultés rencontrées/ points négatifs :
   -
@@ -205,4 +205,9 @@ J'ai donc utilisé Symfony 5.3.6 avec Bootstrap 5.1 et PhpMyAdmin, le tout en PH
     - L'administrateur/trice a accès à toutes le pages mais l'utilisateur ne peux avoir accès aux pages admin. Il ou elle a un volet spécifique qui lui permet d'avoir la liste de toutes les entreprises ainsi que la liste de tous les candidats.
     - Je ne laisse pas l'administrateur/trice modifié les profils mais lui laisse la possibilité de rendre inactif l'un ou l'autre (l'utilisateur n'a plus accès aux pages du site et est redirigé vers une page spécifique lors de son identification qui lui indique son état). Son profil n'apparait plus dans le matching.
     Au bout d'un mois, le profil est supprimé comme l'oblige la RGPD. Au cours de ce mois le profil peut être remis en actif.
+    - 
+  
+
+
+
     
