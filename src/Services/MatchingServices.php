@@ -11,14 +11,17 @@ class MatchingServices
 {
 
     private $calculExperience;
+    private $gestionListQualites;
 
     /**
      * Permet l'injection de dépendance nativement
      * @param CalculExperience $calculExperience
+     * @param GestionListQualites $gestionListQualites
      */
-    public function __construct(CalculExperience $calculExperience){
+    public function __construct(CalculExperience $calculExperience,GestionListQualites $gestionListQualites){
 
         $this->calculExperience = $calculExperience;
+        $this->gestionListQualites =$gestionListQualites;
     }
 
     /**
@@ -80,9 +83,9 @@ class MatchingServices
             $boucle++;
         }
         //en fonction d'un choix entre 4 les quatre listes de qualités différentes, on compare le
-        //nombre de qualités prédominantes dans la liste renseignée par le candidat
-
-        //TODO
+        //nombre de qualités qui ont le même type que celui demandé par l'entreprise
+        //récupération du pourcentage de compatibilité sur les qualités
+        $pourcentageSurType=$this->gestionListQualites->TypeQualiteMaxCandidat($candidat,$entreprise);
         //si meilleur niveau de formation du candidat et niveau demandé sont concordants
         //TODO
         //récupération de tous les niveaux de formation du candidat
@@ -94,7 +97,7 @@ class MatchingServices
             array_push($niveauxFormation, $formation->getNiveau());
         }*/
         //retourne un pourcentage
-        return round(($indice*100)/(7+$boucle));
+        return round((round(($indice*100)/(7+$boucle))+$pourcentageSurType)/2);
 
     }
 }

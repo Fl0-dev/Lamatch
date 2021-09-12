@@ -34,9 +34,15 @@ class TypeQualite
      */
     private $qualitesDISCs;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Entreprise::class, mappedBy="traitDeCaractèreSouhaite")
+     */
+    private $entreprises;
+
     public function __construct()
     {
         $this->qualitesDISCs = new ArrayCollection();
+        $this->entreprises = new ArrayCollection();
     }
 
 
@@ -93,6 +99,36 @@ class TypeQualite
             // set the owning side to null (unless already changed)
             if ($qualitesDISC->getTypeQualite() === $this) {
                 $qualitesDISC->setTypeQualite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entreprise[]
+     */
+    public function getEntreprises(): Collection
+    {
+        return $this->entreprises;
+    }
+
+    public function addEntreprise(Entreprise $entreprise): self
+    {
+        if (!$this->entreprises->contains($entreprise)) {
+            $this->entreprises[] = $entreprise;
+            $entreprise->setTraitDeCaractereSouhaite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntreprise(Entreprise $entreprise): self
+    {
+        if ($this->entreprises->removeElement($entreprise)) {
+            // set the owning side to null (unless already changed)
+            if ($entreprise->getTraitDeCaractereSouhaite() === $this) {
+                $entreprise->setTraitDeCaractereSouhaite(null);
             }
         }
 

@@ -7,6 +7,7 @@ use App\Entity\Entreprise;
 use App\Entity\Niveau;
 use App\Entity\TypeContrat;
 use App\Entity\TypeEntreprise;
+use App\Entity\TypeQualite;
 use App\Entity\ValeurPrincipale;
 use App\Entity\Ville;
 use Doctrine\ORM\EntityRepository;
@@ -86,6 +87,10 @@ class EntrepriseType extends AbstractType
                     return $entityRepository->createQueryBuilder('c')
                         ->orderBy('c.nom', 'ASC');
                 },
+            ])
+            ->add('traitDeCaractereSouhaite',EntityType::class,[
+                'class'=>TypeQualite::class,
+                'choice_label' => 'nom',
             ])
             ->add('domaines',EntityType::class,[
                 'class'=>Domaine::class,

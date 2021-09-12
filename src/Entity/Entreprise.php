@@ -106,6 +106,11 @@ class Entreprise
      */
     private $niveauDemande;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeQualite::class, inversedBy="entreprises")
+     */
+    private $traitDeCaractereSouhaite;
+
     public function __construct()
     {
         $this->domaines = new ArrayCollection();
@@ -326,6 +331,18 @@ class Entreprise
     public function setNiveauDemande(?Niveau $niveauDemande): self
     {
         $this->niveauDemande = $niveauDemande;
+
+        return $this;
+    }
+
+    public function getTraitDeCaractereSouhaite(): ?TypeQualite
+    {
+        return $this->traitDeCaractereSouhaite;
+    }
+
+    public function setTraitDeCaractereSouhaite(?TypeQualite $traitDeCaractereSouhaite): self
+    {
+        $this->traitDeCaractereSouhaite = $traitDeCaractereSouhaite;
 
         return $this;
     }

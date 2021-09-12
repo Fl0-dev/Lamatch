@@ -134,7 +134,7 @@
     - Domaines
     - Experience
     - Niveau -> si temps
-    - Personnalité -> si temps
+    - Personnalité (=> réduit fortement la compatibilité 😕)
   
 8. Côté administrateur/trice
     -
