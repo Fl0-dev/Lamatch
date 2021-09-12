@@ -55,7 +55,7 @@ class MatchingServices
         }
         // si les deux parties sont en recherche
         if ($entreprise->getEnrecherche()==$candidat->getEnrecherche()){
-                $indice++;
+                $indice=$indice +2;
         }
         //Si expérience du candidat et l'expérience demandée sont concordantes.
         //Récupération de l'expérience du candidat

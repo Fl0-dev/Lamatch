@@ -101,14 +101,14 @@
    
 5. Navigation Home -> Login -> création compte -> accueil:
     -
-   On s'écarte de la maquette proposée pour permettre à un nouvel utilisateur de créer son compte directement dés la page de login.
+   On s'écarte de la maquette proposée pour permettre à un nouvel utilisateur de créer son compte directement dès la page de login.
    
 * Si nouvel utilisateur :
     1. il crée un compte (bouton créer compte)
     2. il est rediriger vers un formulaire de création où il indique si candidat ou employeur
     3. une fois valider, retour au login
-    4. une fois logger il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil (permet de relier l'user avec candidat ou entreprise)
-    5. une fois completer il est renvoyer vers la modification de profil où il peut ajouter des formations, des expériences et des compétences.
+    4. une fois logué il est redirigé vers une page de bienvenue avec formulaire différent selon son type pour compléter son profil (permet de relier l'user avec candidat ou entreprise)
+    5. une fois complété il est renvoyé vers la modification de profil où il peut ajouter des formations, des expériences et des compétences.
 * Si utilisateur qui a déjà un profil :
     1. Il se logue et arrive sur la page d'accueil
 * Si Administrateur
@@ -135,6 +135,7 @@
     - Experience
     - Niveau -> si temps
     - Personnalité (=> réduit fortement la compatibilité 😕)
+- Affichage des vignettes en fonction du pourcentage et permet d'ouvrir le profil avec toutes les informations
   
 8. Côté administrateur/trice
     -
@@ -153,3 +154,20 @@
 10. Ajout Easter Egg 🦄
     -
 
+Bilan :
+-
+Ça a été un vrai plaisir de travailler sur ce projet. Les conditions n'ont pas été optimales, je n'ai pas pu utiliser tout le temps alloué car je jongle entre les cours (Android Studio,WordPress)et ma préparation de stage (Java).
+Mais j'ai, je pense, réussi à présenter un site viable et fonctionnel.
+J'ai donc utilisé Symfony 5.3.6 avec Bootstrap 5.1 et PhpMyAdmin, le tout en PHP 7.4 et sur PHPStorm.
+- Difficultés rencontrées:
+  - La mise en place du MCD : Je suis parti sur un modèle beaucoup trop lourd, et au fur et à mesure de la mise
+  en place des relations, de leur utilisation et du temps imparti, j'ai dû revoir mes objectifs et simplifier. Ce qui au regard du code n'est pas plus mal, le matching est alors devenu plus clair. 
+  Sa représentation sous UMLet laisse, je le conçoie, à désirer mais elle me permet de bien visualiser les relations entre Entity. 
+  - La gestion de la relation OneToOne entre un Utilisateur et Candidat ou Entreprise : Lors de la création d'un compte utilisateur, j'ai opté pour plusieurs pages. La première me permet d'enregistrer l'utilisateur selon son type, 
+  ainsi je peux aiguiller vers une deuxième avec un formulaire spécifique une fois logué qui est du coup la page aussi de modification de profil. J'ai essayé de faire les deux sur la même page, mais la gestion des informations comme l'ajout de formations et d'expériences posaient d'autres problématiques.
+  - Je souhaitais que l'ajout de formations, expériences et compétences se fassent aussi sur une même page mais ma méthode enregistrait en base sans relier au Candidat. Gros problème si le candidat voulait revenir en arrière sans vouloir sauvegarder. 
+C'est pourquoi le candidat est envoyé vers une page spécifique pour chaque nouvel ajout.
+  - La sélection des domaines où des traits de caractères sans Select2 : La multi-sélection par Ctrl+Click comme montrer dans les templates n'est vraiment pas "user-friendly", le select2 est la meilleure alternative pour permettre de faire plusieurs sélections tout en gardant en visu ses choix.
+Malheureusement, Bootstrap 5 ne semble pas pouvoir l'utiliser à la différence du 4. Si c'est possible, je n'ai pas réussi à faire fonctionner cette feature.
+  - Le redimensionnement des photos et logos lors de la sauvegarde en base : mon affichage laisse à désirer lors des résultats. J'avais commencé à installer un bundle (ImageOptimizer) mais par manque de temps je n'ai pas pu le faire fonctionner.  
+  - Manque de temps : J'aurais souhaité pouvoir mettre l'inscription en base de données par injection de fichier CSV, le changement possible de mot de passe en permettant à une entreprise ou un candidat de modifier sa partie Utilisateur
