@@ -35,8 +35,8 @@ ville:Ville
     <coordinates>
       <x>592</x>
       <y>144</y>
-      <w>192</w>
-      <h>304</h>
+      <w>200</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>
 Entreprise
@@ -67,6 +67,8 @@ typeContratPropose:TypeContrat
 -NiveauDemande:Niveau
 --
 ExperienceDemande:integer
+--
+traitDeCaractèreSouhaite:TypeQualite
 
 </panel_attributes>
     <additional_attributes/>
@@ -292,14 +294,14 @@ Region
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>784</x>
       <y>288</y>
-      <w>160</w>
+      <w>152</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>lt=-
 *..1</panel_attributes>
-    <additional_attributes>180.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>170.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -607,38 +609,38 @@ TypeQualite
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>784</x>
       <y>368</y>
-      <w>368</w>
+      <w>360</w>
       <h>280</h>
     </coordinates>
     <panel_attributes>lt=-
 1..*</panel_attributes>
-    <additional_attributes>10.0;10.0;440.0;330.0</additional_attributes>
+    <additional_attributes>10.0;10.0;430.0;330.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>656</x>
-      <y>440</y>
+      <y>456</y>
       <w>40</w>
-      <h>80</h>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-
 1..1</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>776</x>
+      <x>784</x>
       <y>416</y>
-      <w>464</w>
+      <w>456</w>
       <h>488</h>
     </coordinates>
     <panel_attributes>lt=-
 1..*</panel_attributes>
-    <additional_attributes>10.0;10.0;560.0;130.0;510.0;590.0</additional_attributes>
+    <additional_attributes>10.0;10.0;550.0;130.0;500.0;590.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -653,5 +655,17 @@ m1=1
 m2=*
 </panel_attributes>
     <additional_attributes>10.0;10.0;40.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>344</y>
+      <w>488</w>
+      <h>488</h>
+    </coordinates>
+    <panel_attributes>lt=-
+1..*</panel_attributes>
+    <additional_attributes>10.0;590.0;70.0;50.0;590.0;10.0</additional_attributes>
   </element>
 </diagram>
