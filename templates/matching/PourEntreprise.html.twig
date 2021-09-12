@@ -35,7 +35,7 @@
                             <div class="card h-100" style="width: 18rem;">
                                 <img src="{% if value2.photo %}{{ asset('photos/'~ value2.photo) }}{% else %}{{ asset('img/defaut.png') }}{% endif %}" class="card-img-top" alt="Photo de {{ value2.nom }}">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{value2.nom }}</h5>
+                                    <h5 class="card-title">{{ value2.prenom }} {{value2.nom }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">
                                         {% if value2.enRecherche %}
                                             💼 En recherche

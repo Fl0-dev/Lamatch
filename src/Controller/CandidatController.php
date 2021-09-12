@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Candidat;
 use App\Form\CandidatType;
 use App\Repository\FormationRepository;
+use App\Services\CalculExperience;
 use App\Services\MatchingServices;
 use App\Services\UploadImage;
 use Doctrine\ORM\EntityManagerInterface;
@@ -150,10 +151,14 @@ class CandidatController extends AbstractController
      * @param Candidat $candidat
      * @return Response
      */
-    public function profil(Candidat $candidat):Response
+    public function profil(Candidat $candidat,
+                           CalculExperience $calculExperience):Response
     {
+        //calcul expérience pour l'affichage
+        $experience= $calculExperience->experienceCandidat($candidat);
         return $this->render('candidat/profil.html.twig',[
             'candidat' => $candidat,
+            'experience'=>$experience,
         ]);
     }
 

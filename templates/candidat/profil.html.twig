@@ -3,7 +3,7 @@
 {% block title %}{{parent()}}|Profil Candidat{% endblock %}
 
 {% block body %}
-    <div class="h1 container d-flex justify-content-center my-3">Profil de {{candidat.nom }}  </div>
+    <div class="h1 container d-flex justify-content-center my-3">Profil de {{ candidat.prenom }} {{candidat.nom }}  </div>
     <section class="d-flex row mt-3">
                 <div class="col-4">
                     <div class="card" >
@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{candidat.prenom }} {{candidat.nom }}</h5>
                             <h6 class="card-subtitle mb-2"> 👶 : {{ candidat.age}} ans</h6>
-                            <h6 class="card-subtitle mb-2">Expérience ? ans</h6>
+                            <h6 class="card-subtitle mb-2">Expérience {{ experience }} ans</h6>
                             <h6 class="card-subtitle mb-2">🚩 {{ candidat.ville.nom }} </h6>
                             <h6 class="card-subtitle mb-2">📖 {{ candidat.linkedin }}</h6>
                             <h6 class="card-subtitle mb-2">Trait de personnalité : </h6>
