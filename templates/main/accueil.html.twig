@@ -47,6 +47,9 @@
     <section id="actions" class="container">
         <div class="row">
             <div class="col-12 text-center">
+                {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('admin_backOffice') }}" class="btn btn-primary mt-3">Volet Admin</a>
+                {% else %}
                 <a href="{% if app.user.candidat %}
                     {{ path('matching_candidat',{id:app.user.candidat.id}) }}
                     {% elseif app.user.entreprise %}
@@ -54,6 +57,7 @@
                     {% endif %}" class="btn btn-primary mt-3">
                     Je lance le Matching ! ⚡
                 </a>
+                {% endif %}
             </div>
         </div>
 {% endblock %}

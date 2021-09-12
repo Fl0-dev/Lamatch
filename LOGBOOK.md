@@ -159,15 +159,50 @@ Bilan :
 Ça a été un vrai plaisir de travailler sur ce projet. Les conditions n'ont pas été optimales, je n'ai pas pu utiliser tout le temps alloué car je jongle entre les cours (Android Studio,WordPress)et ma préparation de stage (Java).
 Mais j'ai, je pense, réussi à présenter un site viable et fonctionnel.
 J'ai donc utilisé Symfony 5.3.6 avec Bootstrap 5.1 et PhpMyAdmin, le tout en PHP 7.4 et sur PHPStorm.
-- Difficultés rencontrées:
-  - La mise en place du MCD : Je suis parti sur un modèle beaucoup trop lourd, et au fur et à mesure de la mise
-  en place des relations, de leur utilisation et du temps imparti, j'ai dû revoir mes objectifs et simplifier. Ce qui au regard du code n'est pas plus mal, le matching est alors devenu plus clair. 
-  Sa représentation sous UMLet laisse, je le conçoie, à désirer mais elle me permet de bien visualiser les relations entre Entity. 
-  - La gestion de la relation OneToOne entre un Utilisateur et Candidat ou Entreprise : Lors de la création d'un compte utilisateur, j'ai opté pour plusieurs pages. La première me permet d'enregistrer l'utilisateur selon son type, 
-  ainsi je peux aiguiller vers une deuxième avec un formulaire spécifique une fois logué qui est du coup la page aussi de modification de profil. J'ai essayé de faire les deux sur la même page, mais la gestion des informations comme l'ajout de formations et d'expériences posaient d'autres problématiques.
-  - Je souhaitais que l'ajout de formations, expériences et compétences se fassent aussi sur une même page mais ma méthode enregistrait en base sans relier au Candidat. Gros problème si le candidat voulait revenir en arrière sans vouloir sauvegarder. 
-C'est pourquoi le candidat est envoyé vers une page spécifique pour chaque nouvel ajout.
-  - La sélection des domaines où des traits de caractères sans Select2 : La multi-sélection par Ctrl+Click comme montrer dans les templates n'est vraiment pas "user-friendly", le select2 est la meilleure alternative pour permettre de faire plusieurs sélections tout en gardant en visu ses choix.
-Malheureusement, Bootstrap 5 ne semble pas pouvoir l'utiliser à la différence du 4. Si c'est possible, je n'ai pas réussi à faire fonctionner cette feature.
-  - Le redimensionnement des photos et logos lors de la sauvegarde en base : mon affichage laisse à désirer lors des résultats. J'avais commencé à installer un bundle (ImageOptimizer) mais par manque de temps je n'ai pas pu le faire fonctionner.  
-  - Manque de temps : J'aurais souhaité pouvoir mettre l'inscription en base de données par injection de fichier CSV, le changement possible de mot de passe en permettant à une entreprise ou un candidat de modifier sa partie Utilisateur
+
+- Difficultés rencontrées/ points négatifs :
+  -
+    - La mise en place du MCD : Je suis parti sur un modèle beaucoup trop lourd, et au fur et à mesure de la mise
+    en place des relations, de leur utilisation et du temps imparti, j'ai dû revoir mes objectifs et simplifier. Ce qui au regard du code n'est pas plus mal, le matching est alors devenu plus clair. 
+    Sa représentation sous UMLet laisse, je le conçoie, à désirer mais elle me permet de bien visualiser les relations entre Entity. 
+    - La gestion de la relation OneToOne entre un Utilisateur et Candidat ou Entreprise : Lors de la création d'un compte utilisateur, j'ai opté pour plusieurs pages. La première me permet d'enregistrer l'utilisateur selon son type, 
+    ainsi je peux aiguiller vers une deuxième avec un formulaire spécifique une fois logué qui est du coup la page aussi de modification de profil. J'ai essayé de faire les deux sur la même page, mais la gestion des informations comme l'ajout de formations et d'expériences posaient d'autres problématiques.
+    - Je souhaitais que l'ajout de formations, expériences et compétences se fassent aussi sur une même page mais ma méthode enregistrait en base sans relier au Candidat. Gros problème si le candidat voulait revenir en arrière sans vouloir sauvegarder. 
+  C'est pourquoi le candidat est envoyé vers une page spécifique pour chaque nouvel ajout.
+    - La sélection des domaines où des traits de caractères sans Select2 : La multi-sélection par Ctrl+Click comme montrer dans les templates n'est vraiment pas "user-friendly", le select2 est la meilleure alternative pour permettre de faire plusieurs sélections tout en gardant en visu ses choix.
+  Malheureusement, Bootstrap 5 ne semble pas pouvoir l'utiliser à la différence du 4. Si c'est possible, je n'ai pas réussi à faire fonctionner cette feature.
+    - La gestion des rôles : Elle peut être largement améliorée si l'on intègre directement un ROLE_CANDIDAT et ROLE_ENTREPRISE mais j'étais déjà trop loin dans mon programme pourchanger mon fusil d'épaule. Malheureusement j'ai remarqué en dernière minute qu'un candidat peut avoir accès à une page entreprise et vice-versa.
+      (=>première chose à corriger)
+    - Le redimensionnement des photos et logos lors de la sauvegarde en base : mon affichage laisse à désirer lors des résultats. J'avais commencé à installer un bundle (ImageOptimizer) mais par manque de temps je n'ai pas pu le faire fonctionner.
+    - Manque de temps : J'aurais souhaité pouvoir mettre l'inscription en base de données par injection de fichier CSV, le changement possible de mot de passe et permettre à une entreprise ou un candidat de modifier sa partie Utilisateur, et à l'administrateur/trice de compléter lui-même les profils d'un utilisateur (déjà fait sur d'autres projets).
+    poussez plus loin l'algo de matching en permettant de rajouter la possibilité à l'utilisateur de spécifier grâce à un paramètre de choisir ses critères prioritaires, le matching selon des compétences spécifiques. Et évidemment plus de temps pour gérer les exceptions.
+    
+
+- Points positifs:
+    -
+  - Beaucoup de plaisir à travailler sur ce projet. Le recrutement autrement et sa mise en pratique à travers une application m'a très vite inspiré et il ne m'en faut pas plus pour me motiver.
+  - Toutes les instructions demandées ont été respectées : 
+    - Le MCD est modélisé (cf. fichier matching.uxf et MCD.png (généré par PhpMyAdmin)).
+    - Il a été mis en place selon la POO. 
+    - Les routes, pages et contrôleurs sont en place.
+    - Le système d'authenfication simple est créé avec l'email comme clef unique.
+    - Le matching est fonctionnel et prend en compte le type d'utilisateur.
+  - Ce qu'il y a en plus :
+    - Le matching étant, à mon avis, le coeur de l'application, j'ai cherché à aller plus loin sur ce domaine spécifique : 
+      - Le choix des critères doit être rapide et simple(à la différence des sites de recherches traditionnels) d'où un maximum de listes déroulantes. C'est pourquoi tout ce qui peut l'être est déjà en base de données les villes, régions, domaines, niveau, type de contrat, type d'entreprise, qualités... 
+      - Les entreprises comme candidats tendent vers des valeurs communes. Une entreprise se vendra toujours comme une entreprise respectueuse de l'environnement, du temps perso/travail ou du bien-être au travail.
+      Et un candidat cherchera toujours toutes ces valeurs. C'est pourquoi j'ai opté pour un choix unique, une valeur principale que l'entreprise veut mettre en avant et le candidat cherche avant tout. Cette valeur est inscrite en base de données et est commune au deux.
+      - L'expérience du candidat est calculé directement selon les durées des expériences qu'il a renseignées toujours dans un but de gain de temps et de simplicité pour l'utilisateur/trice.
+      - Peu renseigné dans les recherches sur des sites traditionnels, j'ai mis au cœur de mon algorithme de matching la personnalité du candidat. C'est pourquoi il doit se définir selon des qualités préétablies (traits de caractère).
+    Ces qualités sont regroupées en 4 grandes familles. L'entreprise devra quant à elle, choisir une famille de qualités qu'elle recherche. L'algo cherche alors si un candidat a des qualités communes et transmet un score qui varie selon le nombre de qualités.
+      J'ai fait le choix de certaines qualités selon la classification DISC (cf. voir plus haut) mais on peut changer en base cette classification (car plus il y a de choix, plus le pourcentage de compatibilité est moins élevé).
+      - Le matching prend en compte la ville du candidat et de l'entreprise mais aussi sa région (avec valeur différente).
+      - Le tout donne un pourcentage plus fin qu'une comparaison domaine = domaine ou en recherche = en recherche.
+      - L'affichage des résultats se fait par ordre décroissant. Un simple click donne accès au profil et un lien permet alors de rentrer directement en contact.
+    - Un utilisateur/trice une fois qu'il s'est enregistré comme candidat ou entreprise, n'aura accès qu'à des pages spécifiques tout le long de sa navigation.
+    - Il peut évidemment modifier ses informations quand il le souhaite.
+    - La page d'accueil recense le nombre d'entreprises et de candidats actifs sur le site ainsi que le nombre de matching déjà effectué.   
+    - L'administrateur/trice a accès à toutes le pages mais l'utilisateur ne peux avoir accès aux pages admin. Il ou elle a un volet spécifique qui lui permet d'avoir la liste de toutes les entreprises ainsi que la liste de tous les candidats.
+    - Je ne laisse pas l'administrateur/trice modifié les profils mais lui laisse la possibilité de rendre inactif l'un ou l'autre (l'utilisateur n'a plus accès aux pages du site et est redirigé vers une page spécifique lors de son identification qui lui indique son état). Son profil n'apparait plus dans le matching.
+    Au bout d'un mois, le profil est supprimé comme l'oblige la RGPD. Au cours de ce mois le profil peut être remis en actif.
+    
