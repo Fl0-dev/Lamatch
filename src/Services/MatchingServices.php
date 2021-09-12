@@ -86,16 +86,6 @@ class MatchingServices
         //nombre de qualités qui ont le même type que celui demandé par l'entreprise
         //récupération du pourcentage de compatibilité sur les qualités
         $pourcentageSurType=$this->gestionListQualites->TypeQualiteMaxCandidat($candidat,$entreprise);
-        //si meilleur niveau de formation du candidat et niveau demandé sont concordants
-        //TODO
-        //récupération de tous les niveaux de formation du candidat
-        /*$formations = [];
-        array_push($formations,$candidat->getFormations());
-        $niveauxFormation=[];
-
-        foreach ($formations as $formation) {
-            array_push($niveauxFormation, $formation->getNiveau());
-        }*/
         //retourne un pourcentage
         return round((round(($indice*100)/(7+$boucle))+$pourcentageSurType)/2);
 

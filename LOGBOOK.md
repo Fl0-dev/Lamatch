@@ -205,7 +205,7 @@ J'ai donc utilisé Symfony 5.3.6 avec Bootstrap 5.1 et PhpMyAdmin, le tout en PH
     - L'administrateur/trice a accès à toutes le pages mais l'utilisateur ne peux avoir accès aux pages admin. Il ou elle a un volet spécifique qui lui permet d'avoir la liste de toutes les entreprises ainsi que la liste de tous les candidats.
     - Je ne laisse pas l'administrateur/trice modifié les profils mais lui laisse la possibilité de rendre inactif l'un ou l'autre (l'utilisateur n'a plus accès aux pages du site et est redirigé vers une page spécifique lors de son identification qui lui indique son état). Son profil n'apparait plus dans le matching.
     Au bout d'un mois, le profil est supprimé comme l'oblige la RGPD. Au cours de ce mois le profil peut être remis en actif.
-    - 
+  
   
 
 
