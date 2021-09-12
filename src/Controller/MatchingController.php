@@ -50,6 +50,9 @@ class MatchingController extends AbstractController
             //stockage dans un tableau récapitulatif
             $listEntreprise[]=$employeur;
         }
+        //tri de la list du meilleur pourcentage vers le moins bon
+        $tri = array_column($listEntreprise, 'pourcentage');
+        array_multisort($tri, SORT_DESC, $listEntreprise);
         //incrémentation du nombre de matching
         $matching = $matchingRepository->find(1);
         $nb=$matching->getNombre();
@@ -94,6 +97,9 @@ class MatchingController extends AbstractController
             //stockage dans un tableau récapitulatif
             $listCandidat[]=$postulant;
         }
+        //tri de la list du meilleur pourcentage vers le moins bon
+        $tri = array_column($listCandidat, 'pourcentage');
+        array_multisort($tri, SORT_DESC, $listCandidat);
         //incrémentation du nombre de matching
         $matching = $matchingRepository->find(1);
         $nb=$matching->getNombre();
